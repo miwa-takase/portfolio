@@ -1,0 +1,11 @@
+node_modules
+dist
+dist-ssg
+*.local
+.DS_Store
+.vite
+npm-debug.log*
+.env.local
+.env
+.dev.vars
+**/.dev.vars

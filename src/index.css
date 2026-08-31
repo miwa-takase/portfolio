@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --accent: #4f9dde;
+    --accent-soft: #93c6f2;
+    --steel: #6f97b3;
+    --teal: #7fb0a3;
+    --line: #322e24;
+    --line-soft: #262319;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-ink font-sans text-paper antialiased;
+    line-height: 1.7;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(
+        1100px 600px at 82% -8%,
+        rgba(79, 157, 222, 0.13),
+        transparent 60%
+      ),
+      radial-gradient(
+        900px 520px at -10% 12%,
+        rgba(111, 151, 179, 0.08),
+        transparent 55%
+      );
+    background-attachment: fixed;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+@layer components {
+  .wrap {
+    @apply mx-auto w-full max-w-content px-7;
+  }
+
+  .card-surface {
+    @apply border border-line;
+    background: linear-gradient(180deg, #211e17, #1c1a14);
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  }
+  @keyframes rise {
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .srt {
+    font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+    @apply whitespace-pre-wrap text-[0.72rem] leading-[1.7] text-paper-dim;
+  }
+  .srt .tc {
+    color: var(--steel);
+  }
+
+  .code {
+    font-family: ui-monospace, Menlo, monospace;
+    @apply overflow-x-auto whitespace-pre rounded-[10px] border border-line-soft bg-ink p-[14px] text-[0.74rem] leading-[1.65] text-paper-dim;
+  }
+
+  .dot-pulse {
+    animation: pulse2 2s infinite;
+  }
+  @keyframes pulse2 {
+    0% {
+      box-shadow: 0 0 0 0 rgba(127, 176, 163, 0.55);
+    }
+    70% {
+      box-shadow: 0 0 0 7px transparent;
+    }
+    100% {
+      box-shadow: 0 0 0 0 transparent;
+    }
+  }
+}

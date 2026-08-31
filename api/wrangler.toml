@@ -1,0 +1,17 @@
+name = "works-portfolio-api"
+main = "src/index.ts"
+compatibility_date = "2024-09-23"
+
+[[kv_namespaces]]
+binding = "RATE_LIMIT"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+[vars]
+ALLOWED_ORIGINS = "https://miwa-takase.github.io,http://localhost:5173"
+DAILY_LIMIT = "40"
+MAX_AUDIO_BYTES = "8000000"
+CLAUDE_MODEL = "claude-haiku-4-5-20251001"
+ELEVEN_VOICE_ID = "21m00Tcm4TlvDq8ikWAM"
+
+# secrets（wrangler secret put / ローカルは .dev.vars）:
+#   ELEVENLABS_API_KEY, ANTHROPIC_API_KEY, TURNSTILE_SECRET（任意）

@@ -1,0 +1,91 @@
+import { Link } from "react-router-dom";
+import { APPS, OWNER } from "../data/apps";
+import { FEATURES } from "../data/features";
+import { SKILL_COUNT } from "../data/skills";
+
+const btnPrimary =
+  "inline-flex items-center gap-2 rounded-full border border-accent bg-accent px-[18px] py-2.5 text-[0.82rem] font-semibold tracking-[0.05em] text-[#0b1a26] transition-all hover:bg-accent-soft";
+const btnGhost =
+  "inline-flex items-center gap-2 rounded-full border border-line px-[18px] py-2.5 text-[0.82rem] tracking-[0.05em] text-paper transition-all hover:border-accent hover:text-accent-soft";
+
+export default function Home() {
+  const stats = [
+    { b: FEATURES.length, s: "機能カテゴリ" },
+    { b: APPS.length, s: "掲載アプリ" },
+    { b: SKILL_COUNT, s: "技術スタック" },
+  ];
+
+  return (
+    <>
+      <section className="wrap">
+        <div className="grid grid-cols-1 items-end gap-8 pb-7 pt-16 md:grid-cols-[1.4fr_1fr] md:gap-12 md:pt-[84px]">
+          <div>
+            <div className="reveal mb-[22px] text-[0.76rem] uppercase tracking-[0.42em] text-accent">
+              Portfolio&nbsp;/&nbsp;Developer
+            </div>
+            <h1
+              className="reveal font-serif text-[clamp(2.6rem,7vw,5rem)] font-medium leading-[1.04]"
+              style={{ animationDelay: ".08s" }}
+            >
+              Miwa <span className="italic text-accent-soft">Takase</span>
+            </h1>
+            <p
+              className="reveal mt-[18px] max-w-[34ch] text-[1.02rem] text-paper-dim"
+              style={{ animationDelay: ".18s" }}
+            >
+              {OWNER.role}
+            </p>
+            <div
+              className="reveal mt-3.5 flex flex-wrap gap-2.5"
+              style={{ animationDelay: ".28s" }}
+            >
+              <Link className={btnPrimary} to="/works">
+                機能を試す →
+              </Link>
+              <Link className={btnGhost} to="/about">
+                About
+              </Link>
+            </div>
+          </div>
+          <div
+            className="reveal relative flex aspect-[4/5] items-center justify-center overflow-hidden rounded-2xl border border-line"
+            style={{
+              animationDelay: ".2s",
+              background:
+                "radial-gradient(120% 90% at 80% 0%, rgba(79,157,222,0.14), transparent 60%), linear-gradient(180deg, #211e17, #1c1a14)",
+            }}
+          >
+            <div className="font-serif text-[5rem] tracking-[0.1em] text-line">
+              M
+            </div>
+            <div className="absolute bottom-3.5 left-4 text-[0.68rem] uppercase tracking-[0.18em] text-muted">
+              Portrait / logo — 差し替え可
+            </div>
+          </div>
+        </div>
+
+        <div className="my-[34px] flex flex-wrap gap-[34px] border-y border-line-soft py-[30px]">
+          {stats.map((s) => (
+            <div key={s.s}>
+              <b className="block font-serif text-[1.9rem] text-paper">{s.b}</b>
+              <span className="text-[0.76rem] tracking-[0.08em] text-muted">
+                {s.s}
+              </span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="wrap pt-10">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-t border-line-soft pb-2.5 pt-[34px]">
+          <p className="m-0 max-w-[680px] text-[1.02rem] text-paper-dim">
+            実装してきた機能は、すべて Works 一覧から実際に試せます。
+          </p>
+          <Link className={btnPrimary} to="/works">
+            機能一覧へ →
+          </Link>
+        </div>
+      </section>
+    </>
+  );
+}
