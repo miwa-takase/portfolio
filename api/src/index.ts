@@ -65,7 +65,9 @@ export default {
 
 function corsHeaders(origin: string, allowed: string): Record<string, string> {
   const list = allowed.split(",").map((s) => s.trim());
-  const allow = list.includes(origin) ? origin : (list[0] ?? "");
+  // 開発時は localhost / 127.0.0.1 の任意ポートを許可（本番は list のみ）
+  const isLocal = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin);
+  const allow = list.includes(origin) || isLocal ? origin : (list[0] ?? "");
   return {
     "Access-Control-Allow-Origin": allow,
     "Access-Control-Allow-Methods": "POST, OPTIONS",
