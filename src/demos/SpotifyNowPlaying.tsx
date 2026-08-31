@@ -8,6 +8,7 @@ import {
   logout,
   type NowPlaying,
 } from "../lib/spotify";
+import { spotifyRedirectUri } from "../config";
 
 const btnPrimary =
   "inline-flex cursor-pointer items-center gap-2 rounded-full border border-accent bg-accent px-[18px] py-2.5 text-[0.82rem] font-semibold tracking-[0.05em] text-[#0b1a26] transition-all hover:bg-accent-soft";
@@ -15,6 +16,48 @@ const btnPrimary =
 function fmt(ms: number): string {
   const s = Math.floor(ms / 1000);
   return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
+}
+
+// このアプリが実際に送る Redirect URI を表示（Spotify に完全一致で登録するため）
+function RedirectHint() {
+  const uri = spotifyRedirectUri();
+  const [copied, setCopied] = useState(false);
+  const isLocalhost = uri.startsWith("http://localhost");
+  return (
+    <div className="mt-4 rounded-lg border border-line-soft bg-ink-2 p-3 text-[0.74rem] text-muted">
+      <div className="mb-1">
+        Spotify アプリの <b className="text-paper-dim">Redirect URI</b>{" "}
+        にこの値を「完全一致」で登録してください：
+      </div>
+      <div className="flex flex-wrap items-center gap-2">
+        <code className="break-all text-accent-soft">{uri}</code>
+        <button
+          className="rounded border border-line px-2 py-[2px] text-[0.7rem] text-paper-dim hover:border-accent hover:text-accent-soft"
+          onClick={() => {
+            navigator.clipboard?.writeText(uri).then(
+              () => {
+                setCopied(true);
+                setTimeout(() => setCopied(false), 1500);
+              },
+              () => {},
+            );
+          }}
+        >
+          {copied ? "コピー済" : "コピー"}
+        </button>
+      </div>
+      {isLocalhost && (
+        <div className="mt-2 text-rust">
+          ⚠️ Spotify は http の場合 <b>127.0.0.1</b> のみ許可（
+          <b>localhost</b> は不可）。ローカルでは{" "}
+          <code className="text-accent-soft">
+            http://127.0.0.1:5173/works-portfolio/works/music-social
+          </code>{" "}
+          を開いて、その URL を登録してください。
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default function SpotifyNowPlaying() {
@@ -90,6 +133,7 @@ export default function SpotifyNowPlaying() {
         <button className={btnPrimary} onClick={() => void beginAuth()}>
           Spotify で接続する →
         </button>
+        <RedirectHint />
       </div>
     );
   }
