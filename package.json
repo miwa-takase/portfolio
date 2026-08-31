@@ -1,9 +1,9 @@
 {
-  "name": "works-portfolio",
+  "name": "portfolio",
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "homepage": "https://miwa-takase.github.io/works-portfolio/",
+  "homepage": "https://miwa-takase.github.io/portfolio/",
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
