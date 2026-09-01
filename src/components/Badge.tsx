@@ -13,7 +13,7 @@ export default function Badge({ status }: { status: Status }) {
   return (
     <span
       className={cx(
-        "inline-flex items-center gap-2 rounded-full border px-2 py-[3px] text-xs uppercase tracking-[0.14em]",
+        "inline-flex items-center gap-2 rounded-full border px-2 py-1 text-xs uppercase tracking-widest",
         s.wrap,
       )}
     >

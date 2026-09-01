@@ -6,7 +6,7 @@ import { SKILLS } from "../data/skills";
 export default function About() {
   return (
     <section className="wrap">
-      <nav className="flex items-center gap-2 pt-[30px] text-xs tracking-[0.06em] text-muted">
+      <nav className="flex items-center gap-2 pt-8 text-xs tracking-wide text-muted">
         <Link to="/" className="text-paper-dim hover:text-accent-soft">
           Home
         </Link>
@@ -14,16 +14,14 @@ export default function About() {
         <span className="text-paper-dim">About</span>
       </nav>
 
-      <header className="pt-[22px]">
-        <div className="text-xs uppercase tracking-[0.34em] text-accent">
+      <header className="pt-6">
+        <div className="text-xs uppercase tracking-widest text-accent">
           About
         </div>
-        <h1 className="mt-2 font-serif text-[clamp(2.2rem,6vw,3.6rem)] font-medium leading-[1.1]">
+        <h1 className="mt-2 font-serif text-4xl font-medium leading-tight md:text-5xl lg:text-6xl">
           {OWNER.name}
         </h1>
-        <p className="mt-4 max-w-[80ch] text-base text-paper-dim">
-          {OWNER.role}
-        </p>
+        <p className="mt-4 max-w-3xl text-base text-paper-dim">{OWNER.role}</p>
       </header>
 
       <div className="py-8">
@@ -39,19 +37,19 @@ export default function About() {
           フロントからバックエンド、クラウド、AI連携まで、一通りを一人で組み上げます。
         </p>
 
-        <div className="mt-8 grid grid-cols-1 gap-10 md:grid-cols-[1fr_320px]">
+        <div className="mt-8 grid grid-cols-1 gap-10 md:grid-cols-5">
           {/* 左：年表プロフィール（内容は src/data/timeline.ts を編集） */}
-          <div>
+          <div className="md:col-span-3">
             <h2 className="mb-5 font-serif text-2xl font-medium">年表</h2>
             <ol className="relative ml-1">
               {TIMELINE.map((t, i) => {
                 // 線は最初のドットから始まる（上のはみ出しだけカット。下は伸ばす）
-                const line = i === 0 ? "top-[24px] bottom-0" : "top-0 bottom-0";
+                const line = i === 0 ? "top-6 bottom-0" : "top-0 bottom-0";
                 return (
                   <li key={i} className="relative py-3 pl-7">
                     <span className={`absolute left-0 w-px bg-line ${line}`} />
-                    <span className="absolute -left-[6.5px] top-[18px] h-3 w-3 rounded-full border-2 border-ink bg-accent" />
-                    <div className="font-serif tracking-[0.08em] text-accent-soft">
+                    <span className="absolute -left-1.5 top-4 h-3 w-3 rounded-full border-2 border-ink bg-accent" />
+                    <div className="font-serif tracking-wide text-accent-soft">
                       {t.year}
                     </div>
                     <div className="mt-1 font-serif text-lg text-paper">
@@ -67,8 +65,8 @@ export default function About() {
           </div>
 
           {/* 右：技術スタック */}
-          <aside>
-            <div className="text-xs uppercase tracking-[0.34em] text-accent">
+          <aside className="md:col-span-2">
+            <div className="text-xs uppercase tracking-widest text-accent">
               Tech Stack
             </div>
             <h2 className="mb-4 mt-2 font-serif text-2xl font-medium">
@@ -76,7 +74,7 @@ export default function About() {
             </h2>
             <div className="grid gap-3">
               {SKILLS.map((s) => (
-                <div key={s.h} className="card-surface rounded-xl p-[18px]">
+                <div key={s.h} className="card-surface rounded-xl p-5">
                   <h4 className="mb-2 font-serif text-base font-medium">
                     {s.h}
                   </h4>
@@ -84,7 +82,7 @@ export default function About() {
                     {s.items.map((i) => (
                       <span
                         key={i}
-                        className="rounded-[5px] border border-line-soft bg-ink-2 px-2 py-[3px] text-xs text-paper-dim"
+                        className="rounded-md border border-line-soft bg-ink-2 px-2 py-1 text-xs text-paper-dim"
                       >
                         {i}
                       </span>

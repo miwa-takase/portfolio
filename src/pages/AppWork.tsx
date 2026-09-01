@@ -9,9 +9,9 @@ import {
 } from "../data/features";
 
 const btnGhost =
-  "inline-flex items-center gap-2 rounded-full border border-line px-[18px] py-2 text-sm tracking-[0.05em] text-paper transition-all hover:border-accent hover:text-accent-soft";
+  "inline-flex items-center gap-2 rounded-full border border-line px-5 py-2 text-sm tracking-wide text-paper transition-all hover:border-accent hover:text-accent-soft";
 const btnPrimary =
-  "inline-flex items-center gap-2 rounded-full border border-accent bg-accent px-[18px] py-2 text-sm font-semibold tracking-[0.05em] text-[#0b1a26] transition-colors hover:bg-accent-soft";
+  "inline-flex items-center gap-2 rounded-full border border-accent bg-accent px-5 py-2 text-sm font-semibold tracking-wide text-ink transition-colors hover:bg-accent-soft";
 
 function appFeatures(appId: string): Feature[] {
   return FEATURES.filter((feature) => feature.apps.includes(appId));
@@ -42,7 +42,7 @@ export default function AppWork() {
 
   return (
     <section className="wrap">
-      <nav className="flex items-center gap-2 pt-[30px] text-xs tracking-[0.06em] text-muted">
+      <nav className="flex items-center gap-2 pt-8 text-xs tracking-wide text-muted">
         <Link to="/" className="text-paper-dim hover:text-accent-soft">
           Home
         </Link>
@@ -54,15 +54,15 @@ export default function AppWork() {
         <span className="text-paper-dim">{app.title}</span>
       </nav>
 
-      <header className="pb-[30px] pt-5">
-        <h1 className="font-serif text-[clamp(2.1rem,6vw,3.6rem)] font-medium leading-[1.08]">
+      <header className="pb-8 pt-5">
+        <h1 className="font-serif text-4xl font-medium leading-tight md:text-5xl lg:text-6xl">
           {app.title}
         </h1>
       </header>
 
-      <div className="grid grid-cols-1 gap-6 pb-8 lg:grid-cols-[1.05fr_0.95fr]">
-        <section className="card-surface rounded-[14px] p-6">
-          <div className="text-xs uppercase tracking-[0.2em] text-muted">
+      <div className="grid grid-cols-1 gap-6 pb-8 lg:grid-cols-2">
+        <section className="card-surface rounded-xl p-6">
+          <div className="text-xs uppercase tracking-widest text-muted">
             Overview
           </div>
           <p className="mt-4 text-base leading-8 text-paper-dim">
@@ -74,7 +74,7 @@ export default function AppWork() {
             {app.tech.map((tech) => (
               <span
                 key={tech}
-                className="rounded-[5px] border border-line-soft bg-ink-2 px-2 py-[3px] text-xs text-paper-dim"
+                className="rounded-md border border-line-soft bg-ink-2 px-2 py-1 text-xs text-paper-dim"
               >
                 {tech}
               </span>
@@ -82,7 +82,7 @@ export default function AppWork() {
           </div>
 
           <div className="mt-8">
-            <div className="mb-3 text-xs uppercase tracking-[0.2em] text-muted">
+            <div className="mb-3 text-xs uppercase tracking-widest text-muted">
               Sample Flow
             </div>
             {features.length ? (
@@ -90,7 +90,7 @@ export default function AppWork() {
                 {features.map((feature) => (
                   <span
                     key={feature.slug}
-                    className={`rounded-[5px] border border-line-soft px-2 py-[3px] text-xs ${ACCENT_TEXT[feature.accent]}`}
+                    className={`rounded-md border border-line-soft px-2 py-1 text-xs ${ACCENT_TEXT[feature.accent]}`}
                   >
                     {feature.title} · {statusShort(feature.status)}
                   </span>
@@ -111,19 +111,19 @@ export default function AppWork() {
                 <span aria-hidden="true">→</span>
               </Link>
             ) : (
-              <span className="inline-flex rounded-full border border-line px-[18px] py-2 text-sm tracking-[0.05em] text-muted">
+              <span className="inline-flex rounded-full border border-line px-5 py-2 text-sm tracking-wide text-muted">
                 準備中
               </span>
             )}
           </div>
         </section>
 
-        <section className="overflow-hidden rounded-[14px] border border-line bg-ink-2">
-          <div className="flex items-center justify-between border-b border-line-soft px-[18px] py-4">
-            <div className="text-xs uppercase tracking-[0.2em] text-muted">
+        <section className="overflow-hidden rounded-xl border border-line bg-ink-2">
+          <div className="flex items-center justify-between border-b border-line-soft px-5 py-4">
+            <div className="text-xs uppercase tracking-widest text-muted">
               Screenshot / Capture
             </div>
-            <div className="text-xs tracking-[0.1em] text-muted">
+            <div className="text-xs tracking-widest text-muted">
               {mediaSrc ? "Attached" : "Pending"}
             </div>
           </div>
@@ -135,11 +135,11 @@ export default function AppWork() {
                 className="h-full w-full object-cover"
               />
             ) : (
-              <div className="grid h-full grid-cols-[1.4fr_1fr] gap-3 p-5">
-                <span className="rounded-[8px] border border-dashed border-line-soft bg-panel/60" />
-                <div className="grid gap-3">
-                  <span className="rounded-[8px] border border-dashed border-line-soft bg-panel/60" />
-                  <span className="rounded-[8px] border border-dashed border-line-soft bg-panel/60" />
+              <div className="grid h-full grid-cols-5 gap-3 p-5">
+                <span className="col-span-3 rounded-lg border border-dashed border-line-soft bg-panel/60" />
+                <div className="col-span-2 grid gap-3">
+                  <span className="rounded-lg border border-dashed border-line-soft bg-panel/60" />
+                  <span className="rounded-lg border border-dashed border-line-soft bg-panel/60" />
                 </div>
               </div>
             )}
@@ -147,12 +147,12 @@ export default function AppWork() {
         </section>
       </div>
 
-      <nav className="border-t border-line-soft pb-2 pt-[26px]">
+      <nav className="border-t border-line-soft pb-2 pt-7">
         <Link className={btnGhost} to="/works">
           ← アプリ一覧へ
         </Link>
       </nav>
-      <div className="h-[30px]" />
+      <div className="h-8" />
     </section>
   );
 }

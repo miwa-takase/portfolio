@@ -1,19 +1,16 @@
 import { Link } from "react-router-dom";
 
 const navLink =
-  "text-sm tracking-[0.08em] text-white transition-colors hover:text-accent-soft";
+  "text-sm tracking-wide text-white transition-colors hover:text-accent-soft";
 
 export default function TopBar() {
   return (
     <header className="sticky top-0 z-50 border-b border-line-soft bg-ink/70 pt-4 backdrop-blur-md">
       <div className="wrap flex h-16 items-center justify-between">
-        <Link
-          to="/"
-          className="font-serif text-lg tracking-[0.14em] text-white"
-        >
+        <Link to="/" className="font-serif text-lg tracking-widest text-white">
           Judy<span className="text-accent">.</span>
         </Link>
-        <nav className="hidden gap-[26px] sm:flex">
+        <nav className="hidden gap-7 sm:flex">
           <Link to="/" className={navLink}>
             Home
           </Link>

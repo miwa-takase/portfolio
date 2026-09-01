@@ -3,19 +3,19 @@ import { OWNER } from "../data/apps";
 import SpotifyNowPlaying from "../demos/SpotifyNowPlaying";
 
 const btnGhost =
-  "inline-flex cursor-pointer items-center gap-2 rounded-full border border-line px-[18px] py-2 text-sm tracking-[0.05em] text-paper transition-all hover:border-accent hover:text-accent-soft";
+  "inline-flex cursor-pointer items-center gap-2 rounded-full border border-line px-5 py-2 text-sm tracking-wide text-paper transition-all hover:border-accent hover:text-accent-soft";
 
 export default function Footer() {
   const [show, setShow] = useState(false);
   return (
     <footer
       id="contact"
-      className="mt-16 border-t border-line-soft py-14 pb-[70px]"
+      className="mt-16 border-t border-line-soft py-14 pb-16 lg:pb-20"
     >
-      <div className="wrap grid items-center gap-8 md:grid-cols-[1fr_minmax(320px,560px)_1fr]">
+      <div className="wrap grid items-center gap-8 md:grid-cols-3">
         <div>
           <h2 className="font-serif text-4xl font-medium">Get in touch.</h2>
-          <p className="mt-2 text-xs tracking-[0.06em] text-muted">
+          <p className="mt-2 text-xs tracking-wide text-muted">
             機能の詳細・実装については、お気軽にご連絡ください。
           </p>
         </div>
@@ -33,7 +33,7 @@ export default function Footer() {
               Contact →
             </button>
           )}
-          <p className="mt-4 text-xs tracking-[0.06em] text-muted">
+          <p className="mt-4 text-xs tracking-wide text-muted">
             © {new Date().getFullYear()} Judy
           </p>
         </div>

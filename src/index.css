@@ -47,7 +47,7 @@
 
 @layer components {
   .wrap {
-    @apply mx-auto w-full max-w-content px-7;
+    @apply mx-auto w-full max-w-content px-5 sm:px-7;
   }
 
   .card-surface {
@@ -69,7 +69,7 @@
 
   .srt {
     font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
-    @apply whitespace-pre-wrap text-xs leading-[1.7] text-paper-dim;
+    @apply whitespace-pre-wrap text-xs leading-relaxed text-paper-dim;
   }
   .srt .tc {
     color: var(--steel);
@@ -77,7 +77,7 @@
 
   .code {
     font-family: ui-monospace, Menlo, monospace;
-    @apply overflow-x-auto whitespace-pre rounded-[10px] border border-line-soft bg-ink p-[14px] text-xs leading-[1.65] text-paper-dim;
+    @apply overflow-x-auto whitespace-pre rounded-lg border border-line-soft bg-ink p-4 text-xs leading-relaxed text-paper-dim;
   }
 
   .dot-pulse {

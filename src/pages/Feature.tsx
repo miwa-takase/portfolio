@@ -17,7 +17,7 @@ function demoLabel(t: DemoType): string {
 }
 
 const btnGhost =
-  "inline-flex items-center gap-2 rounded-full border border-line px-[18px] py-2 text-sm tracking-[0.05em] text-paper transition-all hover:border-accent hover:text-accent-soft";
+  "inline-flex items-center gap-2 rounded-full border border-line px-5 py-2 text-sm tracking-wide text-paper transition-all hover:border-accent hover:text-accent-soft";
 
 export default function Feature() {
   const { appId, slug } = useParams();
@@ -53,7 +53,7 @@ export default function Feature() {
 
   return (
     <section className="wrap">
-      <nav className="flex items-center gap-2 pt-[30px] text-xs tracking-[0.06em] text-muted">
+      <nav className="flex items-center gap-2 pt-8 text-xs tracking-wide text-muted">
         <Link to="/" className="text-paper-dim hover:text-accent-soft">
           Home
         </Link>
@@ -72,21 +72,17 @@ export default function Feature() {
         <span className="text-paper-dim">{f.title}</span>
       </nav>
 
-      <header className="pb-[30px] pt-5">
-        <div className="font-serif text-base tracking-[0.12em] text-muted">
+      <header className="pb-8 pt-5">
+        <div className="font-serif text-base tracking-widest text-muted">
           {f.no}
         </div>
-        <div
-          className={`mt-3 text-xs uppercase tracking-[0.3em] ${accentText}`}
-        >
+        <div className={`mt-3 text-xs uppercase tracking-widest ${accentText}`}>
           {f.en}
         </div>
-        <h1 className="mt-2 font-serif text-[clamp(2.2rem,6vw,3.8rem)] font-medium leading-[1.08]">
+        <h1 className="mt-2 font-serif text-4xl font-medium leading-tight md:text-5xl lg:text-6xl">
           {f.title}
         </h1>
-        <p className="mt-4 max-w-[60ch] text-base text-paper-dim">
-          {f.tagline}
-        </p>
+        <p className="mt-4 max-w-2xl text-base text-paper-dim">{f.tagline}</p>
         <div className="mt-5 flex items-center gap-4">
           <Badge status={f.status} />
           <span className="text-xs text-muted">{demoLabel(f.demo.type)}</span>
@@ -94,54 +90,52 @@ export default function Feature() {
       </header>
 
       <div className="overflow-hidden rounded-2xl border border-line bg-ink-2">
-        <div className="flex items-center justify-between gap-3 border-b border-line-soft bg-gradient-to-b from-panel-2 to-panel px-[18px] py-4">
-          <div className="flex items-center gap-2 text-xs uppercase tracking-[0.14em] text-accent">
+        <div className="flex items-center justify-between gap-3 border-b border-line-soft bg-gradient-to-b from-panel-2 to-panel px-5 py-4">
+          <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-accent">
             ◍ 試せる場
           </div>
-          <div className="text-xs tracking-[0.1em] text-muted">
+          <div className="text-xs tracking-widest text-muted">
             {demoLabel(f.demo.type)}
           </div>
         </div>
-        <div className="px-[18px] py-5">
+        <div className="px-5 py-5">
           <Demo feature={f} />
         </div>
         {f.demo.note && (
-          <div className="px-[18px] pb-4 text-xs text-muted">
-            ※ {f.demo.note}
-          </div>
+          <div className="px-5 pb-4 text-xs text-muted">※ {f.demo.note}</div>
         )}
       </div>
 
-      <div className="grid grid-cols-1 items-start gap-6 py-5 md:grid-cols-[1fr_300px] md:gap-10">
-        <div>
+      <div className="grid grid-cols-1 items-start gap-6 py-5 md:grid-cols-3 md:gap-10">
+        <div className="md:col-span-2">
           <p className="mb-4 text-paper-dim">{f.summary}</p>
           <h3 className="mb-3 mt-6 font-serif text-xl font-medium">
             できること
           </h3>
           <ul className="grid gap-2">
             {f.capabilities.map((c) => (
-              <li key={c} className="relative pl-[22px] text-base text-paper">
+              <li key={c} className="relative pl-6 text-base text-paper">
                 <span className={`absolute left-0 ${accentText}`}>→</span>
                 {c}
               </li>
             ))}
           </ul>
         </div>
-        <aside className="card-surface sticky top-[84px] rounded-[14px] p-5">
-          <h4 className="mb-3 text-xs uppercase tracking-[0.2em] text-muted">
+        <aside className="card-surface sticky top-24 rounded-xl p-5">
+          <h4 className="mb-3 text-xs uppercase tracking-widest text-muted">
             使用技術
           </h4>
           <div className="mb-5 flex flex-wrap gap-2">
             {f.tech.map((t) => (
               <span
                 key={t}
-                className="rounded-[5px] border border-line-soft bg-ink-2 px-2 py-[3px] text-xs text-paper-dim"
+                className="rounded-md border border-line-soft bg-ink-2 px-2 py-1 text-xs text-paper-dim"
               >
                 {t}
               </span>
             ))}
           </div>
-          <h4 className="mb-3 text-xs uppercase tracking-[0.2em] text-muted">
+          <h4 className="mb-3 text-xs uppercase tracking-widest text-muted">
             この機能を実装したアプリ
           </h4>
           {apps.length ? (
@@ -165,7 +159,7 @@ export default function Feature() {
         </aside>
       </div>
 
-      <nav className="flex flex-wrap justify-between gap-4 border-t border-line-soft pb-2 pt-[26px]">
+      <nav className="flex flex-wrap justify-between gap-4 border-t border-line-soft pb-2 pt-7">
         {relatedFeatures.length > 1 ? (
           <Link className={btnGhost} to={`/works/${app.id}/${prev.slug}`}>
             ← {prev.title}
@@ -184,7 +178,7 @@ export default function Feature() {
           <span />
         )}
       </nav>
-      <div className="h-[30px]" />
+      <div className="h-8" />
     </section>
   );
 }

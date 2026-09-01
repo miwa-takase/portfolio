@@ -20,7 +20,7 @@ type NP = {
 };
 
 const btnPrimary =
-  "inline-flex cursor-pointer items-center gap-2 rounded-full border border-accent bg-accent px-[18px] py-2 text-sm font-semibold tracking-[0.05em] text-[#0b1a26] transition-all hover:bg-accent-soft";
+  "inline-flex cursor-pointer items-center gap-2 rounded-full border border-accent bg-accent px-5 py-2 text-sm font-semibold tracking-wide text-ink transition-all hover:bg-accent-soft";
 
 function fmt(ms: number): string {
   const s = Math.floor(ms / 1000);
@@ -31,7 +31,7 @@ function Copy({ text }: { text: string }) {
   const [done, setDone] = useState(false);
   return (
     <button
-      className="rounded border border-line px-2 py-[2px] text-xs text-paper-dim hover:border-accent hover:text-accent-soft"
+      className="rounded border border-line px-2 py-0.5 text-xs text-paper-dim hover:border-accent hover:text-accent-soft"
       onClick={() =>
         navigator.clipboard?.writeText(text).then(
           () => {
@@ -79,7 +79,7 @@ function PublicNowPlaying() {
 
   return (
     <div className="rounded-xl border border-line-soft bg-ink p-5">
-      <div className="mb-4 text-xs uppercase tracking-[0.16em] text-muted">
+      <div className="mb-4 text-xs uppercase tracking-widest text-muted">
         {np.isPlaying ? "Now Playing — Judy" : "最近聴いた / 停止中"}
       </div>
       {np.title ? (
@@ -162,7 +162,7 @@ function Setup({ refresh }: { refresh: string }) {
   }
   return (
     <div className="rounded-xl border border-line-soft bg-ink p-6 text-sm">
-      <p className="mb-1 text-xs uppercase tracking-[0.16em] text-muted">
+      <p className="mb-1 text-xs uppercase tracking-widest text-muted">
         Setup（オーナー用・一度だけ）
       </p>
       <p className="mb-4 text-paper-dim">
