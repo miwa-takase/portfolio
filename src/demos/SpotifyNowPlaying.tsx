@@ -75,18 +75,8 @@ function PublicNowPlaying() {
     };
   }, []);
 
-  if (!np) {
-    return <div className="p-4 text-sm text-muted">読み込み中…</div>;
-  }
-  if (!np.configured) {
-    return (
-      <div className="rounded-xl border border-line-soft bg-ink p-5 text-sm text-muted">
-        {np.error
-          ? "Spotify情報を取得できませんでした"
-          : "まだセットアップされていません（オーナーが一度だけ認可すると、ここに「今聴いている曲」が表示されます）"}
-      </div>
-    );
-  }
+  if (!np || !np.configured || !np.isPlaying || !np.title) return null;
+
   return (
     <div className="rounded-xl border border-line-soft bg-ink p-5">
       <div className="mb-4 text-xs uppercase tracking-[0.16em] text-muted">
@@ -217,9 +207,7 @@ export default function SpotifyNowPlaying() {
     };
   }, []);
 
-  if (mode === "loading") {
-    return <div className="p-4 text-sm text-muted">読み込み中…</div>;
-  }
+  if (mode === "loading") return null;
   if (mode === "setup") return <Setup refresh={refresh} />;
   return <PublicNowPlaying />;
 }

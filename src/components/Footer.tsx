@@ -19,10 +19,8 @@ export default function Footer() {
             機能の詳細・実装については、お気軽にご連絡ください。
           </p>
         </div>
-        <div className="w-full">
-          <SpotifyNowPlaying />
-        </div>
-        <div className="text-right">
+        <SpotifyNowPlaying />
+        <div className="text-right md:col-start-3">
           {show ? (
             <a
               href={`mailto:${OWNER.email}`}
