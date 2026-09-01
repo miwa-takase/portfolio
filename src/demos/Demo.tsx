@@ -2,7 +2,6 @@ import { Fragment, useRef, useState } from "react";
 import type { Feature } from "../data/features";
 import { sleep } from "../lib/util";
 import { SAMPLE_JA, SAMPLE_EN } from "./sampleData";
-import SpotifyNowPlaying from "./SpotifyNowPlaying";
 import { extractAudio } from "../lib/audio";
 import {
   apiEpisode,
@@ -509,6 +508,5 @@ export default function Demo({ feature }: { feature: Feature }) {
   if (widget === "nl2ui") return <Nl2Ui />;
   if (widget === "linkhub") return <LinkHub />;
   if (widget === "episode") return <Episode />;
-  if (widget === "spotify") return <SpotifyNowPlaying />;
   return <Recorded feature={feature} />;
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { OWNER } from "../data/apps";
+import SpotifyNowPlaying from "../demos/SpotifyNowPlaying";
 
 const btnGhost =
   "inline-flex cursor-pointer items-center gap-2 rounded-full border border-line px-[18px] py-2 text-sm tracking-[0.05em] text-paper transition-all hover:border-accent hover:text-accent-soft";
@@ -11,6 +12,9 @@ export default function Footer() {
       id="contact"
       className="mt-16 border-t border-line-soft py-14 pb-[70px]"
     >
+      <div className="wrap mb-10 max-w-[560px]">
+        <SpotifyNowPlaying />
+      </div>
       <div className="wrap flex flex-wrap items-end justify-between gap-6">
         <div>
           <h2 className="font-serif text-4xl font-medium">Get in touch.</h2>

@@ -35,12 +35,6 @@ export const APPS: App[] = [
     tech: ["FastAPI", "React 19", "MySQL", "Gemini", "MUI"],
   },
   {
-    id: "spotify",
-    title: "Spotify Social App",
-    tech: ["Spotify API", "React", "FastAPI"],
-    wip: true,
-  },
-  {
     id: "gentle",
     title: "ゆるやかなカーブ",
     tech: ["FastAPI", "PostgreSQL", "React", "TailwindCSS", "Zustand"],

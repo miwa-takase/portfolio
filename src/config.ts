@@ -10,12 +10,9 @@ export const TURNSTILE_SITEKEY: string =
   import.meta.env.VITE_TURNSTILE_SITEKEY ?? "";
 
 export const API_BASE: string = (
-  import.meta.env.VITE_API_BASE ??
-  (typeof window !== "undefined" && window.location.hostname === "localhost"
-    ? "http://localhost:8787"
-    : DEFAULT_API_BASE)
+  import.meta.env.VITE_API_BASE ?? DEFAULT_API_BASE
 ).replace(/\/$/, "");
 
 export function spotifyRedirectUri(): string {
-  return `${window.location.origin}${import.meta.env.BASE_URL}works/spotify/music-social`;
+  return `${window.location.origin}${import.meta.env.BASE_URL}?setup`;
 }
