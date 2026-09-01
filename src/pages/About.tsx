@@ -35,13 +35,13 @@ export default function About() {
             <b className="text-paper">「どんな機能を作ってきたか」</b>
             を機能軸で整理し、 その多くを
             <b className="text-paper">サイト上で実際に試せる</b>
-            ようにしています。
+            ようにしています
           </p>
           <p className="mb-4 text-paper-dim">
             フロントからバックエンド、クラウド、AI連携まで、一通りを一人で組み上げます。
             使用している技術スタックは Works（機能一覧）の冒頭にまとめています。
           </p>
-          {/* ▼ 経歴・実績など、詳細はこのページ（src/pages/About.tsx）に追記してください。 */}
+          {/* ▼ 経歴・実績など、詳細はこのページに追記 */}
           <p className="text-muted">（経歴・実績などは順次追記予定です。）</p>
         </div>
 

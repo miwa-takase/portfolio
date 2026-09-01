@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <>
       <section className="wrap">
-        <div className="grid grid-cols-1 items-end gap-8 pb-7 pt-16 md:grid-cols-[1.4fr_1fr] md:gap-12 md:pt-[84px]">
+        <div className="pb-7 pt-16 md:pt-[84px]">
           <div>
             <div className="reveal mb-[22px] text-[0.76rem] uppercase tracking-[0.42em] text-accent">
               Portfolio&nbsp;/&nbsp;Developer
@@ -45,21 +45,6 @@ export default function Home() {
               <Link className={btnGhost} to="/about">
                 About
               </Link>
-            </div>
-          </div>
-          <div
-            className="reveal relative flex aspect-[4/5] items-center justify-center overflow-hidden rounded-2xl border border-line"
-            style={{
-              animationDelay: ".2s",
-              background:
-                "radial-gradient(120% 90% at 80% 0%, rgba(79,157,222,0.14), transparent 60%), linear-gradient(180deg, #211e17, #1c1a14)",
-            }}
-          >
-            <div className="font-serif text-[5rem] tracking-[0.1em] text-line">
-              M
-            </div>
-            <div className="absolute bottom-3.5 left-4 text-[0.68rem] uppercase tracking-[0.18em] text-muted">
-              Portrait / logo — 差し替え可
             </div>
           </div>
         </div>
