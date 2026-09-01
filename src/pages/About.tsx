@@ -48,17 +48,8 @@ export default function About() {
           </h2>
           <ol className="relative ml-1">
             {TIMELINE.map((t, i) => {
-              const first = i === 0;
-              const last = i === TIMELINE.length - 1;
-              // 線は最初のドットから始まり、最後のドットで終わる
-              const line =
-                first && last
-                  ? "hidden"
-                  : first
-                    ? "top-[24px] bottom-0"
-                    : last
-                      ? "top-0 h-[24px]"
-                      : "top-0 bottom-0";
+              // 線は最初のドットから始まる（上のはみ出しだけカット。下は伸ばす）
+              const line = i === 0 ? "top-[24px] bottom-0" : "top-0 bottom-0";
               return (
                 <li key={i} className="relative py-3 pl-7">
                   <span className={`absolute left-0 w-px bg-line ${line}`} />
