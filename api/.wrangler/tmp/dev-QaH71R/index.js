@@ -27,6 +27,9 @@ var src_default = {
       return new Response(null, { status: 204, headers });
     }
     const url = new URL(req.url);
+    if (url.pathname === "/now-playing") {
+      return await handleNowPlaying(env, headers);
+    }
     if (req.method !== "POST") {
       return json({ error: "method_not_allowed" }, 405, headers);
     }
@@ -232,6 +235,97 @@ async function handleEpisode(req, env, headers) {
   );
 }
 __name(handleEpisode, "handleEpisode");
+async function handleNowPlaying(env, headers) {
+  try {
+    const raw = await env.RATE_LIMIT.get("spotify:np");
+    if (raw) {
+      const c = JSON.parse(raw);
+      if (Date.now() - c.ts < 8e3)
+        return json(c.payload, 200, headers);
+    }
+  } catch {
+  }
+  const access = await getSpotifyAccess(env);
+  if (!access)
+    return json({ configured: false }, 200, headers);
+  let payload = { configured: true, isPlaying: false };
+  try {
+    const r = await fetch(
+      "https://api.spotify.com/v1/me/player/currently-playing",
+      { headers: { Authorization: `Bearer ${access}` } }
+    );
+    if (r.ok && r.status !== 204) {
+      const j = await r.json();
+      const it = j.item;
+      if (it) {
+        payload = {
+          configured: true,
+          isPlaying: Boolean(j.is_playing),
+          title: it.name ?? "",
+          artists: (it.artists ?? []).map((a) => a.name).join(", "),
+          album: it.album?.name ?? "",
+          albumArt: it.album?.images?.[0]?.url,
+          progressMs: j.progress_ms ?? 0,
+          durationMs: it.duration_ms ?? 0,
+          url: it.external_urls?.spotify
+        };
+      }
+    }
+  } catch {
+  }
+  try {
+    await env.RATE_LIMIT.put(
+      "spotify:np",
+      JSON.stringify({ ts: Date.now(), payload }),
+      { expirationTtl: 300 }
+    );
+  } catch {
+  }
+  return json(payload, 200, headers);
+}
+__name(handleNowPlaying, "handleNowPlaying");
+async function getSpotifyAccess(env) {
+  const cached = await env.RATE_LIMIT.get("spotify:access");
+  if (cached)
+    return cached;
+  const refresh = await env.RATE_LIMIT.get("spotify:refresh") || env.SPOTIFY_REFRESH_TOKEN;
+  if (!refresh || !env.SPOTIFY_CLIENT_ID)
+    return null;
+  const body = new URLSearchParams({
+    grant_type: "refresh_token",
+    refresh_token: refresh
+  });
+  const h = {
+    "content-type": "application/x-www-form-urlencoded"
+  };
+  if (env.SPOTIFY_CLIENT_SECRET) {
+    h["Authorization"] = "Basic " + btoa(`${env.SPOTIFY_CLIENT_ID}:${env.SPOTIFY_CLIENT_SECRET}`);
+  } else {
+    body.append("client_id", env.SPOTIFY_CLIENT_ID);
+  }
+  const r = await fetch("https://accounts.spotify.com/api/token", {
+    method: "POST",
+    headers: h,
+    body
+  });
+  if (!r.ok)
+    return null;
+  const j = await r.json();
+  if (j.refresh_token) {
+    try {
+      await env.RATE_LIMIT.put("spotify:refresh", j.refresh_token);
+    } catch {
+    }
+  }
+  try {
+    await env.RATE_LIMIT.put("spotify:access", j.access_token, {
+      expirationTtl: Math.max(60, (j.expires_in ?? 3600) - 60)
+    });
+  } catch {
+  }
+  return j.access_token;
+}
+__name(getSpotifyAccess, "getSpotifyAccess");
 function segment(words) {
   const segs = [];
   let cur = [];

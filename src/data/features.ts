@@ -103,22 +103,26 @@ export const FEATURES: Feature[] = [
     no: "04",
     title: "音楽サービス連携",
     en: "Music / Spotify",
-    tagline: "Spotify に接続して、いま聴いている曲をその場で取得する。",
+    tagline: "私がいま聴いている曲を、そのまま表示する。",
     accent: "teal",
     status: "live",
     summary:
-      "Spotify と連携し、音楽を通じてコミュニケーションを取れる SNS アプリ。ここでは中核の Spotify 連携を実際に試せる——ブラウザ内の OAuth（PKCE・シークレット不要）であなたの Spotify に接続し、いま再生中のトラックを読み取り専用で取得します。",
+      "Spotify と連携した音楽アプリ。ここでは中核の連携を公開デモにしている——オーナー（私）が一度だけ認可すれば、以降は訪問者のログイン不要で「いま聴いている曲」をリアルタイム表示する。トークンはサーバー側で安全に更新し、読み取り専用スコープのみを使う。",
     capabilities: [
-      "ブラウザ内 OAuth（Authorization Code + PKCE）",
-      "いま再生中トラックの取得（曲名・アーティスト・アートワーク・再生位置）",
-      "アクセストークンの自動リフレッシュ",
+      "訪問者の認証なしで、オーナーの再生中トラックを公開表示",
+      "サーバー側（Cloudflare Worker）でトークンを自動更新・短時間キャッシュ",
+      "曲名・アーティスト・アートワーク・再生位置（読み取り専用）",
     ],
-    tech: ["Spotify Web API", "OAuth 2.0 (PKCE)", "React"],
+    tech: [
+      "Spotify Web API",
+      "OAuth 2.0 (Refresh Token)",
+      "Cloudflare Workers",
+    ],
     apps: ["spotify"],
     demo: {
       type: "widget",
       widget: "spotify",
-      note: "読み取り専用スコープのみ。トークンはブラウザ内に保存し、サーバーには送信しません。",
+      note: "連携画面はありません。オーナーの『今再生中』のみを表示します（読み取り専用）。",
     },
   },
   {

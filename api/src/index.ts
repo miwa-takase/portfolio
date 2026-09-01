@@ -12,6 +12,9 @@ export interface Env {
   ELEVENLABS_API_KEY: string;
   ANTHROPIC_API_KEY: string;
   TURNSTILE_SECRET: string;
+  SPOTIFY_CLIENT_ID: string;
+  SPOTIFY_CLIENT_SECRET: string;
+  SPOTIFY_REFRESH_TOKEN: string;
 }
 
 type Word = { text: string; start: number; end: number; type?: string };
@@ -29,6 +32,10 @@ export default {
       return new Response(null, { status: 204, headers });
     }
     const url = new URL(req.url);
+    // 公開の「今再生中」（オーナーのトークンで取得・Turnstile/レート制限は不要）
+    if (url.pathname === "/now-playing") {
+      return await handleNowPlaying(env, headers);
+    }
     if (req.method !== "POST") {
       return json({ error: "method_not_allowed" }, 405, headers);
     }
@@ -265,6 +272,120 @@ async function handleEpisode(
     200,
     headers,
   );
+}
+
+/* ---------------- Spotify 今再生中（公開） ---------------- */
+async function handleNowPlaying(
+  env: Env,
+  headers: Record<string, string>,
+): Promise<Response> {
+  // 8秒キャッシュ（訪問者が多くても Spotify は最大 ~8秒に1回）
+  try {
+    const raw = await env.RATE_LIMIT.get("spotify:np");
+    if (raw) {
+      const c = JSON.parse(raw) as { ts: number; payload: unknown };
+      if (Date.now() - c.ts < 8000) return json(c.payload, 200, headers);
+    }
+  } catch {
+    /* ignore */
+  }
+  const access = await getSpotifyAccess(env);
+  if (!access) return json({ configured: false }, 200, headers);
+
+  let payload: Record<string, unknown> = { configured: true, isPlaying: false };
+  try {
+    const r = await fetch(
+      "https://api.spotify.com/v1/me/player/currently-playing",
+      { headers: { Authorization: `Bearer ${access}` } },
+    );
+    if (r.ok && r.status !== 204) {
+      const j = (await r.json()) as {
+        is_playing?: boolean;
+        progress_ms?: number;
+        item?: {
+          name?: string;
+          duration_ms?: number;
+          artists?: Array<{ name: string }>;
+          album?: { name?: string; images?: Array<{ url: string }> };
+          external_urls?: { spotify?: string };
+        };
+      };
+      const it = j.item;
+      if (it) {
+        payload = {
+          configured: true,
+          isPlaying: Boolean(j.is_playing),
+          title: it.name ?? "",
+          artists: (it.artists ?? []).map((a) => a.name).join(", "),
+          album: it.album?.name ?? "",
+          albumArt: it.album?.images?.[0]?.url,
+          progressMs: j.progress_ms ?? 0,
+          durationMs: it.duration_ms ?? 0,
+          url: it.external_urls?.spotify,
+        };
+      }
+    }
+  } catch {
+    /* ignore */
+  }
+  try {
+    await env.RATE_LIMIT.put(
+      "spotify:np",
+      JSON.stringify({ ts: Date.now(), payload }),
+      { expirationTtl: 300 },
+    );
+  } catch {
+    /* ignore */
+  }
+  return json(payload, 200, headers);
+}
+
+async function getSpotifyAccess(env: Env): Promise<string | null> {
+  const cached = await env.RATE_LIMIT.get("spotify:access");
+  if (cached) return cached;
+  const refresh =
+    (await env.RATE_LIMIT.get("spotify:refresh")) || env.SPOTIFY_REFRESH_TOKEN;
+  if (!refresh || !env.SPOTIFY_CLIENT_ID) return null;
+
+  const body = new URLSearchParams({
+    grant_type: "refresh_token",
+    refresh_token: refresh,
+  });
+  const h: Record<string, string> = {
+    "content-type": "application/x-www-form-urlencoded",
+  };
+  if (env.SPOTIFY_CLIENT_SECRET) {
+    h["Authorization"] =
+      "Basic " + btoa(`${env.SPOTIFY_CLIENT_ID}:${env.SPOTIFY_CLIENT_SECRET}`);
+  } else {
+    body.append("client_id", env.SPOTIFY_CLIENT_ID);
+  }
+  const r = await fetch("https://accounts.spotify.com/api/token", {
+    method: "POST",
+    headers: h,
+    body,
+  });
+  if (!r.ok) return null;
+  const j = (await r.json()) as {
+    access_token: string;
+    refresh_token?: string;
+    expires_in?: number;
+  };
+  if (j.refresh_token) {
+    try {
+      await env.RATE_LIMIT.put("spotify:refresh", j.refresh_token);
+    } catch {
+      /* ignore */
+    }
+  }
+  try {
+    await env.RATE_LIMIT.put("spotify:access", j.access_token, {
+      expirationTtl: Math.max(60, (j.expires_in ?? 3600) - 60),
+    });
+  } catch {
+    /* ignore */
+  }
+  return j.access_token;
 }
 
 function segment(words: Word[]): Segment[] {
