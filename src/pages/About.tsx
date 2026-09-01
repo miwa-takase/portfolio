@@ -2,9 +2,6 @@ import { Link } from "react-router-dom";
 import { OWNER } from "../data/apps";
 import { TIMELINE } from "../data/timeline";
 
-const btnGhost =
-  "inline-flex items-center gap-2 rounded-full border border-line px-[18px] py-2.5 text-[0.82rem] tracking-[0.05em] text-paper transition-all hover:border-accent hover:text-accent-soft";
-
 export default function About() {
   return (
     <section className="wrap">
@@ -28,7 +25,7 @@ export default function About() {
         </p>
       </header>
 
-      <div className="grid grid-cols-1 gap-8 py-8 md:grid-cols-[1fr_300px] md:gap-12">
+      <div className="py-8">
         <div>
           <p className="mb-4 text-paper-dim">
             動画の文字起こし・多言語字幕、自然言語からのUI生成、配信リンクの集約と計測、
@@ -70,23 +67,6 @@ export default function About() {
             })}
           </ol>
         </div>
-
-        <aside className="card-surface h-max rounded-[14px] p-5">
-          <h4 className="mb-3 text-[0.7rem] uppercase tracking-[0.2em] text-muted">
-            Contact
-          </h4>
-          <a
-            href={`mailto:${OWNER.email}`}
-            className="break-all border-b border-line text-accent-soft transition-colors hover:border-accent"
-          >
-            {OWNER.email}
-          </a>
-          <div className="mt-6">
-            <Link className={btnGhost} to="/works">
-              機能を試す →
-            </Link>
-          </div>
-        </aside>
       </div>
     </section>
   );
