@@ -14,7 +14,11 @@ function AppWorkCard({ app }: { app: App }) {
       <p className="mt-3 flex-grow text-paper-dim">
         {app.overview ??
           "概要文を後で追加。目的、主なユーザー体験、実装した範囲をここにまとめます。"}
-        {app.wip && <span className="text-muted">（WIP）</span>}
+        {app.wip && (
+          <span className="ml-2 inline-flex rounded-[5px] border border-line-soft px-2 py-[1px] align-middle text-[11px] leading-5 tracking-[0.08em] text-muted">
+            WIP
+          </span>
+        )}
       </p>
       <div className="mt-[18px] flex items-center justify-between">
         <span className="text-xs tracking-[0.06em] text-muted">詳細を見る</span>
