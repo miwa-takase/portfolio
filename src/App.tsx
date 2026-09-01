@@ -33,8 +33,8 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/works" element={<Works />} />
-          <Route path="/works/apps/:appId" element={<AppWork />} />
-          <Route path="/works/:slug" element={<Feature />} />
+          <Route path="/works/:appId" element={<AppWork />} />
+          <Route path="/works/:appId/:slug" element={<Feature />} />
           <Route path="*" element={<Works />} />
         </Routes>
       </main>

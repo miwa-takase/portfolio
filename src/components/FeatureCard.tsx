@@ -6,9 +6,11 @@ import Badge from "./Badge";
 
 export default function FeatureCard({ feature: f }: { feature: Feature }) {
   const appCount = f.apps.filter((id) => APPS_BY_ID[id]).length;
+  const primaryAppId = f.apps.find((id) => APPS_BY_ID[id]);
+
   return (
     <Link
-      to={`/works/${f.slug}`}
+      to={primaryAppId ? `/works/${primaryAppId}/${f.slug}` : "/works"}
       className="card-surface group relative flex flex-col overflow-hidden rounded-2xl px-6 pb-[22px] pt-[26px] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_26px_50px_-28px_rgba(0,0,0,0.85)]"
     >
       <span

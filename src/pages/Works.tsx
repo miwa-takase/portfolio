@@ -6,7 +6,7 @@ import { SKILL_COUNT } from "../data/skills";
 function AppWorkCard({ app }: { app: App }) {
   return (
     <Link
-      to={`/works/apps/${app.id}`}
+      to={`/works/${app.id}`}
       className="card-surface group relative flex min-h-[250px] flex-col overflow-hidden rounded-2xl px-6 pb-[22px] pt-[26px] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_26px_50px_-28px_rgba(0,0,0,0.85)]"
     >
       <span className="absolute inset-y-0 left-0 w-[3px] bg-accent" />

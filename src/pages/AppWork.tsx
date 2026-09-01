@@ -103,7 +103,10 @@ export default function AppWork() {
 
           <div className="mt-8">
             {primaryFeature ? (
-              <Link className={btnPrimary} to={`/works/${primaryFeature.slug}`}>
+              <Link
+                className={btnPrimary}
+                to={`/works/${app.id}/${primaryFeature.slug}`}
+              >
                 機能を試す
                 <span aria-hidden="true">→</span>
               </Link>
