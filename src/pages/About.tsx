@@ -29,7 +29,7 @@ export default function About() {
       <div className="py-8">
         <p className="mb-4 text-paper-dim">
           動画の文字起こし・多言語字幕、自然言語からのUI生成、配信リンクの集約と計測、
-          音楽サービス連携、エピソード生成——個人で試してきたプロダクトから、
+          エピソード生成——個人で試してきたプロダクトから、
           <b className="text-paper">「どんな機能を作ってきたか」</b>
           を機能軸で整理し、 その多くを
           <b className="text-paper">サイト上で実際に試せる</b>
