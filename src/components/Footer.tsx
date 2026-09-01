@@ -12,15 +12,15 @@ export default function Footer() {
       id="contact"
       className="mt-16 border-t border-line-soft py-14 pb-[70px]"
     >
-      <div className="wrap mb-10 max-w-[560px]">
-        <SpotifyNowPlaying />
-      </div>
-      <div className="wrap flex flex-wrap items-end justify-between gap-6">
+      <div className="wrap grid items-center gap-8 md:grid-cols-[1fr_minmax(320px,560px)_1fr]">
         <div>
           <h2 className="font-serif text-4xl font-medium">Get in touch.</h2>
           <p className="mt-2 text-xs tracking-[0.06em] text-muted">
             機能の詳細・実装については、お気軽にご連絡ください。
           </p>
+        </div>
+        <div className="w-full">
+          <SpotifyNowPlaying />
         </div>
         <div className="text-right">
           {show ? (
