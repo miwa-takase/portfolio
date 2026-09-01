@@ -5,7 +5,7 @@ import { TIMELINE } from "../data/timeline";
 export default function About() {
   return (
     <section className="wrap">
-      <nav className="flex items-center gap-2.5 pt-[30px] text-[0.76rem] tracking-[0.06em] text-muted">
+      <nav className="flex items-center gap-2 pt-[30px] text-xs tracking-[0.06em] text-muted">
         <Link to="/" className="text-paper-dim hover:text-accent-soft">
           Home
         </Link>
@@ -14,13 +14,13 @@ export default function About() {
       </nav>
 
       <header className="pt-[22px]">
-        <div className="text-[0.74rem] uppercase tracking-[0.34em] text-accent">
+        <div className="text-xs uppercase tracking-[0.34em] text-accent">
           About
         </div>
-        <h1 className="mt-2.5 font-serif text-[clamp(2.2rem,6vw,3.6rem)] font-medium leading-[1.1]">
+        <h1 className="mt-2 font-serif text-[clamp(2.2rem,6vw,3.6rem)] font-medium leading-[1.1]">
           {OWNER.name}
         </h1>
-        <p className="mt-4 max-w-[80ch] text-[1.05rem] text-paper-dim">
+        <p className="mt-4 max-w-[80ch] text-base text-paper-dim">
           {OWNER.role}
         </p>
       </header>
@@ -40,9 +40,7 @@ export default function About() {
             使用している技術スタックは Works（機能一覧）の冒頭にまとめています。
           </p>
           {/* 年表プロフィール（内容は src/data/timeline.ts を編集） */}
-          <h2 className="mb-5 mt-10 font-serif text-[1.5rem] font-medium">
-            年表
-          </h2>
+          <h2 className="mb-5 mt-10 font-serif text-2xl font-medium">年表</h2>
           <ol className="relative ml-1">
             {TIMELINE.map((t, i) => {
               // 線は最初のドットから始まる（上のはみ出しだけカット。下は伸ばす）
@@ -51,16 +49,14 @@ export default function About() {
                 <li key={i} className="relative py-3 pl-7">
                   <span className={`absolute left-0 w-px bg-line ${line}`} />
                   <span className="absolute -left-[6.5px] top-[18px] h-3 w-3 rounded-full border-2 border-ink bg-accent" />
-                  <div className="font-serif text-[0.9rem] tracking-[0.08em] text-accent-soft">
+                  <div className="font-serif tracking-[0.08em] text-accent-soft">
                     {t.year}
                   </div>
-                  <div className="mt-0.5 font-serif text-[1.08rem] text-paper">
+                  <div className="mt-1 font-serif text-lg text-paper">
                     {t.title}
                   </div>
                   {t.detail && (
-                    <p className="mt-1 text-[0.9rem] text-paper-dim">
-                      {t.detail}
-                    </p>
+                    <p className="mt-1 text-paper-dim">{t.detail}</p>
                   )}
                 </li>
               );

@@ -8,10 +8,8 @@ export default function Footer() {
     >
       <div className="wrap flex flex-wrap items-end justify-between gap-6">
         <div>
-          <h2 className="font-serif text-[2.2rem] font-medium">
-            Get in touch.
-          </h2>
-          <p className="mt-2 text-[0.76rem] tracking-[0.06em] text-muted">
+          <h2 className="font-serif text-4xl font-medium">Get in touch.</h2>
+          <p className="mt-2 text-xs tracking-[0.06em] text-muted">
             機能の詳細・実装については、お気軽にご連絡ください。
           </p>
         </div>
@@ -22,7 +20,7 @@ export default function Footer() {
           >
             {OWNER.email}
           </a>
-          <p className="mt-3.5 text-[0.76rem] tracking-[0.06em] text-muted">
+          <p className="mt-4 text-xs tracking-[0.06em] text-muted">
             © {new Date().getFullYear()} Judy
           </p>
         </div>

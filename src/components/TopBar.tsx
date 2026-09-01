@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const navLink =
-  "text-[0.82rem] tracking-[0.08em] text-paper-dim transition-colors hover:text-accent-soft";
+  "text-sm tracking-[0.08em] text-paper-dim transition-colors hover:text-accent-soft";
 
 export default function TopBar() {
   return (
@@ -9,7 +9,7 @@ export default function TopBar() {
       <div className="wrap flex h-16 items-center justify-between">
         <Link
           to="/"
-          className="font-serif text-[1.15rem] tracking-[0.14em] text-paper"
+          className="font-serif text-lg tracking-[0.14em] text-paper"
         >
           Judy<span className="text-accent">.</span>
         </Link>

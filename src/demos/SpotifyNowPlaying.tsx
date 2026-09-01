@@ -19,7 +19,7 @@ type NP = {
 };
 
 const btnPrimary =
-  "inline-flex cursor-pointer items-center gap-2 rounded-full border border-accent bg-accent px-[18px] py-2.5 text-[0.82rem] font-semibold tracking-[0.05em] text-[#0b1a26] transition-all hover:bg-accent-soft";
+  "inline-flex cursor-pointer items-center gap-2 rounded-full border border-accent bg-accent px-[18px] py-2 text-sm font-semibold tracking-[0.05em] text-[#0b1a26] transition-all hover:bg-accent-soft";
 
 function fmt(ms: number): string {
   const s = Math.floor(ms / 1000);
@@ -30,7 +30,7 @@ function Copy({ text }: { text: string }) {
   const [done, setDone] = useState(false);
   return (
     <button
-      className="rounded border border-line px-2 py-[2px] text-[0.7rem] text-paper-dim hover:border-accent hover:text-accent-soft"
+      className="rounded border border-line px-2 py-[2px] text-xs text-paper-dim hover:border-accent hover:text-accent-soft"
       onClick={() =>
         navigator.clipboard?.writeText(text).then(
           () => {
@@ -70,18 +70,18 @@ function PublicNowPlaying() {
   }, []);
 
   if (!np) {
-    return <div className="p-4 text-[0.82rem] text-muted">読み込み中…</div>;
+    return <div className="p-4 text-sm text-muted">読み込み中…</div>;
   }
   if (!np.configured) {
     return (
-      <div className="rounded-xl border border-line-soft bg-ink p-5 text-[0.84rem] text-muted">
+      <div className="rounded-xl border border-line-soft bg-ink p-5 text-sm text-muted">
         まだセットアップされていません（オーナーが一度だけ認可すると、ここに「今聴いている曲」が表示されます）。
       </div>
     );
   }
   return (
     <div className="rounded-xl border border-line-soft bg-ink p-5">
-      <div className="mb-4 text-[0.7rem] uppercase tracking-[0.16em] text-muted">
+      <div className="mb-4 text-xs uppercase tracking-[0.16em] text-muted">
         {np.isPlaying ? "Now Playing — Judy" : "最近聴いた / 停止中"}
       </div>
       {np.title ? (
@@ -98,15 +98,13 @@ function PublicNowPlaying() {
             </div>
           )}
           <div className="min-w-0 flex-1">
-            <div className="truncate font-serif text-[1.15rem] text-paper">
+            <div className="truncate font-serif text-lg text-paper">
               {np.title}
             </div>
-            <div className="truncate text-[0.85rem] text-paper-dim">
-              {np.artists}
-            </div>
-            <div className="truncate text-[0.72rem] text-muted">{np.album}</div>
+            <div className="truncate text-sm text-paper-dim">{np.artists}</div>
+            <div className="truncate text-xs text-muted">{np.album}</div>
             <div className="mt-2 flex items-center gap-2">
-              <span className="w-9 text-right text-[0.68rem] text-muted">
+              <span className="w-9 text-right text-xs text-muted">
                 {fmt(np.progressMs ?? 0)}
               </span>
               <div className="h-1 flex-1 overflow-hidden rounded-full bg-panel">
@@ -117,16 +115,14 @@ function PublicNowPlaying() {
                   }}
                 />
               </div>
-              <span className="w-9 text-[0.68rem] text-muted">
+              <span className="w-9 text-xs text-muted">
                 {fmt(np.durationMs ?? 0)}
               </span>
             </div>
           </div>
         </div>
       ) : (
-        <p className="text-[0.86rem] text-muted">
-          いま再生中の曲はありません。
-        </p>
+        <p className="text-sm text-muted">いま再生中の曲はありません。</p>
       )}
     </div>
   );
@@ -137,16 +133,14 @@ function Setup({ refresh }: { refresh: string }) {
   if (refresh) {
     const cmd = `cd works-portfolio/api\necho '${refresh}' | npx wrangler secret put SPOTIFY_REFRESH_TOKEN`;
     return (
-      <div className="rounded-xl border border-line-soft bg-ink p-5 text-[0.84rem]">
+      <div className="rounded-xl border border-line-soft bg-ink p-5 text-sm">
         <p className="mb-2 text-paper">✓ 認可できました。</p>
         <p className="mb-3 text-muted">
           この refresh token を Worker
           に設定すると、公開の「今再生中」が有効になります。
         </p>
         <div className="mb-2 flex flex-wrap items-center gap-2">
-          <code className="break-all text-[0.72rem] text-accent-soft">
-            {refresh}
-          </code>
+          <code className="break-all text-xs text-accent-soft">{refresh}</code>
           <Copy text={refresh} />
         </div>
         <p className="mb-1 text-muted">ターミナルで実行：</p>
@@ -154,7 +148,7 @@ function Setup({ refresh }: { refresh: string }) {
         <div className="mt-2">
           <Copy text={cmd} />
         </div>
-        <p className="mt-3 text-[0.72rem] text-muted">
+        <p className="mt-3 text-xs text-muted">
           設定後、通常URL（?setup
           なし）を開くと、訪問者にはあなたの再生中だけが表示されます。
         </p>
@@ -163,14 +157,14 @@ function Setup({ refresh }: { refresh: string }) {
   }
   if (!isConfigured()) {
     return (
-      <div className="rounded-xl border border-line-soft bg-ink p-5 text-[0.84rem] text-muted">
+      <div className="rounded-xl border border-line-soft bg-ink p-5 text-sm text-muted">
         Spotify Client ID が未設定です（VITE_SPOTIFY_CLIENT_ID）。
       </div>
     );
   }
   return (
-    <div className="rounded-xl border border-line-soft bg-ink p-6 text-[0.86rem]">
-      <p className="mb-1 text-[0.7rem] uppercase tracking-[0.16em] text-muted">
+    <div className="rounded-xl border border-line-soft bg-ink p-6 text-sm">
+      <p className="mb-1 text-xs uppercase tracking-[0.16em] text-muted">
         Setup（オーナー用・一度だけ）
       </p>
       <p className="mb-4 text-paper-dim">
@@ -180,7 +174,7 @@ function Setup({ refresh }: { refresh: string }) {
       <button className={btnPrimary} onClick={() => void beginAuth()}>
         認可する →
       </button>
-      <p className="mt-3 text-[0.72rem] text-muted">
+      <p className="mt-3 text-xs text-muted">
         Redirect URI（Spotify に登録済みのはず）:{" "}
         <code className="text-accent-soft">{spotifyRedirectUri()}</code>
       </p>
@@ -216,7 +210,7 @@ export default function SpotifyNowPlaying() {
   }, []);
 
   if (mode === "loading") {
-    return <div className="p-4 text-[0.82rem] text-muted">読み込み中…</div>;
+    return <div className="p-4 text-sm text-muted">読み込み中…</div>;
   }
   if (mode === "setup") return <Setup refresh={refresh} />;
   return <PublicNowPlaying />;

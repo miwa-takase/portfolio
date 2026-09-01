@@ -15,18 +15,17 @@ import {
 } from "../lib/api";
 
 const btnBase =
-  "inline-flex cursor-pointer items-center gap-2 rounded-full border px-[18px] py-2.5 text-[0.82rem] tracking-[0.05em] transition-all disabled:cursor-not-allowed disabled:opacity-45";
+  "inline-flex cursor-pointer items-center gap-2 rounded-full border px-[18px] py-2 text-sm tracking-[0.05em] transition-all disabled:cursor-not-allowed disabled:opacity-45";
 const btnPrimary = `${btnBase} border-accent bg-accent font-semibold text-[#0b1a26] hover:bg-accent-soft`;
 const btnGhost = `${btnBase} border-line text-paper hover:border-accent hover:text-accent-soft`;
 const mini =
-  "rounded-lg border border-line bg-ink px-2.5 py-2 text-[0.8rem] text-paper focus:border-accent focus:outline-none";
+  "rounded-lg border border-line bg-ink px-2 py-2 text-xs text-paper focus:border-accent focus:outline-none";
 const paneCls =
   "flex min-h-[140px] flex-col rounded-[10px] border border-line-soft bg-ink";
-const labCls =
-  "px-3 pt-2.5 text-[0.66rem] uppercase tracking-[0.16em] text-muted";
-const contentCls = "overflow-auto px-3 pb-3 pt-2.5 text-[0.82rem] text-paper";
-const ioCls = "grid grid-cols-1 gap-3.5 md:grid-cols-2";
-const actionsCls = "mt-3.5 flex flex-wrap items-center gap-2.5";
+const labCls = "px-3 pt-2 text-xs uppercase tracking-[0.16em] text-muted";
+const contentCls = "overflow-auto px-3 pb-3 pt-2 text-sm text-paper";
+const ioCls = "grid grid-cols-1 gap-4 md:grid-cols-2";
+const actionsCls = "mt-4 flex flex-wrap items-center gap-2";
 
 function msg(e: unknown): string {
   return e instanceof Error ? e.message : String(e);
@@ -143,11 +142,11 @@ function Pipeline() {
 
   return (
     <div>
-      <div className={`${paneCls} mb-3.5 min-h-0`}>
+      <div className={`${paneCls} mb-4 min-h-0`}>
         <div className={labCls}>
           入力 — 任意の動画/音声（サーバーには保存しません）
         </div>
-        <div className="flex flex-wrap items-center gap-3 px-3 pb-3 pt-2.5">
+        <div className="flex flex-wrap items-center gap-3 px-3 pb-3 pt-2">
           <input
             ref={inputRef}
             type="file"
@@ -161,7 +160,7 @@ function Pipeline() {
           >
             ファイルを選択
           </button>
-          <span className="text-[0.8rem] text-muted">
+          <span className="text-xs text-muted">
             {file ? file.name : "未選択（またはサンプルで実行）"}
           </span>
         </div>
@@ -241,10 +240,10 @@ function Pipeline() {
         >
           ② 翻訳する
         </button>
-        <span className="text-[0.76rem] text-muted">{status}</span>
+        <span className="text-xs text-muted">{status}</span>
       </div>
       {!hasApi() && (
-        <p className="mt-2 text-[0.72rem] text-muted">
+        <p className="mt-2 text-xs text-muted">
           ※ 実アップロードには API
           バックエンド（VITE_API_BASE）が必要です。未接続時はサンプルで動作を確認できます。
         </p>
@@ -320,7 +319,7 @@ function Nl2Ui() {
         <button className={btnPrimary} disabled={busy} onClick={gen}>
           生成 →
         </button>
-        {note && <span className="text-[0.72rem] text-muted">{note}</span>}
+        {note && <span className="text-xs text-muted">{note}</span>}
       </div>
       <div className={ioCls}>
         <div className={paneCls}>
@@ -338,10 +337,8 @@ function Nl2Ui() {
               <span className="text-muted">該当フィールドなし</span>
             ) : (
               spec.fields.map((fl, i) => (
-                <div key={i} className="mb-2.5">
-                  <div className="mb-1 text-[0.72rem] text-muted">
-                    {fl.label}
-                  </div>
+                <div key={i} className="mb-2">
+                  <div className="mb-1 text-xs text-muted">{fl.label}</div>
                   {fl.type === "textarea" ? (
                     <textarea className={`${mini} h-[52px] w-full`} />
                   ) : (
@@ -355,7 +352,7 @@ function Nl2Ui() {
               ))
             )}
             {spec.submit && (
-              <button className={`${btnPrimary} mt-1.5`}>送信</button>
+              <button className={`${btnPrimary} mt-2`}>送信</button>
             )}
           </div>
         </div>
@@ -386,25 +383,25 @@ function LinkHub() {
         />
       </div>
       <div className="mx-auto max-w-[420px] rounded-xl border border-line-soft bg-ink p-5">
-        <div className="mb-1 text-[0.7rem] uppercase tracking-[0.16em] text-muted">
+        <div className="mb-1 text-xs uppercase tracking-[0.16em] text-muted">
           Now sharing
         </div>
-        <div className="mb-4 font-serif text-[1.15rem] text-paper">{title}</div>
+        <div className="mb-4 font-serif text-lg text-paper">{title}</div>
         <div className="grid gap-2">
           {SERVICES.map((s) => (
             <button
               key={s}
               onClick={() => setCounts((c) => ({ ...c, [s]: (c[s] ?? 0) + 1 }))}
-              className="flex items-center justify-between rounded-lg border border-line bg-panel px-3.5 py-2.5 text-left text-[0.85rem] text-paper transition-colors hover:border-accent"
+              className="flex items-center justify-between rounded-lg border border-line bg-panel px-4 py-2 text-left text-sm text-paper transition-colors hover:border-accent"
             >
               <span>{s} で聴く</span>
-              <span className="text-[0.72rem] text-muted">
+              <span className="text-xs text-muted">
                 {counts[s] ? `計測 ${counts[s]}` : "→"}
               </span>
             </button>
           ))}
         </div>
-        <div className="mt-4 text-[0.72rem] text-muted">
+        <div className="mt-4 text-xs text-muted">
           クリックは GA4 でクロスドメイン計測（合計 {total} 回）
         </div>
       </div>
@@ -439,7 +436,7 @@ function Episode() {
 
   if (!hasApi()) {
     return (
-      <div className="rounded-xl border border-line-soft bg-ink p-5 text-[0.86rem]">
+      <div className="rounded-xl border border-line-soft bg-ink p-5 text-sm">
         <p className="mb-2 text-paper">
           エピソード生成には API バックエンドが必要です。
         </p>
@@ -463,7 +460,7 @@ function Episode() {
         <button className={btnPrimary} disabled={busy} onClick={gen}>
           台本 → 音声を生成 →
         </button>
-        <span className="text-[0.76rem] text-muted">{status}</span>
+        <span className="text-xs text-muted">{status}</span>
       </div>
       <div className={ioCls}>
         <div className={paneCls}>
@@ -478,11 +475,11 @@ function Episode() {
         </div>
         <div className={paneCls}>
           <div className={labCls}>音声（ElevenLabs）</div>
-          <div className="flex flex-1 items-center px-3 pb-3 pt-2.5">
+          <div className="flex flex-1 items-center px-3 pb-3 pt-2">
             {audio ? (
               <audio controls src={audio} className="w-full" />
             ) : (
-              <span className="text-[0.82rem] text-muted">
+              <span className="text-sm text-muted">
                 生成すると再生プレイヤーが表示されます。
               </span>
             )}
@@ -496,10 +493,10 @@ function Episode() {
 function Recorded({ feature }: { feature: Feature }) {
   return (
     <div className="mt-3 flex aspect-video flex-col items-center justify-center gap-3 rounded-xl border border-line bg-ink text-muted">
-      <div className="flex h-[54px] w-[54px] items-center justify-center rounded-full border border-line text-[1.1rem] text-accent">
+      <div className="flex h-[54px] w-[54px] items-center justify-center rounded-full border border-line text-lg text-accent">
         ▶
       </div>
-      <div className="text-[0.78rem] tracking-[0.06em]">
+      <div className="text-xs tracking-[0.06em]">
         録画デモを準備中 — {feature.apps.length} アプリで実装済み
       </div>
     </div>

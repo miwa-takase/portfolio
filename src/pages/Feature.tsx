@@ -17,7 +17,7 @@ function demoLabel(t: DemoType): string {
 }
 
 const btnGhost =
-  "inline-flex items-center gap-2 rounded-full border border-line px-[18px] py-2.5 text-[0.82rem] tracking-[0.05em] text-paper transition-all hover:border-accent hover:text-accent-soft";
+  "inline-flex items-center gap-2 rounded-full border border-line px-[18px] py-2 text-sm tracking-[0.05em] text-paper transition-all hover:border-accent hover:text-accent-soft";
 
 export default function Feature() {
   const { slug } = useParams();
@@ -46,7 +46,7 @@ export default function Feature() {
 
   return (
     <section className="wrap">
-      <nav className="flex items-center gap-2.5 pt-[30px] text-[0.76rem] tracking-[0.06em] text-muted">
+      <nav className="flex items-center gap-2 pt-[30px] text-xs tracking-[0.06em] text-muted">
         <Link to="/" className="text-paper-dim hover:text-accent-soft">
           Home
         </Link>
@@ -59,34 +59,32 @@ export default function Feature() {
       </nav>
 
       <header className="pb-[30px] pt-5">
-        <div className="font-serif text-[1rem] tracking-[0.12em] text-muted">
+        <div className="font-serif text-base tracking-[0.12em] text-muted">
           {f.no}
         </div>
         <div
-          className={`mt-3 text-[0.72rem] uppercase tracking-[0.3em] ${accentText}`}
+          className={`mt-3 text-xs uppercase tracking-[0.3em] ${accentText}`}
         >
           {f.en}
         </div>
-        <h1 className="mt-2.5 font-serif text-[clamp(2.2rem,6vw,3.8rem)] font-medium leading-[1.08]">
+        <h1 className="mt-2 font-serif text-[clamp(2.2rem,6vw,3.8rem)] font-medium leading-[1.08]">
           {f.title}
         </h1>
-        <p className="mt-4 max-w-[60ch] text-[1.05rem] text-paper-dim">
+        <p className="mt-4 max-w-[60ch] text-base text-paper-dim">
           {f.tagline}
         </p>
-        <div className="mt-5 flex items-center gap-3.5">
+        <div className="mt-5 flex items-center gap-4">
           <Badge status={f.status} />
-          <span className="text-[0.76rem] text-muted">
-            {demoLabel(f.demo.type)}
-          </span>
+          <span className="text-xs text-muted">{demoLabel(f.demo.type)}</span>
         </div>
       </header>
 
       <div className="overflow-hidden rounded-2xl border border-line bg-ink-2">
-        <div className="flex items-center justify-between gap-3 border-b border-line-soft bg-gradient-to-b from-panel-2 to-panel px-[18px] py-3.5">
-          <div className="flex items-center gap-2.5 text-[0.78rem] uppercase tracking-[0.14em] text-accent">
+        <div className="flex items-center justify-between gap-3 border-b border-line-soft bg-gradient-to-b from-panel-2 to-panel px-[18px] py-4">
+          <div className="flex items-center gap-2 text-xs uppercase tracking-[0.14em] text-accent">
             ◍ 試せる場
           </div>
-          <div className="text-[0.72rem] tracking-[0.1em] text-muted">
+          <div className="text-xs tracking-[0.1em] text-muted">
             {demoLabel(f.demo.type)}
           </div>
         </div>
@@ -94,7 +92,7 @@ export default function Feature() {
           <Demo feature={f} />
         </div>
         {f.demo.note && (
-          <div className="px-[18px] pb-4 text-[0.74rem] text-muted">
+          <div className="px-[18px] pb-4 text-xs text-muted">
             ※ {f.demo.note}
           </div>
         )}
@@ -102,16 +100,13 @@ export default function Feature() {
 
       <div className="grid grid-cols-1 items-start gap-6 py-5 md:grid-cols-[1fr_300px] md:gap-10">
         <div>
-          <p className="mb-3.5 text-paper-dim">{f.summary}</p>
-          <h3 className="mb-3 mt-6 font-serif text-[1.25rem] font-medium">
+          <p className="mb-4 text-paper-dim">{f.summary}</p>
+          <h3 className="mb-3 mt-6 font-serif text-xl font-medium">
             できること
           </h3>
-          <ul className="grid gap-2.5">
+          <ul className="grid gap-2">
             {f.capabilities.map((c) => (
-              <li
-                key={c}
-                className="relative pl-[22px] text-[0.94rem] text-paper"
-              >
+              <li key={c} className="relative pl-[22px] text-base text-paper">
                 <span className={`absolute left-0 ${accentText}`}>→</span>
                 {c}
               </li>
@@ -119,32 +114,32 @@ export default function Feature() {
           </ul>
         </div>
         <aside className="card-surface sticky top-[84px] rounded-[14px] p-5">
-          <h4 className="mb-3 text-[0.7rem] uppercase tracking-[0.2em] text-muted">
+          <h4 className="mb-3 text-xs uppercase tracking-[0.2em] text-muted">
             使用技術
           </h4>
-          <div className="mb-5 flex flex-wrap gap-1.5">
+          <div className="mb-5 flex flex-wrap gap-2">
             {f.tech.map((t) => (
               <span
                 key={t}
-                className="rounded-[5px] border border-line-soft bg-ink-2 px-2 py-[3px] text-[0.72rem] text-paper-dim"
+                className="rounded-[5px] border border-line-soft bg-ink-2 px-2 py-[3px] text-xs text-paper-dim"
               >
                 {t}
               </span>
             ))}
           </div>
-          <h4 className="mb-3 text-[0.7rem] uppercase tracking-[0.2em] text-muted">
+          <h4 className="mb-3 text-xs uppercase tracking-[0.2em] text-muted">
             この機能を実装したアプリ
           </h4>
           {apps.length ? (
             apps.map((p, i) => (
               <div
                 key={p.id}
-                className={`py-2.5 ${i === 0 ? "" : "border-t border-line-soft"}`}
+                className={`py-2 ${i === 0 ? "" : "border-t border-line-soft"}`}
               >
-                <b className="block font-serif text-[0.98rem] font-medium">
+                <b className="block font-serif text-base font-medium">
                   {p.title}
                 </b>
-                <small className="text-[0.74rem] text-muted">
+                <small className="text-xs text-muted">
                   {p.tech.slice(0, 3).join(" · ")}
                 </small>
               </div>
@@ -155,7 +150,7 @@ export default function Feature() {
         </aside>
       </div>
 
-      <nav className="flex justify-between gap-3.5 border-t border-line-soft pb-2.5 pt-[26px]">
+      <nav className="flex justify-between gap-4 border-t border-line-soft pb-2 pt-[26px]">
         <Link className={btnGhost} to={`/works/${prev.slug}`}>
           ← {prev.title}
         </Link>
