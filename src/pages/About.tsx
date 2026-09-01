@@ -23,7 +23,7 @@ export default function About() {
         <h1 className="mt-2.5 font-serif text-[clamp(2.2rem,6vw,3.6rem)] font-medium leading-[1.1]">
           {OWNER.name}
         </h1>
-        <p className="mt-4 max-w-[60ch] text-[1.05rem] text-paper-dim">
+        <p className="mt-4 max-w-[80ch] text-[1.05rem] text-paper-dim">
           {OWNER.role}
         </p>
       </header>
