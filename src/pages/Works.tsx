@@ -10,17 +10,11 @@ function AppWorkCard({ app }: { app: App }) {
       className="card-surface group relative flex min-h-[250px] flex-col overflow-hidden rounded-2xl px-6 pb-[22px] pt-[26px] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_26px_50px_-28px_rgba(0,0,0,0.85)]"
     >
       <span className="absolute inset-y-0 left-0 w-[3px] bg-accent" />
-      {app.wip && (
-        <div className="mb-4 flex justify-end">
-          <span className="rounded-[5px] border border-line-soft px-2 py-1 text-[11px] tracking-[0.08em] text-muted">
-            WIP
-          </span>
-        </div>
-      )}
       <h3 className="font-serif text-2xl font-medium">{app.title}</h3>
       <p className="mt-3 flex-grow text-paper-dim">
         {app.overview ??
           "概要文を後で追加。目的、主なユーザー体験、実装した範囲をここにまとめます。"}
+        {app.wip && <span className="text-muted">（WIP）</span>}
       </p>
       <div className="mt-[18px] flex items-center justify-between">
         <span className="text-xs tracking-[0.06em] text-muted">詳細を見る</span>
