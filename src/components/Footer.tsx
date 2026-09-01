@@ -1,6 +1,11 @@
+import { useState } from "react";
 import { OWNER } from "../data/apps";
 
+const btnGhost =
+  "inline-flex cursor-pointer items-center gap-2 rounded-full border border-line px-[18px] py-2 text-sm tracking-[0.05em] text-paper transition-all hover:border-accent hover:text-accent-soft";
+
 export default function Footer() {
+  const [show, setShow] = useState(false);
   return (
     <footer
       id="contact"
@@ -14,12 +19,18 @@ export default function Footer() {
           </p>
         </div>
         <div className="text-right">
-          <a
-            href={`mailto:${OWNER.email}`}
-            className="border-b border-line text-accent-soft transition-colors hover:border-accent"
-          >
-            {OWNER.email}
-          </a>
+          {show ? (
+            <a
+              href={`mailto:${OWNER.email}`}
+              className="border-b border-line text-accent-soft transition-colors hover:border-accent"
+            >
+              {OWNER.email}
+            </a>
+          ) : (
+            <button className={btnGhost} onClick={() => setShow(true)}>
+              Contact →
+            </button>
+          )}
           <p className="mt-4 text-xs tracking-[0.06em] text-muted">
             © {new Date().getFullYear()} Judy
           </p>
