@@ -22,7 +22,7 @@ export default function Home() {
               Miwa <span className="italic text-accent-soft">Takase</span>
             </h1>
             <p
-              className="reveal mt-[18px] max-w-[34ch] text-base text-paper-dim"
+              className="reveal mt-[18px] max-w-[58ch] text-base text-paper-dim"
               style={{ animationDelay: ".18s" }}
             >
               {OWNER.role}
@@ -39,17 +39,6 @@ export default function Home() {
               </Link>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="wrap pt-10">
-        <div className="flex flex-wrap items-center justify-between gap-4 border-t border-line-soft pb-2 pt-[34px]">
-          <p className="m-0 max-w-[680px] text-base text-paper-dim">
-            実装してきた機能は、すべて Works 一覧から実際に試せます。
-          </p>
-          <Link className={btnPrimary} to="/works">
-            機能一覧へ →
-          </Link>
         </div>
       </section>
     </>
