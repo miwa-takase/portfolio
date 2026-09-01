@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { OWNER } from "../data/apps";
+import { TIMELINE } from "../data/timeline";
 
 const btnGhost =
   "inline-flex items-center gap-2 rounded-full border border-line px-[18px] py-2.5 text-[0.82rem] tracking-[0.05em] text-paper transition-all hover:border-accent hover:text-accent-soft";
@@ -41,8 +42,28 @@ export default function About() {
             フロントからバックエンド、クラウド、AI連携まで、一通りを一人で組み上げます。
             使用している技術スタックは Works（機能一覧）の冒頭にまとめています。
           </p>
-          {/* ▼ 経歴・実績など、詳細はこのページに追記 */}
-          <p className="text-muted">（経歴・実績などは順次追記予定です。）</p>
+          {/* 年表プロフィール（内容は src/data/timeline.ts を編集） */}
+          <h2 className="mb-5 mt-10 font-serif text-[1.5rem] font-medium">
+            年表
+          </h2>
+          <ol className="relative ml-1 border-l border-line">
+            {TIMELINE.map((t, i) => (
+              <li key={i} className="relative py-3 pl-7">
+                <span className="absolute -left-[6.5px] top-[18px] h-3 w-3 rounded-full border-2 border-ink bg-accent" />
+                <div className="font-serif text-[0.9rem] tracking-[0.08em] text-accent-soft">
+                  {t.year}
+                </div>
+                <div className="mt-0.5 font-serif text-[1.08rem] text-paper">
+                  {t.title}
+                </div>
+                {t.detail && (
+                  <p className="mt-1 text-[0.9rem] text-paper-dim">
+                    {t.detail}
+                  </p>
+                )}
+              </li>
+            ))}
+          </ol>
         </div>
 
         <aside className="card-surface h-max rounded-[14px] p-5">
