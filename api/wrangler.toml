@@ -7,7 +7,7 @@ binding = "RATE_LIMIT"
 id = "97d373766e6c4e1f871706b7d52daf40"
 
 [vars]
-ALLOWED_ORIGINS = "https://portfolio-4vr.pages.dev,http://localhost:5173"
+ALLOWED_ORIGINS = "https://judy-portfolio.pages.dev,http://localhost:5173"
 DAILY_LIMIT = "40"
 MAX_AUDIO_BYTES = "8000000"
 CLAUDE_MODEL = "claude-haiku-4-5-20251001"
