@@ -34,7 +34,7 @@ export default function About() {
           ようにしています
         </p>
         <p className="mb-4 text-paper-dim">
-          フロントからバックエンド、クラウド、AI連携まで、一通りを一人で組み上げます。
+          フロントからバックエンド、クラウド、AI連携まで、一通りを一人で組み上げます
         </p>
 
         <div className="mt-8 grid grid-cols-1 gap-10 md:grid-cols-5">
@@ -43,7 +43,6 @@ export default function About() {
             <h2 className="mb-5 font-serif text-2xl font-medium">年表</h2>
             <ol className="relative ml-1">
               {TIMELINE.map((t, i) => {
-                // 線は最初のドットから始まる（上のはみ出しだけカット。下は伸ばす）
                 const line = i === 0 ? "top-6 bottom-0" : "top-0 bottom-0";
                 return (
                   <li key={i} className="relative py-3 pl-7">
@@ -66,9 +65,6 @@ export default function About() {
 
           {/* 右：技術スタック */}
           <aside className="md:col-span-2">
-            <div className="text-xs uppercase tracking-widest text-accent">
-              Tech Stack
-            </div>
             <h2 className="mb-4 mt-2 font-serif text-2xl font-medium">
               技術スタック
             </h2>

@@ -173,13 +173,13 @@ function Pipeline() {
               jaCount ? (
                 <SampleSrt count={jaCount} />
               ) : (
-                <span className="text-muted">実行すると結果が流れます。</span>
+                <span className="text-muted">実行すると結果が流れます</span>
               )
             ) : jaSrt ? (
               <pre className="srt">{jaSrt}</pre>
             ) : (
               <span className="text-muted">
-                動画を選んで「アップロードして実行」を押してください。
+                動画を選んで「アップロードして実行」を押してください
               </span>
             )}
           </div>
@@ -197,15 +197,13 @@ function Pipeline() {
                 />
               ) : (
                 <span className="text-muted">
-                  文字起こしのあとに翻訳できます。
+                  文字起こしのあとに翻訳できます
                 </span>
               )
             ) : trSrt ? (
               <pre className="srt">{trSrt}</pre>
             ) : (
-              <span className="text-muted">
-                文字起こしのあとに翻訳できます。
-              </span>
+              <span className="text-muted">文字起こしのあとに翻訳できます</span>
             )}
           </div>
         </div>
@@ -244,7 +242,7 @@ function Pipeline() {
       {!hasApi() && (
         <p className="mt-2 text-xs text-muted">
           ※ 実アップロードには API
-          バックエンド（VITE_API_BASE）が必要です。未接続時はサンプルで動作を確認できます。
+          バックエンド（VITE_API_BASE）が必要です。未接続時はサンプルで動作を確認できます
         </p>
       )}
     </div>
@@ -437,12 +435,12 @@ function Episode() {
     return (
       <div className="rounded-xl border border-line-soft bg-ink p-5 text-sm">
         <p className="mb-2 text-paper">
-          エピソード生成には API バックエンドが必要です。
+          エピソード生成には API バックエンドが必要です
         </p>
         <p className="text-muted">
           Cloudflare Worker（Claude 台本 + ElevenLabs 音声）をデプロイし{" "}
           <code className="text-accent-soft">VITE_API_BASE</code>{" "}
-          を設定すると、トピックから台本と音声を実生成できます。
+          を設定すると、トピックから台本と音声を実生成できます
         </p>
       </div>
     );
@@ -467,7 +465,7 @@ function Episode() {
           <div className={`${contentCls} whitespace-pre-wrap leading-7`}>
             {script || (
               <span className="text-muted">
-                トピックを入れて生成してください。
+                トピックを入れて生成してください
               </span>
             )}
           </div>
@@ -479,7 +477,7 @@ function Episode() {
               <audio controls src={audio} className="w-full" />
             ) : (
               <span className="text-sm text-muted">
-                生成すると再生プレイヤーが表示されます。
+                生成すると再生プレイヤーが表示されます
               </span>
             )}
           </div>

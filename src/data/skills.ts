@@ -1,15 +1,9 @@
-// 技術スタック（Works ページ上部で表示。件数は Home の統計でも参照）
+// 技術スタック（Works ページ上部で表示）
+// 件数は Home の統計でも参照
 export const SKILLS: Array<{ h: string; items: string[] }> = [
   {
     h: "フロントエンド",
-    items: [
-      "React / React 19",
-      "Next.js",
-      "TypeScript",
-      "MUI / Fluent UI",
-      "Tailwind",
-      "Zustand / TanStack / SWR",
-    ],
+    items: ["React", "Next.js", "TypeScript", "MUI / Fluent UI", "Tailwind"],
   },
   {
     h: "バックエンド",
@@ -21,13 +15,7 @@ export const SKILLS: Array<{ h: string; items: string[] }> = [
   },
   {
     h: "AI / 連携",
-    items: [
-      "Claude",
-      "Gemini",
-      "ElevenLabs",
-      "Spotify API",
-      "GA4 / Chrome 拡張",
-    ],
+    items: ["Claude", "Gemini", "ElevenLabs", "Spotify API"],
   },
 ];
 

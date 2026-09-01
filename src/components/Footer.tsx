@@ -16,7 +16,7 @@ export default function Footer() {
         <div>
           <h2 className="font-serif text-4xl font-medium">Get in touch.</h2>
           <p className="mt-2 text-xs tracking-wide text-muted">
-            機能の詳細・実装については、お気軽にご連絡ください。
+            機能の詳細・実装については、お気軽にご連絡ください
           </p>
         </div>
         <SpotifyNowPlaying />

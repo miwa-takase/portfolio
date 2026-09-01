@@ -75,7 +75,7 @@ export const FEATURES: Feature[] = [
     demo: {
       type: "widget",
       widget: "nl2ui",
-      note: "API接続時は実際に Claude が UI 仕様を生成します（未接続時はローカル簡易解析）。",
+      note: "API接続時は実際に Claude が UI 仕様を生成します（未接続時はローカル簡易解析）",
     },
   },
   {
@@ -83,11 +83,11 @@ export const FEATURES: Feature[] = [
     no: "03",
     title: "リンク集約 & 計測",
     en: "Link Hub & Analytics",
-    tagline: "散らばった配信リンクを、1ページに集めて共有する。",
+    tagline: "散らばった配信リンクを、1ページに集めて共有する",
     accent: "steel",
     status: "sample",
     summary:
-      "複数ストリーミングサービスのリンクを1ページに集約して共有できる音楽リンクプラットフォーム。Gemini による AI 機能、GA4 クロスドメイン計測、Chrome 拡張まで含む多面的なプロダクト。",
+      "複数ストリーミングサービスのリンクを1ページに集約して共有できる音楽リンクプラットフォーム。Gemini による AI 機能、GA4 クロスドメイン計測、Chrome 拡張まで含む多面的なプロダクト",
     capabilities: [
       "複数サービスのリンクを1ページに集約・共有",
       "Gemini によるAI補助機能",
@@ -103,11 +103,11 @@ export const FEATURES: Feature[] = [
     no: "04",
     title: "エピソード生成（台本→音声）",
     en: "Episode Generation",
-    tagline: "トピックを渡すと、台本を書いて、そのまま声にする。",
+    tagline: "トピックを渡すと、台本を書いて、そのまま声にする",
     accent: "teal",
     status: "live",
     summary:
-      "セルフホスト型の音声プラットフォームの中核——番組エピソードの自動生成を実際に試せる。トピックを与えると Claude が短い台本を書き、ElevenLabs が音声化して、その場で再生できる1本のエピソードにする。",
+      "セルフホスト型の音声プラットフォームの中核——番組エピソードの自動生成を実際に試せる。トピックを与えると Claude が短い台本を書き、ElevenLabs が音声化して、その場で再生できる1本のエピソードにする",
     capabilities: [
       "トピック → Claude で台本生成 → ElevenLabs で音声合成",
       "生成した音声をその場で再生（サーバーに保存しない）",
@@ -124,7 +124,7 @@ export const FEATURES: Feature[] = [
     demo: {
       type: "live",
       widget: "episode",
-      note: "台本と音声はその場で生成し、サーバーには保存しません。未接続時は案内を表示します。",
+      note: "台本と音声はその場で生成し、サーバーには保存しません。未接続時は案内を表示します",
     },
   },
 ];

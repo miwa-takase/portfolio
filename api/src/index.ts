@@ -1,6 +1,8 @@
 // works-portfolio-api — Cloudflare Worker（薄いプロキシ）
-// /transcribe /translate /nl2ui /episode。保護: Turnstile + IP別/日レート制限 + サイズ上限。
-// 動画は受け取らず「抽出済み音声」のみ。アップロード/生成物は保存しない。
+// /transcribe /translate /nl2ui /episode
+// 保護: Turnstile + IP別/日レート制限 + サイズ上限
+// 動画は受け取らず「抽出済み音声」のみ
+// アップロード/生成物は保存しない
 
 export interface Env {
   RATE_LIMIT: KVNamespace;
@@ -231,10 +233,10 @@ async function handleNl2Ui(
   if (!prompt) return json({ error: "no_prompt" }, 400, headers);
   const out = await claude(
     env,
-    `あなたはUIジェネレータです。日本語の指示から入力フォームの構造を推定し、` +
-      `次の形の JSON だけを返してください（説明文なし）:` +
-      `{"type":"form","fields":[{"label":"表示名","type":"text|email|tel|textarea|date|number"}],"submit":{"label":"送信"}}。` +
-      `submit は不要なら省略。fields は指示に含まれる項目のみ。`,
+    `あなたはUIジェネレータです` +
+      `日本語の指示から入力フォームの構造を推定し、次の形の JSON だけを返してください（説明文なし）:` +
+      `{"type":"form","fields":[{"label":"表示名","type":"text|email|tel|textarea|date|number"}],"submit":{"label":"送信"}}` +
+      `submit は不要なら省略、fields は指示に含まれる項目のみ`,
     prompt,
     1024,
   );
@@ -257,9 +259,9 @@ async function handleEpisode(
   const script = (
     await claude(
       env,
-      `あなたはポッドキャストの構成作家です。指定トピックについて、` +
-        `1人のパーソナリティが読み上げる日本語の短い台本を書いてください。` +
-        `200〜300文字、自然な語り口、記号や見出しは付けず本文のみ。`,
+      `あなたはポッドキャストの構成作家です` +
+        `指定トピックについて、1人のパーソナリティが読み上げる日本語の短い台本を書いてください` +
+        `200〜300文字、自然な語り口、記号や見出しは付けず本文のみ`,
       topic,
       512,
     )

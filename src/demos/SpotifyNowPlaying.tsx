@@ -75,12 +75,15 @@ function PublicNowPlaying() {
     };
   }, []);
 
-  if (!np || !np.configured || !np.isPlaying || !np.title) return null;
-
+  if (!np || !np.configured || !np.isPlaying || !np.title) {
+    return null;
+  }
   return (
     <div className="rounded-xl border border-line-soft bg-ink p-5">
-      <div className="mb-4 text-xs uppercase tracking-widest text-muted">
-        {np.isPlaying ? "Now Playing — Judy" : "最近聴いた / 停止中"}
+      <div className="mb-4 text-xs tracking-widest text-muted">
+        {np.isPlaying
+          ? "Judy's NOW PLAYING -  from Spotify"
+          : "最近聴いた / 停止中"}
       </div>
       {np.title ? (
         <div className="flex items-center gap-4">
@@ -100,7 +103,6 @@ function PublicNowPlaying() {
               {np.title}
             </div>
             <div className="truncate text-sm text-paper-dim">{np.artists}</div>
-            <div className="truncate text-xs text-muted">{np.album}</div>
             <div className="mt-2 flex items-center gap-2">
               <span className="w-9 text-right text-xs text-muted">
                 {fmt(np.progressMs ?? 0)}

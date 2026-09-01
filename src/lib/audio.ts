@@ -1,5 +1,6 @@
-// 任意の動画/音声ファイルから、ブラウザ内で音声だけを抽出する。
-// captureStream + MediaRecorder（ffmpeg.wasm も COOP/COEP も不要）。元動画は端末外に出ない。
+// 任意の動画/音声ファイルから、ブラウザ内で音声だけを抽出する
+// captureStream + MediaRecorder（ffmpeg.wasm も COOP/COEP も不要）
+// 元動画は端末外に出ない
 type WithCapture = HTMLMediaElement & {
   captureStream?: () => MediaStream;
   mozCaptureStream?: () => MediaStream;

@@ -21,7 +21,7 @@ export const OWNER = {
 export const APPS: App[] = [
   {
     id: "reomni",
-    title: "reomni – 文字起こし & 翻訳管理",
+    title: "re-omni",
     tech: ["Next.js 16", "Clerk", "AWS S3", "CloudFront", "SWR"],
   },
   {
@@ -31,7 +31,7 @@ export const APPS: App[] = [
   },
   {
     id: "links",
-    title: "Link-parfait",
+    title: "link-parfait",
     tech: ["FastAPI", "React 19", "MySQL", "Gemini", "MUI"],
   },
   {

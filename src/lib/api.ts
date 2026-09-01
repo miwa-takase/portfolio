@@ -1,4 +1,4 @@
-// AI系バックエンド（Cloudflare Worker）クライアント。
+// AI系バックエンド（Cloudflare Worker）クライアント
 import { API_BASE } from "../config";
 import { getTurnstileToken } from "./turnstile";
 

@@ -1,9 +1,9 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// GitHub Pages（プロジェクトサイト）配信のため base を / に固定。
+// GitHub Pages（プロジェクトサイト）配信のため base を / に固定
 // ローカルは常に http://127.0.0.1:5173/ で開く
-//（Spotify の redirect_uri は http の場合 127.0.0.1 のみ許可のため）。
+//（Spotify の redirect_uri は http の場合 127.0.0.1 のみ許可のため）
 export default defineConfig({
   base: "/",
   plugins: [react()],

@@ -1,4 +1,4 @@
-// Spotify 認可コードフロー（PKCE）— クライアントシークレット不要。
+// Spotify 認可コードフロー（PKCE）— クライアントシークレット不要
 import { SPOTIFY_CLIENT_ID, spotifyRedirectUri } from "../config";
 
 const AUTH_URL = "https://accounts.spotify.com/authorize";

@@ -1,4 +1,4 @@
-// Cloudflare Turnstile トークン取得（使い捨て実行）。
+// Cloudflare Turnstile トークン取得（使い捨て実行）
 import { TURNSTILE_SITEKEY } from "../config";
 
 type TurnstileApi = {
