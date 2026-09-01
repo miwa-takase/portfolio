@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
+import { APPS } from "../data/apps";
 import { FEATURES } from "../data/features";
-import { SKILLS } from "../data/skills";
+import { SKILLS, SKILL_COUNT } from "../data/skills";
 import FeatureCard from "../components/FeatureCard";
 
 export default function Works() {
@@ -13,6 +14,33 @@ export default function Works() {
         <span className="text-line">/</span>
         <span className="text-paper-dim">Works</span>
       </nav>
+
+      <div className="mt-6 flex flex-wrap gap-[34px] border-y border-line-soft py-[26px]">
+        <div>
+          <b className="block font-serif text-[1.9rem] text-paper">
+            {FEATURES.length}
+          </b>
+          <span className="text-[0.76rem] tracking-[0.08em] text-muted">
+            機能カテゴリ
+          </span>
+        </div>
+        <div>
+          <b className="block font-serif text-[1.9rem] text-paper">
+            {APPS.length}
+          </b>
+          <span className="text-[0.76rem] tracking-[0.08em] text-muted">
+            掲載アプリ
+          </span>
+        </div>
+        <div>
+          <b className="block font-serif text-[1.9rem] text-paper">
+            {SKILL_COUNT}
+          </b>
+          <span className="text-[0.76rem] tracking-[0.08em] text-muted">
+            技術スタック
+          </span>
+        </div>
+      </div>
 
       <div className="pt-[22px]">
         <div className="text-[0.74rem] uppercase tracking-[0.34em] text-accent">
