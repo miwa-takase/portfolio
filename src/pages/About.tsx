@@ -46,23 +46,37 @@ export default function About() {
           <h2 className="mb-5 mt-10 font-serif text-[1.5rem] font-medium">
             年表
           </h2>
-          <ol className="relative ml-1 border-l border-line">
-            {TIMELINE.map((t, i) => (
-              <li key={i} className="relative py-3 pl-7">
-                <span className="absolute -left-[6.5px] top-[18px] h-3 w-3 rounded-full border-2 border-ink bg-accent" />
-                <div className="font-serif text-[0.9rem] tracking-[0.08em] text-accent-soft">
-                  {t.year}
-                </div>
-                <div className="mt-0.5 font-serif text-[1.08rem] text-paper">
-                  {t.title}
-                </div>
-                {t.detail && (
-                  <p className="mt-1 text-[0.9rem] text-paper-dim">
-                    {t.detail}
-                  </p>
-                )}
-              </li>
-            ))}
+          <ol className="relative ml-1">
+            {TIMELINE.map((t, i) => {
+              const first = i === 0;
+              const last = i === TIMELINE.length - 1;
+              // 線は最初のドットから始まり、最後のドットで終わる
+              const line =
+                first && last
+                  ? "hidden"
+                  : first
+                    ? "top-[24px] bottom-0"
+                    : last
+                      ? "top-0 h-[24px]"
+                      : "top-0 bottom-0";
+              return (
+                <li key={i} className="relative py-3 pl-7">
+                  <span className={`absolute left-0 w-px bg-line ${line}`} />
+                  <span className="absolute -left-[6.5px] top-[18px] h-3 w-3 rounded-full border-2 border-ink bg-accent" />
+                  <div className="font-serif text-[0.9rem] tracking-[0.08em] text-accent-soft">
+                    {t.year}
+                  </div>
+                  <div className="mt-0.5 font-serif text-[1.08rem] text-paper">
+                    {t.title}
+                  </div>
+                  {t.detail && (
+                    <p className="mt-1 text-[0.9rem] text-paper-dim">
+                      {t.detail}
+                    </p>
+                  )}
+                </li>
+              );
+            })}
           </ol>
         </div>
 
