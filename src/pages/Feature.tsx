@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ACCENT_TEXT, FEATURES, FEATURES_BY_SLUG } from "../data/features";
 import type { DemoType } from "../data/features";
-import { APPS_BY_ID } from "../data/apps";
+import { APPS_BY_ID, canTryApp } from "../data/apps";
 import Badge from "../components/Badge";
 import Demo from "../demos/Demo";
 
@@ -50,6 +50,7 @@ export default function Feature() {
   const next = relatedFeatures[(idx + 1) % relatedFeatures.length];
   const accentText = ACCENT_TEXT[f.accent];
   const apps = f.apps.map((id) => APPS_BY_ID[id]).filter(Boolean);
+  const canTry = canTryApp(app);
 
   return (
     <section className="wrap">
@@ -72,14 +73,14 @@ export default function Feature() {
         <span className="text-paper-dim">{f.title}</span>
       </nav>
 
-      <header className="pb-8 pt-5">
+      <header className="feature-header pb-8 pt-5">
         <div className="font-serif text-base tracking-widest text-muted">
           {f.no}
         </div>
         <div className={`mt-3 text-xs uppercase tracking-widest ${accentText}`}>
           {f.en}
         </div>
-        <h1 className="mt-2 font-serif text-4xl font-medium leading-tight md:text-5xl lg:text-6xl">
+        <h1 className="feature-title mt-2 font-serif text-4xl font-medium leading-tight md:text-5xl lg:text-6xl">
           {f.title}
         </h1>
         <p className="mt-4 max-w-2xl text-base text-paper-dim">{f.tagline}</p>
@@ -89,19 +90,25 @@ export default function Feature() {
         </div>
       </header>
 
-      <div className="overflow-hidden rounded-2xl border border-line bg-ink-2">
+      <div className="feature-demo-panel overflow-hidden rounded-2xl border border-line bg-ink-2">
         <div className="flex items-center justify-between gap-3 border-b border-line-soft bg-gradient-to-b from-panel-2 to-panel px-5 py-4">
           <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-accent">
-            ◍ 試せる場
+            ◍ {canTry ? "試せる場" : "準備中"}
           </div>
           <div className="text-xs tracking-widest text-muted">
-            {demoLabel(f.demo.type)}
+            {canTry ? demoLabel(f.demo.type) : "WIP"}
           </div>
         </div>
         <div className="px-5 py-5">
-          <Demo feature={f} />
+          {canTry ? (
+            <Demo feature={f} />
+          ) : (
+            <p className="text-sm text-paper-dim">
+              このアプリは WIP のため、機能サンプルはまだ公開していません。
+            </p>
+          )}
         </div>
-        {f.demo.note && (
+        {canTry && f.demo.note && (
           <div className="px-5 pb-4 text-xs text-muted">※ {f.demo.note}</div>
         )}
       </div>
@@ -115,13 +122,13 @@ export default function Feature() {
           <ul className="grid gap-2">
             {f.capabilities.map((c) => (
               <li key={c} className="relative pl-6 text-base text-paper">
-                <span className={`absolute left-0 ${accentText}`}>→</span>
+                <span className={`absolute left-0 ${accentText}`}>-</span>
                 {c}
               </li>
             ))}
           </ul>
         </div>
-        <aside className="card-surface sticky top-24 rounded-xl p-5">
+        <aside className="feature-tech-panel card-surface sticky top-24 rounded-xl p-5">
           <h4 className="mb-3 text-xs uppercase tracking-widest text-muted">
             使用技術
           </h4>

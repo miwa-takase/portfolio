@@ -55,6 +55,245 @@
     background: linear-gradient(180deg, #211e17, #1c1a14);
   }
 
+  .site-shell {
+    @apply min-h-screen transition-colors duration-300;
+  }
+
+  .site-shell.design-flow {
+    background-color: #385999;
+    background-image:
+      radial-gradient(at 11% 13%, #eaf4fc 0, transparent 62%),
+      radial-gradient(at 50% 50%, #385999 0, transparent 62%);
+    background-attachment: fixed;
+    background-size: cover;
+  }
+
+  .site-shell.design-flow .text-accent,
+  .site-shell.design-flow .text-accent-soft,
+  .site-shell.design-flow .hover\:text-accent-soft:hover {
+    color: #0000ff;
+  }
+
+  .site-shell.design-flow .bg-accent,
+  .site-shell.design-flow .hover\:bg-accent-soft:hover {
+    background-color: #0000ff;
+  }
+
+  .site-shell.design-flow .bg-accent.text-ink,
+  .site-shell.design-flow .hover\:bg-accent-soft:hover.text-ink,
+  .site-shell.design-flow button.bg-accent,
+  .site-shell.design-flow a.bg-accent {
+    color: #ffffff;
+  }
+
+  .site-shell.design-flow .border-accent,
+  .site-shell.design-flow .hover\:border-accent:hover {
+    border-color: #0000ff;
+  }
+
+  .site-shell.design-flow .site-header {
+    background: transparent;
+    border-color: rgba(14, 13, 11, 0.4);
+    backdrop-filter: none;
+  }
+
+  .site-shell.design-flow .site-header .site-logo,
+  .site-shell.design-flow .site-header .site-nav-link,
+  .site-shell.design-flow .site-header .design-selector-option {
+    color: #0e0d0b;
+  }
+
+  .site-shell.design-flow .site-header .design-selector {
+    background: transparent;
+    border-color: rgba(14, 13, 11, 0.45);
+    backdrop-filter: none;
+  }
+
+  .site-shell.design-flow
+    .site-header
+    .design-selector
+    .design-selector-active {
+    color: #ffffff;
+    text-shadow: none;
+  }
+
+  .site-shell.design-flow .wrap > nav,
+  .site-shell.design-flow .wrap > nav * {
+    color: #0e0d0b;
+  }
+
+  .site-shell.design-flow .works-cards-area,
+  .site-shell.design-flow .works-cards-area > div:first-child {
+    color: #0e0d0b;
+  }
+
+  .site-shell.design-flow .works-app-card {
+    background: transparent;
+    border-color: rgba(14, 13, 11, 0.55);
+    box-shadow: none;
+  }
+
+  .site-shell.design-flow .works-app-card h3,
+  .site-shell.design-flow .works-app-card p,
+  .site-shell.design-flow .works-app-card .text-paper-dim,
+  .site-shell.design-flow .works-app-card .text-muted {
+    color: #0e0d0b;
+  }
+
+  .site-shell.design-flow .works-app-card:hover {
+    border-color: #0000ff;
+  }
+
+  .site-shell.design-flow .app-work-title {
+    color: #0e0d0b;
+  }
+
+  .site-shell.design-flow .app-work-title .text-muted {
+    color: #0e0d0b;
+  }
+
+  .site-shell.design-flow .app-work-panel {
+    background: transparent;
+    border-color: rgba(14, 13, 11, 0.55);
+    box-shadow: none;
+  }
+
+  .site-shell.design-flow .app-work-panel,
+  .site-shell.design-flow .app-work-panel h2,
+  .site-shell.design-flow .app-work-panel h3,
+  .site-shell.design-flow .app-work-panel p,
+  .site-shell.design-flow .app-work-panel .text-paper,
+  .site-shell.design-flow .app-work-panel .text-paper-dim,
+  .site-shell.design-flow .app-work-panel .text-muted,
+  .site-shell.design-flow .app-work-panel .text-accent,
+  .site-shell.design-flow .app-work-panel .text-steel,
+  .site-shell.design-flow .app-work-panel .text-teal,
+  .site-shell.design-flow .app-work-panel .text-rust {
+    color: #0e0d0b;
+  }
+
+  .site-shell.design-flow .app-work-panel .bg-ink,
+  .site-shell.design-flow .app-work-panel .bg-ink-2,
+  .site-shell.design-flow .app-work-panel .bg-panel\/60 {
+    background-color: transparent;
+  }
+
+  .site-shell.design-flow .app-work-panel .border-line,
+  .site-shell.design-flow .app-work-panel .border-line-soft,
+  .site-shell.design-flow .app-work-panel .border-dashed {
+    border-color: rgba(14, 13, 11, 0.45);
+  }
+
+  .site-shell.design-flow .feature-demo-panel {
+    background: transparent;
+    border-color: rgba(14, 13, 11, 0.55);
+  }
+
+  .site-shell.design-flow .feature-demo-panel > div:first-child {
+    background: transparent;
+    border-color: rgba(14, 13, 11, 0.45);
+  }
+
+  .site-shell.design-flow .feature-demo-panel,
+  .site-shell.design-flow .feature-header,
+  .site-shell.design-flow .feature-header .text-paper-dim,
+  .site-shell.design-flow .feature-header .text-muted,
+  .site-shell.design-flow .feature-header .text-accent,
+  .site-shell.design-flow .feature-header .text-accent-soft,
+  .site-shell.design-flow .feature-demo-panel .text-paper,
+  .site-shell.design-flow .feature-demo-panel .text-paper-dim,
+  .site-shell.design-flow .feature-demo-panel .text-muted,
+  .site-shell.design-flow .feature-demo-panel .text-accent,
+  .site-shell.design-flow .feature-demo-panel .text-accent-soft,
+  .site-shell.design-flow .feature-demo-panel .text-steel,
+  .site-shell.design-flow .feature-demo-panel .text-teal,
+  .site-shell.design-flow .feature-demo-panel .text-rust {
+    color: #0e0d0b;
+  }
+
+  .site-shell.design-flow .feature-title {
+    color: #0e0d0b;
+  }
+
+  .site-shell.design-flow .feature-demo-panel .bg-ink,
+  .site-shell.design-flow .feature-demo-panel .bg-ink-2,
+  .site-shell.design-flow .feature-demo-panel .bg-panel,
+  .site-shell.design-flow .feature-demo-panel .from-panel-2,
+  .site-shell.design-flow .feature-demo-panel .to-panel {
+    background: transparent;
+    background-color: transparent;
+  }
+
+  .site-shell.design-flow .feature-demo-panel .border-line,
+  .site-shell.design-flow .feature-demo-panel .border-line-soft {
+    border-color: rgba(14, 13, 11, 0.45);
+  }
+
+  .site-shell.design-flow .feature-demo-panel input,
+  .site-shell.design-flow .feature-demo-panel textarea,
+  .site-shell.design-flow .feature-demo-panel select {
+    background: transparent;
+    border-color: rgba(14, 13, 11, 0.55);
+    color: #0e0d0b;
+  }
+
+  .site-shell.design-flow .feature-tech-panel {
+    background: transparent;
+    border-color: rgba(14, 13, 11, 0.55);
+    box-shadow: none;
+  }
+
+  .site-shell.design-flow .feature-tech-panel,
+  .site-shell.design-flow .feature-tech-panel h4,
+  .site-shell.design-flow .feature-tech-panel b,
+  .site-shell.design-flow .feature-tech-panel small,
+  .site-shell.design-flow .feature-tech-panel .text-paper,
+  .site-shell.design-flow .feature-tech-panel .text-paper-dim,
+  .site-shell.design-flow .feature-tech-panel .text-muted {
+    color: #0e0d0b;
+  }
+
+  .site-shell.design-flow .feature-tech-panel .bg-ink-2 {
+    background-color: transparent;
+  }
+
+  .site-shell.design-flow .feature-tech-panel .border-line-soft {
+    border-color: rgba(14, 13, 11, 0.45);
+  }
+
+  .site-shell.design-flow .about-page,
+  .site-shell.design-flow .about-page h1,
+  .site-shell.design-flow .about-page h2,
+  .site-shell.design-flow .about-page h4,
+  .site-shell.design-flow .about-page p,
+  .site-shell.design-flow .about-page b,
+  .site-shell.design-flow .about-page .text-paper,
+  .site-shell.design-flow .about-page .text-paper-dim,
+  .site-shell.design-flow .about-page .text-muted {
+    color: #0e0d0b;
+  }
+
+  .site-shell.design-flow .about-page .text-accent,
+  .site-shell.design-flow .about-page .text-accent-soft {
+    color: #0000ff;
+  }
+
+  .site-shell.design-flow .about-timeline-line {
+    background-color: #ffffff;
+  }
+
+  .site-shell.design-flow .about-skill-card {
+    background: transparent;
+    border-color: rgba(14, 13, 11, 0.55);
+    box-shadow: none;
+  }
+
+  .site-shell.design-flow .about-skill-tag {
+    background-color: transparent;
+    border-color: rgba(14, 13, 11, 0.45);
+    color: #0e0d0b;
+  }
+
   .reveal {
     opacity: 0;
     transform: translateY(18px);

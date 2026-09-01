@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { APPS_BY_ID } from "../data/apps";
+import { APPS_BY_ID, canTryApp } from "../data/apps";
 import {
   ACCENT_TEXT,
   FEATURES,
@@ -11,7 +11,7 @@ import {
 const btnGhost =
   "inline-flex items-center gap-2 rounded-full border border-line px-5 py-2 text-sm tracking-wide text-paper transition-all hover:border-accent hover:text-accent-soft";
 const btnPrimary =
-  "inline-flex items-center gap-2 rounded-full border border-accent bg-accent px-5 py-2 text-sm font-semibold tracking-wide text-ink transition-colors hover:bg-accent-soft";
+  "inline-flex items-center gap-2 rounded-full border border-accent bg-accent px-5 py-2 text-sm font-semibold tracking-wide text-muted transition-colors hover:bg-accent-soft";
 
 function appFeatures(appId: string): Feature[] {
   return FEATURES.filter((feature) => feature.apps.includes(appId));
@@ -39,6 +39,7 @@ export default function AppWork() {
   const features = appFeatures(app.id);
   const primaryFeature = features[0];
   const mediaSrc = app.media?.screenshot ?? app.media?.capture;
+  const canTry = canTryApp(app);
 
   return (
     <section className="wrap">
@@ -55,19 +56,23 @@ export default function AppWork() {
       </nav>
 
       <header className="pb-8 pt-5">
-        <h1 className="font-serif text-4xl font-medium leading-tight md:text-5xl lg:text-6xl">
+        <h1 className="app-work-title font-serif text-4xl font-medium italic leading-tight md:text-5xl lg:text-6xl">
           {app.title}
+          {app.wip && (
+            <span className="ml-3 inline-flex rounded-md border border-line-soft px-2 py-0.5 align-middle font-sans text-xs leading-5 tracking-wide text-muted">
+              WIP
+            </span>
+          )}
         </h1>
       </header>
 
       <div className="grid grid-cols-1 gap-6 pb-8 lg:grid-cols-2">
-        <section className="card-surface rounded-xl p-6">
+        <section className="app-work-panel card-surface rounded-xl p-6">
           <div className="text-xs uppercase tracking-widest text-muted">
             Overview
           </div>
           <p className="mt-4 text-base leading-8 text-paper-dim">
-            {app.overview ??
-              "概要文を後で追加。目的、主なユーザー体験、実装した範囲をここにまとめます。"}
+            {app.overview ?? "概要文が未入力です"}
           </p>
 
           <div className="mt-6 flex flex-wrap gap-2">
@@ -102,7 +107,7 @@ export default function AppWork() {
           </div>
 
           <div className="mt-8">
-            {primaryFeature ? (
+            {primaryFeature && canTry ? (
               <Link
                 className={btnPrimary}
                 to={`/works/${app.id}/${primaryFeature.slug}`}
@@ -112,19 +117,19 @@ export default function AppWork() {
               </Link>
             ) : (
               <span className="inline-flex rounded-full border border-line px-5 py-2 text-sm tracking-wide text-muted">
-                準備中
+                {app.wip ? "WIP - 機能準備中" : "準備中"}
               </span>
             )}
           </div>
         </section>
 
-        <section className="overflow-hidden rounded-xl border border-line bg-ink-2">
+        <section className="app-work-panel app-work-media overflow-hidden rounded-xl border border-line bg-ink-2">
           <div className="flex items-center justify-between border-b border-line-soft px-5 py-4">
             <div className="text-xs uppercase tracking-widest text-muted">
               Screenshot / Capture
             </div>
             <div className="text-xs tracking-widest text-muted">
-              {mediaSrc ? "Attached" : "Pending"}
+              {!mediaSrc && "WIP"}
             </div>
           </div>
           <div className="aspect-video bg-ink">

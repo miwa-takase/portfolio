@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import TopBar from "./components/TopBar";
 import Footer from "./components/Footer";
@@ -7,6 +7,13 @@ import About from "./pages/About";
 import Works from "./pages/Works";
 import AppWork from "./pages/AppWork";
 import Feature from "./pages/Feature";
+import {
+  DESIGN_MODE_STORAGE_KEY,
+  DESIGN_MODE_VERSION,
+  DESIGN_MODE_VERSION_KEY,
+  DesignMode,
+  readDesignMode,
+} from "./lib/designMode";
 
 function ScrollManager() {
   const { pathname, hash } = useLocation();
@@ -24,10 +31,19 @@ function ScrollManager() {
 }
 
 export default function App() {
+  const [designMode, setDesignMode] = useState<DesignMode>(readDesignMode);
+
+  useEffect(() => {
+    window.localStorage.setItem(DESIGN_MODE_STORAGE_KEY, designMode);
+    window.localStorage.setItem(DESIGN_MODE_VERSION_KEY, DESIGN_MODE_VERSION);
+  }, [designMode]);
+
   return (
-    <>
+    <div
+      className={`site-shell ${designMode === "design1" ? "design-flow" : ""}`}
+    >
       <ScrollManager />
-      <TopBar />
+      <TopBar designMode={designMode} onDesignModeChange={setDesignMode} />
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -39,6 +55,6 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
