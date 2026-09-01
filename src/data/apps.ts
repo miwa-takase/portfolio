@@ -26,7 +26,7 @@ export const APPS: App[] = [
   },
   {
     id: "brownies",
-    title: "自然言語 → DSL レンダラー",
+    title: "brownies",
     tech: ["Next.js", "Clerk", "Fluent UI", "Python"],
   },
   {
