@@ -51,7 +51,7 @@ function RedirectHint() {
           ⚠️ Spotify は http の場合 <b>127.0.0.1</b> のみ許可（
           <b>localhost</b> は不可）。ローカルでは{" "}
           <code className="text-accent-soft">
-            http://127.0.0.1:5173/portfolio/works/music-social
+            http://127.0.0.1:5173/works/music-social
           </code>{" "}
           を開いて、その URL を登録してください。
         </div>
