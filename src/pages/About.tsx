@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { OWNER } from "../data/apps";
 import { TIMELINE } from "../data/timeline";
+import { SKILLS } from "../data/skills";
 
 export default function About() {
   return (
@@ -26,42 +27,73 @@ export default function About() {
       </header>
 
       <div className="py-8">
-        <div>
-          <p className="mb-4 text-paper-dim">
-            動画の文字起こし・多言語字幕、自然言語からのUI生成、配信リンクの集約と計測、
-            音楽サービス連携、エピソード生成——個人で試してきたプロダクトから、
-            <b className="text-paper">「どんな機能を作ってきたか」</b>
-            を機能軸で整理し、 その多くを
-            <b className="text-paper">サイト上で実際に試せる</b>
-            ようにしています
-          </p>
-          <p className="mb-4 text-paper-dim">
-            フロントからバックエンド、クラウド、AI連携まで、一通りを一人で組み上げます。
-            使用している技術スタックは Works（機能一覧）の冒頭にまとめています。
-          </p>
-          {/* 年表プロフィール（内容は src/data/timeline.ts を編集） */}
-          <h2 className="mb-5 mt-10 font-serif text-2xl font-medium">年表</h2>
-          <ol className="relative ml-1">
-            {TIMELINE.map((t, i) => {
-              // 線は最初のドットから始まる（上のはみ出しだけカット。下は伸ばす）
-              const line = i === 0 ? "top-[24px] bottom-0" : "top-0 bottom-0";
-              return (
-                <li key={i} className="relative py-3 pl-7">
-                  <span className={`absolute left-0 w-px bg-line ${line}`} />
-                  <span className="absolute -left-[6.5px] top-[18px] h-3 w-3 rounded-full border-2 border-ink bg-accent" />
-                  <div className="font-serif tracking-[0.08em] text-accent-soft">
-                    {t.year}
+        <p className="mb-4 text-paper-dim">
+          動画の文字起こし・多言語字幕、自然言語からのUI生成、配信リンクの集約と計測、
+          音楽サービス連携、エピソード生成——個人で試してきたプロダクトから、
+          <b className="text-paper">「どんな機能を作ってきたか」</b>
+          を機能軸で整理し、 その多くを
+          <b className="text-paper">サイト上で実際に試せる</b>
+          ようにしています
+        </p>
+        <p className="mb-4 text-paper-dim">
+          フロントからバックエンド、クラウド、AI連携まで、一通りを一人で組み上げます。
+        </p>
+
+        <div className="mt-8 grid grid-cols-1 gap-10 md:grid-cols-[1fr_320px]">
+          {/* 左：年表プロフィール（内容は src/data/timeline.ts を編集） */}
+          <div>
+            <h2 className="mb-5 font-serif text-2xl font-medium">年表</h2>
+            <ol className="relative ml-1">
+              {TIMELINE.map((t, i) => {
+                // 線は最初のドットから始まる（上のはみ出しだけカット。下は伸ばす）
+                const line = i === 0 ? "top-[24px] bottom-0" : "top-0 bottom-0";
+                return (
+                  <li key={i} className="relative py-3 pl-7">
+                    <span className={`absolute left-0 w-px bg-line ${line}`} />
+                    <span className="absolute -left-[6.5px] top-[18px] h-3 w-3 rounded-full border-2 border-ink bg-accent" />
+                    <div className="font-serif tracking-[0.08em] text-accent-soft">
+                      {t.year}
+                    </div>
+                    <div className="mt-1 font-serif text-lg text-paper">
+                      {t.title}
+                    </div>
+                    {t.detail && (
+                      <p className="mt-1 text-paper-dim">{t.detail}</p>
+                    )}
+                  </li>
+                );
+              })}
+            </ol>
+          </div>
+
+          {/* 右：技術スタック */}
+          <aside>
+            <div className="text-xs uppercase tracking-[0.34em] text-accent">
+              Tech Stack
+            </div>
+            <h2 className="mb-4 mt-2 font-serif text-2xl font-medium">
+              技術スタック
+            </h2>
+            <div className="grid gap-3">
+              {SKILLS.map((s) => (
+                <div key={s.h} className="card-surface rounded-xl p-[18px]">
+                  <h4 className="mb-2 font-serif text-base font-medium">
+                    {s.h}
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {s.items.map((i) => (
+                      <span
+                        key={i}
+                        className="rounded-[5px] border border-line-soft bg-ink-2 px-2 py-[3px] text-xs text-paper-dim"
+                      >
+                        {i}
+                      </span>
+                    ))}
                   </div>
-                  <div className="mt-1 font-serif text-lg text-paper">
-                    {t.title}
-                  </div>
-                  {t.detail && (
-                    <p className="mt-1 text-paper-dim">{t.detail}</p>
-                  )}
-                </li>
-              );
-            })}
-          </ol>
+                </div>
+              ))}
+            </div>
+          </aside>
         </div>
       </div>
     </section>

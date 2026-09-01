@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { APPS } from "../data/apps";
 import { FEATURES } from "../data/features";
-import { SKILLS, SKILL_COUNT } from "../data/skills";
+import { SKILL_COUNT } from "../data/skills";
 import FeatureCard from "../components/FeatureCard";
 
 export default function Works() {
@@ -38,34 +38,7 @@ export default function Works() {
         </div>
       </div>
 
-      <div className="pt-[22px]">
-        <div className="text-xs uppercase tracking-[0.34em] text-accent">
-          Tech Stack
-        </div>
-        <h2 className="mt-2 font-serif text-3xl font-medium">技術スタック</h2>
-      </div>
-      <p className="mt-4 max-w-[680px] text-base text-paper-dim">
-        フロントからバックエンド、クラウド、AI連携まで一通りを一人で組み上げます。
-      </p>
-      <div className="mt-[22px] grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {SKILLS.map((s) => (
-          <div key={s.h} className="card-surface rounded-xl p-[18px]">
-            <h4 className="mb-2 font-serif text-base font-medium">{s.h}</h4>
-            <div className="flex flex-wrap gap-2">
-              {s.items.map((i) => (
-                <span
-                  key={i}
-                  className="rounded-[5px] border border-line-soft bg-ink-2 px-2 py-[3px] text-xs text-paper-dim"
-                >
-                  {i}
-                </span>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-14 border-t border-line-soft pt-[30px]">
+      <div className="mt-10 pt-2">
         <div className="text-xs uppercase tracking-[0.34em] text-accent">
           Capabilities
         </div>
