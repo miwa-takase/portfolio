@@ -9,6 +9,7 @@ import {
 
 type NP = {
   configured: boolean;
+  error?: string;
   isPlaying?: boolean;
   title?: string;
   artists?: string;
@@ -55,10 +56,15 @@ function PublicNowPlaying() {
     const poll = async () => {
       try {
         const r = await fetch(`${API_BASE}/now-playing`);
+        if (!r.ok) throw new Error(`api_${r.status}`);
         const j = (await r.json()) as NP;
         if (alive) setNp(j);
-      } catch {
-        /* ignore transient */
+      } catch (e) {
+        if (!alive) return;
+        setNp({
+          configured: false,
+          error: e instanceof Error ? e.message : "fetch_failed",
+        });
       }
     };
     poll();
@@ -75,7 +81,9 @@ function PublicNowPlaying() {
   if (!np.configured) {
     return (
       <div className="rounded-xl border border-line-soft bg-ink p-5 text-sm text-muted">
-        まだセットアップされていません（オーナーが一度だけ認可すると、ここに「今聴いている曲」が表示されます）。
+        {np.error
+          ? "Spotify情報を取得できませんでした"
+          : "まだセットアップされていません（オーナーが一度だけ認可すると、ここに「今聴いている曲」が表示されます）"}
       </div>
     );
   }
@@ -122,7 +130,7 @@ function PublicNowPlaying() {
           </div>
         </div>
       ) : (
-        <p className="text-sm text-muted">いま再生中の曲はありません。</p>
+        <p className="text-sm text-muted">いま再生中の曲はありません</p>
       )}
     </div>
   );
@@ -134,10 +142,10 @@ function Setup({ refresh }: { refresh: string }) {
     const cmd = `cd works-portfolio/api\necho '${refresh}' | npx wrangler secret put SPOTIFY_REFRESH_TOKEN`;
     return (
       <div className="rounded-xl border border-line-soft bg-ink p-5 text-sm">
-        <p className="mb-2 text-paper">✓ 認可できました。</p>
+        <p className="mb-2 text-paper">✓ 認可できました</p>
         <p className="mb-3 text-muted">
           この refresh token を Worker
-          に設定すると、公開の「今再生中」が有効になります。
+          に設定すると、公開の「今再生中」が有効になります
         </p>
         <div className="mb-2 flex flex-wrap items-center gap-2">
           <code className="break-all text-xs text-accent-soft">{refresh}</code>
@@ -150,7 +158,7 @@ function Setup({ refresh }: { refresh: string }) {
         </div>
         <p className="mt-3 text-xs text-muted">
           設定後、通常URL（?setup
-          なし）を開くと、訪問者にはあなたの再生中だけが表示されます。
+          なし）を開くと、訪問者にはあなたの再生中だけが表示されます
         </p>
       </div>
     );
@@ -158,7 +166,7 @@ function Setup({ refresh }: { refresh: string }) {
   if (!isConfigured()) {
     return (
       <div className="rounded-xl border border-line-soft bg-ink p-5 text-sm text-muted">
-        Spotify Client ID が未設定です（VITE_SPOTIFY_CLIENT_ID）。
+        Spotify Client ID が未設定です（VITE_SPOTIFY_CLIENT_ID）
       </div>
     );
   }
@@ -169,7 +177,7 @@ function Setup({ refresh }: { refresh: string }) {
       </p>
       <p className="mb-4 text-paper-dim">
         あなたの Spotify を一度だけ認可して、公開表示用の refresh token
-        を取得します。
+        を取得します
       </p>
       <button className={btnPrimary} onClick={() => void beginAuth()}>
         認可する →
