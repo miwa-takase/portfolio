@@ -12,12 +12,6 @@ type FavoriteTrack = {
 
 const FAVORITE_TRACKS: FavoriteTrack[] = [
   {
-    id: "1E9E5aP6Dq7ywLZehvOxF8",
-    title: "それでも僕らの呼吸は止まない",
-    artist: "キタニタツヤ",
-    art: "ab67616d00001e027ceeaf938856061afe737a00",
-  },
-  {
     id: "0ioheYrQrx7e2hMAVWPTnL",
     title: "I DO NOT LOVE YOU.",
     artist: "キタニタツヤ",
@@ -36,16 +30,16 @@ const FAVORITE_TRACKS: FavoriteTrack[] = [
     art: "ab67616d00001e02b6aefe7d3a9319e9f3e9ed77",
   },
   {
-    id: "14QUJsesLiDdZ4oifIWOxN",
-    title: "ロウラヴ",
-    artist: "King Gnu",
-    art: "ab67616d00001e02f0d02ba8facfe07e3e5a6eef",
-  },
-  {
     id: "2YLwxR4HLqsBdQG2Uw3J5C",
     title: "GRL GVNG",
     artist: "XG",
     art: "ab67616d00001e02e9b58064013b722f09296b3e",
+  },
+  {
+    id: "14QUJsesLiDdZ4oifIWOxN",
+    title: "ロウラヴ",
+    artist: "King Gnu",
+    art: "ab67616d00001e02f0d02ba8facfe07e3e5a6eef",
   },
   {
     id: "0Po8a9ZRgWxpMycjiyf2sA",
@@ -76,12 +70,6 @@ const FAVORITE_TRACKS: FavoriteTrack[] = [
     title: "マスカラ",
     artist: "SixTONES",
     art: "ab67616d00001e026fa770e8ff2077c7f9b81391",
-  },
-  {
-    id: "14TxI2bAVQsNazwoCsA2Y3",
-    title: "メトロノーム",
-    artist: "ExWHYZ",
-    art: "ab67616d00001e028ce6fbc1ef4b46223d3ab1af",
   },
   {
     id: "3RUXMUcuFnfMgI20Tx5LeT",
