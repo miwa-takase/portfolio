@@ -207,8 +207,8 @@ function Pipeline() {
           disabled={busy || !done1}
           onChange={(e) => setLang(e.target.value as "en" | "ja")}
         >
-          <option value="en">→ English</option>
-          <option value="ja">→ 日本語（言い換え）</option>
+          <option value="en">English</option>
+          <option value="ja">日本語（言い換え）</option>
         </select>
         <button
           className={btnPrimary}
