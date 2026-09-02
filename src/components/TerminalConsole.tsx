@@ -192,10 +192,7 @@ export default function TerminalConsole() {
           </p>
         ))}
       </div>
-      <form
-        className="terminal-entry mt-4"
-        onSubmit={submit}
-      >
+      <form className="terminal-entry mt-4" onSubmit={submit}>
         <div className="terminal-prompt flex items-center gap-2">
           <span aria-hidden="true" className="text-white">
             $
