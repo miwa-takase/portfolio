@@ -316,12 +316,21 @@
     line-height: 1;
   }
 
+  .page-menu-trigger span::before {
+    content: "☆";
+  }
+
   .page-menu-trigger:hover,
   .page-menu-trigger:focus-visible {
     color: #ffffff;
     background: transparent;
-    text-shadow: 0 0 0.55rem rgba(255, 255, 255, 0.75);
     outline: none;
+  }
+
+  /* ホバー時は塗りつぶしの星に切り替え */
+  .page-menu-trigger:hover span::before,
+  .page-menu-trigger:focus-visible span::before {
+    content: "★";
   }
 
   .page-menu-backdrop {
@@ -459,7 +468,7 @@
     border-color: #0000ff;
   }
 
-  /* design1 の配色: 黒（文字・枠線・背景）は一切使わず、白と青だけで構成する。
+  /* design1 の配色: 黒（文字・枠線・背景）は一切使わず、白と青だけで構成
     - 本文・見出し・muted ＝ 白
     - アクセント（アイブロー・リンク・タグ・姓・ヘッダー・パンくず）＝ 青
     - 暗い面（bg-ink / bg-panel / card-surface）＝ 透明化

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import Breadcrumb from "../components/Breadcrumb";
 import { APPS_BY_ID, canTryApp, publicUrl } from "../data/apps";
 import { FEATURES, statusShort, type Feature } from "../data/features";
 
@@ -39,51 +40,44 @@ export default function AppWork() {
 
   return (
     <section className="wrap">
-      <nav className="breadcrumb flex items-center gap-2 pt-8 text-xs tracking-wide text-muted">
-        <Link to="/" className="text-paper-dim hover:text-accent-soft">
-          Home
-        </Link>
-        <span className="text-line">/</span>
-        <Link to="/works" className="text-paper-dim hover:text-accent-soft">
-          Works
-        </Link>
-        <span className="text-line">/</span>
-        <span className="text-paper-dim">{app.title}</span>
-      </nav>
+      <Breadcrumb
+        items={[{ label: "Works", to: "/works" }, { label: app.title }]}
+        className="pt-8"
+      />
 
-      <header className="pb-8 pt-5">
+      <header className="pt-6">
         <h1 className="app-work-title font-serif text-4xl font-medium italic leading-tight md:text-5xl lg:text-6xl">
           {app.title}
           {app.wip && (
-            <span className="ml-3 inline-flex rounded-md border border-line-soft px-2 py-0.5 align-middle font-sans text-xs leading-5 tracking-wide text-muted">
+            <span className="tex-sm ml-3 inline-flex rounded-md border border-line-soft px-2 py-0.5 align-middle font-sans leading-5 tracking-wide text-muted">
               WIP
             </span>
           )}
         </h1>
       </header>
 
-      <div className="grid grid-cols-1 gap-6 pb-8 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 py-8 lg:grid-cols-2">
         <section className="app-work-panel card-surface rounded-xl p-6">
-          <div className="text-xs uppercase tracking-widest text-muted">
+          <div className="tex-sm uppercase tracking-widest text-muted">
             Overview
           </div>
-          <p className="mt-4 text-base leading-8 text-paper-dim">
+          <p className="mt-2 text-base leading-8 text-paper-dim">
             {app.overview ?? "概要文が未入力です"}
           </p>
 
-          <div className="mt-6 flex flex-wrap gap-2">
+          <div className="mt-4 flex flex-wrap gap-2">
             {app.tech.map((tech) => (
               <span
                 key={tech}
-                className="rounded-md border border-line-soft bg-ink-2 px-2 py-1 text-xs text-paper-dim"
+                className="rounded-md border border-line-soft bg-ink-2 px-2 py-1 text-sm text-paper-dim"
               >
                 {tech}
               </span>
             ))}
           </div>
 
-          <div className="mt-8">
-            <div className="mb-3 text-xs uppercase tracking-widest text-muted">
+          <div className="mt-4">
+            <div className="tex-sm mb-2 uppercase tracking-widest text-muted">
               Sample Flow
             </div>
             {features.length ? (
@@ -91,7 +85,7 @@ export default function AppWork() {
                 {features.map((feature) => (
                   <span
                     key={feature.slug}
-                    className="rounded-md border border-line-soft px-2 py-1 text-xs text-white"
+                    className="rounded-md border border-line-soft px-2 py-1 text-sm text-white"
                   >
                     {feature.title} · {statusShort(feature.status)}
                   </span>
@@ -103,8 +97,8 @@ export default function AppWork() {
           </div>
 
           {liveUrl && (
-            <div className="mt-6">
-              <div className="mb-2 text-xs uppercase tracking-widest text-muted">
+            <div className="mt-4">
+              <div className="tex-sm mb-2 uppercase tracking-widest text-muted">
                 URL
               </div>
               <a
@@ -125,7 +119,7 @@ export default function AppWork() {
                 className={btnPrimary}
                 to={`/works/${app.id}/${primaryFeature.slug}`}
               >
-                機能を試す
+                コア機能の概要をつかむ
                 <span aria-hidden="true">→</span>
               </Link>
             ) : (
@@ -138,10 +132,10 @@ export default function AppWork() {
 
         <section className="app-work-panel app-work-media overflow-hidden rounded-xl border border-line bg-ink-2">
           <div className="flex items-center justify-between border-b border-line-soft px-5 py-4">
-            <div className="text-xs uppercase tracking-widest text-muted">
+            <div className="text-sm uppercase tracking-widest text-muted">
               Screenshot / Capture
             </div>
-            <div className="text-xs tracking-widest text-muted">
+            <div className="text-sm tracking-widest text-muted">
               {!mediaSrc && "WIP"}
             </div>
           </div>
@@ -165,7 +159,7 @@ export default function AppWork() {
         </section>
       </div>
 
-      <nav className="border-t border-line-soft pb-2 pt-7">
+      <nav className="flex justify-center border-t border-line-soft pb-2 pt-7">
         <Link className={btnGhost} to="/works">
           ← アプリ一覧へ
         </Link>

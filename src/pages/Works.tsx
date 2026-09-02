@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { APPS, publicUrl, type App } from "../data/apps";
+import Breadcrumb from "../components/Breadcrumb";
+import { APPS, type App } from "../data/apps";
 
 function AppWorkCard({ app }: { app: App }) {
-  const liveUrl = publicUrl(app);
   return (
     <Link
       to={`/works/${app.id}`}
@@ -18,11 +18,6 @@ function AppWorkCard({ app }: { app: App }) {
           </span>
         )}
       </p>
-      {liveUrl && (
-        <p className="mt-4 break-all text-xs tracking-wide text-accent">
-          {liveUrl}
-        </p>
-      )}
       <div className="mt-5 flex items-center justify-between">
         <span className="text-xs tracking-wide text-muted">詳細を見る</span>
         <span className="text-lg text-accent transition-transform group-hover:translate-x-1">
@@ -36,22 +31,11 @@ function AppWorkCard({ app }: { app: App }) {
 export default function Works() {
   return (
     <section className="wrap">
-      <nav className="breadcrumb flex items-center gap-2 pt-8 text-xs tracking-wide text-muted">
-        <Link to="/" className="text-paper-dim hover:text-accent-soft">
-          Home
-        </Link>
-        <span className="text-line">/</span>
-        <span className="text-paper-dim">Works</span>
-      </nav>
+      <Breadcrumb items={[{ label: "Works" }]} className="pt-8" />
 
-      <div className="mt-10 pt-2">
-        <div className="text-xs uppercase tracking-widest text-accent">
-          Applications
-        </div>
-        <h2 className="display-title mt-2 font-serif text-3xl font-medium">
-          アプリ一覧
-        </h2>
-      </div>
+      <h1 className="display-title pt-6 font-serif text-4xl font-medium italic leading-tight md:text-5xl lg:text-6xl">
+        Applications
+      </h1>
       <p className="mt-4 max-w-2xl text-base text-paper-dim">
         このデバイス上の各アプリを起点に整理しました
         <br />

@@ -9,7 +9,6 @@ export const TIMELINE: TimelineEntry[] = [
   {
     year: "2001 / 01",
     title: "誕生",
-    detail: "大阪にて育つ",
   },
   {
     year: "2013 / 04 - 2019 / 03",

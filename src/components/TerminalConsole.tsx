@@ -88,7 +88,7 @@ export default function TerminalConsole() {
   const historyRef = useRef<HTMLDivElement>(null);
   const [value, setValue] = useState("");
   const [lines, setLines] = useState<TerminalLine[]>([
-    { kind: "output", text: "Type help to list available commands." },
+    { kind: "output", text: "Type 'help' to list available commands." },
   ]);
 
   const allowedText = useMemo(() => `open + [${APP_NAMES.join(" / ")}]`, []);

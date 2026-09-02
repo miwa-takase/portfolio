@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import TrackCard from "../components/TrackCard";
 import { API_BASE, spotifyRedirectUri } from "../config";
 import {
   beginAuth,
@@ -31,7 +32,7 @@ function Copy({ text }: { text: string }) {
   const [done, setDone] = useState(false);
   return (
     <button
-      className="rounded border border-line px-2 py-0.5 text-xs text-paper-dim hover:border-accent hover:text-accent-soft"
+      className="tex-sm rounded border border-line px-2 py-0.5 text-paper-dim hover:border-accent hover:text-accent-soft"
       onClick={() =>
         navigator.clipboard?.writeText(text).then(
           () => {
@@ -77,48 +78,33 @@ function PublicNowPlaying() {
 
   return (
     <div>
-      <div className="mb-5 text-xs tracking-widest text-muted">
+      <div className="tex-sm mb-5 tracking-widest text-muted">
         Judy&apos;s NOW PLAYING - from Spotify
       </div>
       <div className="utility-frame">
         {np?.configured && np.isPlaying && np.title ? (
-          <div className="flex items-center gap-4">
-            {np.albumArt ? (
-              <img
-                src={np.albumArt}
-                alt=""
-                className="h-20 w-20 rounded-md border border-line-soft object-cover"
-              />
-            ) : (
-              <div className="flex h-20 w-20 items-center justify-center rounded-md border border-line-soft text-2xl text-accent">
-                ♪
+          <TrackCard
+            albumArt={np.albumArt}
+            title={np.title}
+            artist={np.artists}
+          >
+            <div className="mt-2 flex items-center gap-2">
+              <span className="tex-sm w-9 text-right text-muted">
+                {fmt(np.progressMs ?? 0)}
+              </span>
+              <div className="h-1 flex-1 overflow-hidden rounded-full bg-white/30">
+                <div
+                  className="h-full rounded-full bg-white"
+                  style={{
+                    width: `${np.durationMs ? ((np.progressMs ?? 0) / np.durationMs) * 100 : 0}%`,
+                  }}
+                />
               </div>
-            )}
-            <div className="min-w-0 flex-1">
-              <div className="truncate font-serif text-lg italic text-paper">
-                {np.title}
-              </div>
-              <div className="truncate text-sm text-paper-dim">
-                {np.artists}
-              </div>
-              <div className="mt-2 flex items-center gap-2">
-                <span className="w-9 text-right text-xs text-muted">
-                  {fmt(np.progressMs ?? 0)}
-                </span>
-                <div className="h-1 flex-1 overflow-hidden rounded-full bg-white/30">
-                  <div
-                    className="h-full rounded-full bg-white"
-                    style={{
-                      width: `${np.durationMs ? ((np.progressMs ?? 0) / np.durationMs) * 100 : 0}%`,
-                    }}
-                  />
-                </div>
-                <span className="w-9 text-xs text-muted">
-                  {fmt(np.durationMs ?? 0)}
-                </span>
-              </div>
+              <span className="tex-sm w-9 text-muted">
+                {fmt(np.durationMs ?? 0)}
+              </span>
             </div>
-          </div>
+          </TrackCard>
         ) : (
           <p className="text-sm text-muted">
             {np ? "いま再生中の曲はありません" : "Spotifyを確認しています"}
@@ -141,7 +127,7 @@ function Setup({ refresh }: { refresh: string }) {
           に設定すると、公開の「今再生中」が有効になります
         </p>
         <div className="mb-2 flex flex-wrap items-center gap-2">
-          <code className="break-all text-xs text-accent-soft">{refresh}</code>
+          <code className="tex-sm break-all text-accent-soft">{refresh}</code>
           <Copy text={refresh} />
         </div>
         <p className="mb-1 text-muted">ターミナルで実行：</p>
@@ -149,7 +135,7 @@ function Setup({ refresh }: { refresh: string }) {
         <div className="mt-2">
           <Copy text={cmd} />
         </div>
-        <p className="mt-3 text-xs text-muted">
+        <p className="tex-sm mt-3 text-muted">
           設定後、通常URL（?setup
           なし）を開くと、訪問者にはあなたの再生中だけが表示されます
         </p>
@@ -165,7 +151,7 @@ function Setup({ refresh }: { refresh: string }) {
   }
   return (
     <div className="rounded-xl border border-line-soft bg-ink p-6 text-sm">
-      <p className="mb-1 text-xs uppercase tracking-widest text-muted">
+      <p className="tex-sm mb-1 uppercase tracking-widest text-muted">
         Setup（オーナー用・一度だけ）
       </p>
       <p className="mb-4 text-paper-dim">
@@ -175,7 +161,7 @@ function Setup({ refresh }: { refresh: string }) {
       <button className={btnPrimary} onClick={() => void beginAuth()}>
         認可する →
       </button>
-      <p className="mt-3 text-xs text-muted">
+      <p className="tex-sm mt-3 text-muted">
         Redirect URI（Spotify に登録済みのはず）:{" "}
         <code className="text-accent-soft">{spotifyRedirectUri()}</code>
       </p>

@@ -6,7 +6,7 @@ const linkClass =
 export default function NotFound() {
   return (
     <section className="wrap grid min-h-screen content-center py-20">
-      <p className="text-xs uppercase tracking-widest text-accent">Not Found</p>
+      <p className="tex-sm uppercase tracking-widest text-accent">Not Found</p>
       <h1 className="display-title mt-3 font-serif text-4xl font-medium italic leading-tight md:text-6xl">
         Page not found
       </h1>

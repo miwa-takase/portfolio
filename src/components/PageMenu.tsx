@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 type NavItem = {
   label: string;
@@ -18,17 +18,30 @@ const mainItems: NavItem[] = [
 export default function PageMenu() {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const items = useMemo(() => mainItems, []);
+  const clickTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    if (!open) return;
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false);
+    return () => {
+      if (clickTimer.current) clearTimeout(clickTimer.current);
     };
+  }, []);
 
-    document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
-  }, [open]);
+  // シングルクリック＝画面一覧を開く / ダブルクリック＝Top へ遷移
+  const handleTriggerClick = () => {
+    if (clickTimer.current) {
+      clearTimeout(clickTimer.current);
+      clickTimer.current = null;
+      setOpen(false);
+      navigate("/");
+      return;
+    }
+    clickTimer.current = setTimeout(() => {
+      clickTimer.current = null;
+      setOpen(true);
+    }, 250);
+  };
 
   return (
     <>
@@ -37,24 +50,19 @@ export default function PageMenu() {
         className="page-menu-trigger"
         aria-haspopup="dialog"
         aria-expanded={open}
-        aria-label="ページ一覧を開く"
-        onClick={() => setOpen(true)}
+        aria-label="ページ一覧を開く（ダブルクリックでTopへ）"
+        onClick={handleTriggerClick}
       >
-        <span aria-hidden="true">◎</span>
+        <span aria-hidden="true" />
       </button>
 
       {open && (
-        <div
-          className="page-menu-backdrop"
-          role="presentation"
-          onMouseDown={() => setOpen(false)}
-        >
+        <div className="page-menu-backdrop" role="presentation">
           <section
             className="page-menu-modal"
             role="dialog"
             aria-modal="true"
             aria-labelledby="page-menu-title"
-            onMouseDown={(event) => event.stopPropagation()}
           >
             <div className="flex items-center justify-end">
               <h2 id="page-menu-title" className="sr-only">

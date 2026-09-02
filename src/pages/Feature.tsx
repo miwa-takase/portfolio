@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ACCENT_TEXT, FEATURES, FEATURES_BY_SLUG } from "../data/features";
+import { FEATURES, FEATURES_BY_SLUG } from "../data/features";
 import type { DemoType } from "../data/features";
 import { APPS_BY_ID, canTryApp } from "../data/apps";
 import Badge from "../components/Badge";
+import Breadcrumb from "../components/Breadcrumb";
 import Demo from "../demos/Demo";
 
 function demoLabel(t: DemoType): string {
@@ -48,30 +49,19 @@ export default function Feature() {
       (idx - 1 + relatedFeatures.length) % relatedFeatures.length
     ];
   const next = relatedFeatures[(idx + 1) % relatedFeatures.length];
-  const accentText = ACCENT_TEXT[f.accent];
   const apps = f.apps.map((id) => APPS_BY_ID[id]).filter(Boolean);
   const canTry = canTryApp(app);
 
   return (
     <section className="wrap">
-      <nav className="breadcrumb flex items-center gap-2 pt-8 text-xs tracking-wide text-muted">
-        <Link to="/" className="text-paper-dim hover:text-accent-soft">
-          Home
-        </Link>
-        <span className="text-line">/</span>
-        <Link to="/works" className="text-paper-dim hover:text-accent-soft">
-          Works
-        </Link>
-        <span className="text-line">/</span>
-        <Link
-          to={`/works/${app.id}`}
-          className="text-paper-dim hover:text-accent-soft"
-        >
-          {app.title}
-        </Link>
-        <span className="text-line">/</span>
-        <span className="text-paper-dim">{f.title}</span>
-      </nav>
+      <Breadcrumb
+        items={[
+          { label: "Works", to: "/works" },
+          { label: app.title, to: `/works/${app.id}` },
+          { label: f.title },
+        ]}
+        className="pt-8"
+      />
 
       <header className="feature-header pb-8 pt-5">
         <h1 className="feature-title font-serif text-4xl font-medium italic leading-tight md:text-5xl lg:text-6xl">
@@ -80,16 +70,16 @@ export default function Feature() {
         <p className="mt-4 max-w-2xl text-base text-paper-dim">{f.tagline}</p>
         <div className="mt-5 flex items-center gap-4">
           <Badge status={f.status} />
-          <span className="text-xs text-muted">{demoLabel(f.demo.type)}</span>
+          <span className="tex-sm text-muted">{demoLabel(f.demo.type)}</span>
         </div>
       </header>
 
       <div className="feature-demo-panel overflow-hidden rounded-2xl border border-line bg-ink-2">
         <div className="flex items-center justify-between gap-3 border-b border-line-soft bg-gradient-to-b from-panel-2 to-panel px-5 py-4">
-          <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-accent">
+          <div className="tex-sm flex items-center gap-2 uppercase tracking-widest text-accent">
             ◍ {canTry ? "試せる場" : "準備中"}
           </div>
-          <div className="text-xs tracking-widest text-muted">
+          <div className="tex-sm tracking-widest text-muted">
             {canTry ? demoLabel(f.demo.type) : "WIP"}
           </div>
         </div>
@@ -98,12 +88,12 @@ export default function Feature() {
             <Demo feature={f} />
           ) : (
             <p className="text-sm text-paper-dim">
-              このアプリは WIP のため、機能サンプルはまだ公開していません。
+              このアプリは WIP のため、機能サンプルはまだ公開していません
             </p>
           )}
         </div>
         {canTry && f.demo.note && (
-          <div className="px-5 pb-4 text-xs text-muted">※ {f.demo.note}</div>
+          <div className="tex-sm px-5 pb-4 text-muted">※ {f.demo.note}</div>
         )}
       </div>
 
@@ -116,27 +106,27 @@ export default function Feature() {
           <ul className="grid gap-2">
             {f.capabilities.map((c) => (
               <li key={c} className="relative pl-6 text-base text-paper">
-                <span className={`absolute left-0 ${accentText}`}>-</span>
+                <span className="absolute left-0 text-paper">-</span>
                 {c}
               </li>
             ))}
           </ul>
         </div>
         <aside className="feature-tech-panel card-surface sticky top-24 rounded-xl p-5">
-          <h4 className="mb-3 text-xs uppercase tracking-widest text-muted">
+          <h4 className="tex-sm mb-3 uppercase tracking-widest text-muted">
             使用技術
           </h4>
           <div className="mb-5 flex flex-wrap gap-2">
             {f.tech.map((t) => (
               <span
                 key={t}
-                className="rounded-md border border-line-soft bg-ink-2 px-2 py-1 text-xs text-paper-dim"
+                className="rounded-md border border-line-soft bg-ink-2 px-2 py-1 text-sm text-paper-dim"
               >
                 {t}
               </span>
             ))}
           </div>
-          <h4 className="mb-3 text-xs uppercase tracking-widest text-muted">
+          <h4 className="tex-sm mb-3 uppercase tracking-widest text-muted">
             この機能を実装したアプリ
           </h4>
           {apps.length ? (
@@ -149,7 +139,7 @@ export default function Feature() {
                 <b className="block font-serif text-base font-medium">
                   {p.title}
                 </b>
-                <small className="text-xs text-muted">
+                <small className="tex-sm text-muted">
                   {p.tech.slice(0, 3).join(" · ")}
                 </small>
               </Link>
@@ -169,7 +159,7 @@ export default function Feature() {
           <span />
         )}
         <Link className={btnGhost} to={`/works/${app.id}`}>
-          アプリ詳細
+          ← アプリ詳細へ
         </Link>
         {relatedFeatures.length > 1 ? (
           <Link className={btnGhost} to={`/works/${app.id}/${next.slug}`}>

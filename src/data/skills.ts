@@ -11,7 +11,7 @@ export const SKILLS: Array<{ h: string; items: string[] }> = [
   },
   {
     h: "クラウド / インフラ",
-    items: ["AWS (S3・CloudFront)", "MySQL / PostgreSQL", "Docker"],
+    items: ["AWS", "MySQL", "PostgreSQL", "Docker"],
   },
   {
     h: "AI / 連携",

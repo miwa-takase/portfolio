@@ -1,25 +1,16 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import Breadcrumb from "../components/Breadcrumb";
 import { OWNER } from "../data/apps";
 
-export default function Mail() {
-  const [show, setShow] = useState(false);
+const btnWhite =
+  "inline-flex items-center gap-2 rounded-full border border-white bg-white px-6 py-2.5 text-sm font-semibold tracking-wide text-ink transition-colors hover:bg-white/85 hover:border-white/85";
 
+export default function Mail() {
   return (
     <section className="wrap py-16">
-      <nav className="breadcrumb flex items-center gap-2 text-xs tracking-wide text-muted">
-        <Link to="/" className="text-paper-dim hover:text-accent-soft">
-          Home
-        </Link>
-        <span className="text-line">/</span>
-        <span className="text-paper-dim">Contact</span>
-      </nav>
+      <Breadcrumb items={[{ label: "Contact" }]} />
 
-      <div className="mt-10 max-w-2xl">
-        <div className="text-xs uppercase tracking-widest text-accent">
-          Contact
-        </div>
-        <h1 className="display-title mt-2 font-serif text-4xl font-medium leading-tight md:text-6xl">
+      <div className="max-w-2xl pt-6">
+        <h1 className="display-title font-serif text-4xl font-medium italic leading-tight md:text-6xl">
           Contact
         </h1>
         <p className="mt-4 text-base text-paper-dim">
@@ -27,23 +18,18 @@ export default function Mail() {
         </p>
       </div>
 
-      <div className="mt-8 max-w-2xl rounded-lg border border-line-soft bg-ink/40 p-6">
-        {show ? (
-          <a
-            href={`mailto:${OWNER.email}`}
-            className="break-all border-b border-line text-lg text-accent-soft transition-colors hover:border-accent"
-          >
-            {OWNER.email}
-          </a>
-        ) : (
-          <button
-            className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-line px-5 py-2 text-sm tracking-wide text-paper transition-all hover:border-accent hover:text-accent-soft"
-            type="button"
-            onClick={() => setShow(true)}
-          >
-            Show address
-          </button>
-        )}
+      <div className="card-surface mt-8 flex items-center justify-between rounded-2xl p-8">
+        <p className="text-base leading-8 text-paper-dim">
+          右のボタンから、お使いのメールソフトが起動します
+        </p>
+        <a
+          href={`mailto:${OWNER.email}`}
+          className={btnWhite}
+          aria-label="メールを作成する"
+        >
+          <span aria-hidden="true">✉</span>
+          メールを送る
+        </a>
       </div>
     </section>
   );

@@ -41,7 +41,7 @@ export default function TopBar({
             {designModes.map((mode) => (
               <button
                 key={mode.value}
-                className={`design-selector-option rounded-full px-3 py-1.5 text-xs font-semibold tracking-wide transition-colors ${
+                className={`design-selector-option rounded-full px-3 py-1.5 text-sm font-semibold tracking-wide transition-colors ${
                   designMode === mode.value
                     ? "design-selector-active bg-accent text-ink"
                     : "text-paper-dim hover:text-accent-soft"
