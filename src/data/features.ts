@@ -1,5 +1,5 @@
 // 機能カタログ（このサイトの主役 = 「機能軸」）
-export type Accent = "accent" | "steel" | "teal" | "rust";
+export type Accent = "accent" | "steel" | "muted" | "teal" | "rust";
 export type Status = "live" | "sample" | "soon";
 export type DemoType = "live" | "widget" | "recorded" | "diagram";
 
@@ -12,9 +12,7 @@ export type DemoConfig = {
 
 export type Feature = {
   slug: string;
-  no: string;
   title: string;
-  en: string;
   tagline: string;
   accent: Accent;
   status: Status;
@@ -28,9 +26,7 @@ export type Feature = {
 export const FEATURES: Feature[] = [
   {
     slug: "transcription",
-    no: "01",
     title: "文字起こし & 翻訳",
-    en: "Transcribe & Translate",
     tagline: "話した言葉を、タイムコード付き字幕にして、そのまま多言語へ。",
     accent: "accent",
     status: "live",
@@ -57,9 +53,7 @@ export const FEATURES: Feature[] = [
   },
   {
     slug: "llm-generation",
-    no: "02",
     title: "LLM生成：自然言語 → UI",
-    en: "LLM Generation",
     tagline: "自然な言葉を、そのまま構造化データと UI へ変換する。",
     accent: "accent",
     status: "live",
@@ -80,9 +74,7 @@ export const FEATURES: Feature[] = [
   },
   {
     slug: "link-hub",
-    no: "03",
     title: "リンク集約 & 計測",
-    en: "Link Hub & Analytics",
     tagline: "散らばった配信リンクを、1ページに集めて共有する",
     accent: "steel",
     status: "sample",
@@ -100,9 +92,7 @@ export const FEATURES: Feature[] = [
   },
   {
     slug: "episode-gen",
-    no: "04",
-    title: "エピソード生成（台本→音声）",
-    en: "Episode Generation",
+    title: "エピソード生成",
     tagline: "トピックを渡すと、台本を書いて、そのまま声にする",
     accent: "teal",
     status: "live",
@@ -136,12 +126,14 @@ export const FEATURES_BY_SLUG: Record<string, Feature> = Object.fromEntries(
 export const ACCENT_TEXT: Record<Accent, string> = {
   accent: "text-accent",
   steel: "text-steel",
+  muted: "text-muted",
   teal: "text-teal",
   rust: "text-rust",
 };
 export const ACCENT_BG: Record<Accent, string> = {
   accent: "bg-accent",
   steel: "bg-steel",
+  muted: "bg-muted",
   teal: "bg-teal",
   rust: "bg-rust",
 };

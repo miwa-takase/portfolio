@@ -6,7 +6,7 @@ import { SKILLS } from "../data/skills";
 export default function About() {
   return (
     <section className="about-page wrap">
-      <nav className="flex items-center gap-2 pt-8 text-xs tracking-wide text-muted">
+      <nav className="breadcrumb flex items-center gap-2 pt-8 text-xs tracking-wide text-muted">
         <Link to="/" className="text-paper-dim hover:text-accent-soft">
           Home
         </Link>
@@ -18,7 +18,7 @@ export default function About() {
         <div className="text-xs uppercase tracking-widest text-accent">
           About
         </div>
-        <h1 className="mt-2 font-serif text-4xl font-medium leading-tight md:text-5xl lg:text-6xl">
+        <h1 className="display-title mt-2 font-serif text-4xl font-medium leading-tight md:text-5xl lg:text-6xl">
           {OWNER.firstName}
           <span className="italic text-accent-soft">{OWNER.lastName}</span>
         </h1>

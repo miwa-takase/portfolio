@@ -20,7 +20,7 @@ type NP = {
 };
 
 const btnPrimary =
-  "inline-flex cursor-pointer items-center gap-2 rounded-full border border-accent bg-accent px-5 py-2 text-sm font-semibold tracking-wide text-ink transition-all hover:bg-accent-soft";
+  "inline-flex cursor-pointer items-center gap-2 rounded-full border border-accent bg-transparent px-5 py-2 text-sm font-semibold tracking-wide text-accent transition-all hover:border-accent-soft hover:text-accent-soft";
 
 function fmt(ms: number): string {
   const s = Math.floor(ms / 1000);

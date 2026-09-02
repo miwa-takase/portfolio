@@ -15,7 +15,7 @@ import {
 
 const btnBase =
   "inline-flex cursor-pointer items-center gap-2 rounded-full border px-5 py-2 text-sm tracking-wide transition-all disabled:cursor-not-allowed disabled:opacity-45";
-const btnPrimary = `${btnBase} border-accent bg-accent font-semibold text-ink hover:bg-accent-soft`;
+const btnPrimary = `${btnBase} border-accent bg-transparent font-semibold text-accent hover:border-accent-soft hover:text-accent-soft`;
 const btnGhost = `${btnBase} border-line text-paper hover:border-accent hover:text-accent-soft`;
 const mini =
   "rounded-lg border border-line bg-ink px-2 py-2 text-xs text-paper focus:border-accent focus:outline-none";
@@ -406,7 +406,7 @@ function LinkHub() {
   );
 }
 
-/* 05 エピソード生成（台本→音声） */
+/* 05 エピソード生成 */
 function Episode() {
   const [topic, setTopic] = useState("最近の生成AIの話題を、3つのトピックで");
   const [script, setScript] = useState("");

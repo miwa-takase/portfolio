@@ -30,7 +30,7 @@ function AppWorkCard({ app }: { app: App }) {
 export default function Works() {
   return (
     <section className="wrap">
-      <nav className="flex items-center gap-2 pt-8 text-xs tracking-wide text-muted">
+      <nav className="breadcrumb flex items-center gap-2 pt-8 text-xs tracking-wide text-muted">
         <Link to="/" className="text-paper-dim hover:text-accent-soft">
           Home
         </Link>
@@ -42,7 +42,9 @@ export default function Works() {
         <div className="text-xs uppercase tracking-widest text-accent">
           Applications
         </div>
-        <h2 className="mt-2 font-serif text-3xl font-medium">アプリ一覧</h2>
+        <h2 className="display-title mt-2 font-serif text-3xl font-medium">
+          アプリ一覧
+        </h2>
       </div>
       <p className="mt-4 max-w-2xl text-base text-paper-dim">
         このデバイス上の各アプリを起点に整理しました

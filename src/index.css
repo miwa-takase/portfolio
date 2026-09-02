@@ -91,21 +91,49 @@
     border-color: #0000ff;
   }
 
+  /* design1 の配色: 黒（文字・枠線・背景）は一切使わず、白と青だけで構成する。
+    - 本文・見出し・muted ＝ 白
+    - アクセント（アイブロー・リンク・タグ・姓・ヘッダー・パンくず）＝ 青
+    - 暗い面（bg-ink / bg-panel / card-surface）＝ 透明化
+    - 枠線 ＝ 半透明の白、ヘッダーのデザイン切替ピルとホバー等のアクセント ＝ 青 */
+  .site-shell.design-flow main,
+  .site-shell.design-flow footer {
+    color: #ffffff;
+  }
+
+  .site-shell.design-flow .text-paper,
+  .site-shell.design-flow .text-paper-dim,
+  .site-shell.design-flow .text-muted {
+    color: #ffffff;
+  }
+
+  .site-shell.design-flow .text-steel,
+  .site-shell.design-flow .text-teal,
+  .site-shell.design-flow .text-rust {
+    color: #0000ff;
+  }
+
+  /* design1: 各画面の主役となるディスプレイ見出しは白で強調する
+     青のフィールド上で視線の起点になる見出しだけを白にし、本文・小見出し（濃色）とアクセント（青）と階層を明確に分ける */
+  .site-shell.design-flow .display-title {
+    color: #ffffff;
+  }
+
   .site-shell.design-flow .site-header {
     background: transparent;
-    border-color: rgba(14, 13, 11, 0.4);
+    border-color: rgba(255, 255, 255, 0.55);
     backdrop-filter: none;
   }
 
   .site-shell.design-flow .site-header .site-logo,
   .site-shell.design-flow .site-header .site-nav-link,
   .site-shell.design-flow .site-header .design-selector-option {
-    color: #0e0d0b;
+    color: #0000ff;
   }
 
   .site-shell.design-flow .site-header .design-selector {
     background: transparent;
-    border-color: rgba(14, 13, 11, 0.45);
+    border-color: #0000ff;
     backdrop-filter: none;
   }
 
@@ -117,181 +145,70 @@
     text-shadow: none;
   }
 
-  .site-shell.design-flow .wrap > nav,
-  .site-shell.design-flow .wrap > nav * {
-    color: #0e0d0b;
+  /* パンくずリストは青文字（下部ナビ等は対象外＝白） */
+  .site-shell.design-flow .breadcrumb,
+  .site-shell.design-flow .breadcrumb a,
+  .site-shell.design-flow .breadcrumb span {
+    color: #0000ff;
   }
 
-  .site-shell.design-flow .works-cards-area,
-  .site-shell.design-flow .works-cards-area > div:first-child {
-    color: #0e0d0b;
+  /* 詳細ページの主役タイトルも白 */
+  .site-shell.design-flow .app-work-title,
+  .site-shell.design-flow .feature-title {
+    color: #ffffff;
   }
 
-  .site-shell.design-flow .works-app-card {
+  /* 暗い面（bg-ink / bg-panel / card-surface 等）は透明化して青地に溶かす */
+  .site-shell.design-flow main .bg-ink,
+  .site-shell.design-flow main .bg-ink-2,
+  .site-shell.design-flow main .bg-panel,
+  .site-shell.design-flow main [class*="bg-panel/"],
+  .site-shell.design-flow main .from-panel-2,
+  .site-shell.design-flow main .to-panel,
+  .site-shell.design-flow main .card-surface,
+  .site-shell.design-flow footer .bg-ink,
+  .site-shell.design-flow footer .bg-ink-2,
+  .site-shell.design-flow footer .bg-panel,
+  .site-shell.design-flow footer [class*="bg-panel/"],
+  .site-shell.design-flow footer .card-surface {
     background: transparent;
-    border-color: rgba(14, 13, 11, 0.55);
+    background-color: transparent;
     box-shadow: none;
   }
 
-  .site-shell.design-flow .works-app-card h3,
-  .site-shell.design-flow .works-app-card p,
-  .site-shell.design-flow .works-app-card .text-paper-dim,
-  .site-shell.design-flow .works-app-card .text-muted {
-    color: #0e0d0b;
+  /* 枠線は半透明の白 */
+  .site-shell.design-flow main .border-line,
+  .site-shell.design-flow main .border-line-soft,
+  .site-shell.design-flow main .border-dashed,
+  .site-shell.design-flow main .card-surface,
+  .site-shell.design-flow footer .border-line,
+  .site-shell.design-flow footer .border-line-soft,
+  .site-shell.design-flow footer .card-surface {
+    border-color: rgba(255, 255, 255, 0.55);
   }
 
+  /* ホバー時のアクセント枠線は青 */
   .site-shell.design-flow .works-app-card:hover {
     border-color: #0000ff;
   }
 
-  .site-shell.design-flow .app-work-title {
-    color: #0e0d0b;
-  }
-
-  .site-shell.design-flow .app-work-title .text-muted {
-    color: #0e0d0b;
-  }
-
-  .site-shell.design-flow .app-work-panel {
+  /* フォーム入力：透明背景・白枠・白文字 */
+  .site-shell.design-flow main input,
+  .site-shell.design-flow main textarea,
+  .site-shell.design-flow main select {
     background: transparent;
-    border-color: rgba(14, 13, 11, 0.55);
-    box-shadow: none;
+    border-color: rgba(255, 255, 255, 0.55);
+    color: #ffffff;
   }
 
-  .site-shell.design-flow .app-work-panel,
-  .site-shell.design-flow .app-work-panel h2,
-  .site-shell.design-flow .app-work-panel h3,
-  .site-shell.design-flow .app-work-panel p,
-  .site-shell.design-flow .app-work-panel .text-paper,
-  .site-shell.design-flow .app-work-panel .text-paper-dim,
-  .site-shell.design-flow .app-work-panel .text-muted,
-  .site-shell.design-flow .app-work-panel .text-accent,
-  .site-shell.design-flow .app-work-panel .text-steel,
-  .site-shell.design-flow .app-work-panel .text-teal,
-  .site-shell.design-flow .app-work-panel .text-rust {
-    color: #0e0d0b;
-  }
-
-  .site-shell.design-flow .app-work-panel .bg-ink,
-  .site-shell.design-flow .app-work-panel .bg-ink-2,
-  .site-shell.design-flow .app-work-panel .bg-panel\/60 {
-    background-color: transparent;
-  }
-
-  .site-shell.design-flow .app-work-panel .border-line,
-  .site-shell.design-flow .app-work-panel .border-line-soft,
-  .site-shell.design-flow .app-work-panel .border-dashed {
-    border-color: rgba(14, 13, 11, 0.45);
-  }
-
-  .site-shell.design-flow .feature-demo-panel {
-    background: transparent;
-    border-color: rgba(14, 13, 11, 0.55);
-  }
-
-  .site-shell.design-flow .feature-demo-panel > div:first-child {
-    background: transparent;
-    border-color: rgba(14, 13, 11, 0.45);
-  }
-
-  .site-shell.design-flow .feature-demo-panel,
-  .site-shell.design-flow .feature-header,
-  .site-shell.design-flow .feature-header .text-paper-dim,
-  .site-shell.design-flow .feature-header .text-muted,
-  .site-shell.design-flow .feature-header .text-accent,
-  .site-shell.design-flow .feature-header .text-accent-soft,
-  .site-shell.design-flow .feature-demo-panel .text-paper,
-  .site-shell.design-flow .feature-demo-panel .text-paper-dim,
-  .site-shell.design-flow .feature-demo-panel .text-muted,
-  .site-shell.design-flow .feature-demo-panel .text-accent,
-  .site-shell.design-flow .feature-demo-panel .text-accent-soft,
-  .site-shell.design-flow .feature-demo-panel .text-steel,
-  .site-shell.design-flow .feature-demo-panel .text-teal,
-  .site-shell.design-flow .feature-demo-panel .text-rust {
-    color: #0e0d0b;
-  }
-
-  .site-shell.design-flow .feature-title {
-    color: #0e0d0b;
-  }
-
-  .site-shell.design-flow .feature-demo-panel .bg-ink,
-  .site-shell.design-flow .feature-demo-panel .bg-ink-2,
-  .site-shell.design-flow .feature-demo-panel .bg-panel,
-  .site-shell.design-flow .feature-demo-panel .from-panel-2,
-  .site-shell.design-flow .feature-demo-panel .to-panel {
-    background: transparent;
-    background-color: transparent;
-  }
-
-  .site-shell.design-flow .feature-demo-panel .border-line,
-  .site-shell.design-flow .feature-demo-panel .border-line-soft {
-    border-color: rgba(14, 13, 11, 0.45);
-  }
-
-  .site-shell.design-flow .feature-demo-panel input,
-  .site-shell.design-flow .feature-demo-panel textarea,
-  .site-shell.design-flow .feature-demo-panel select {
-    background: transparent;
-    border-color: rgba(14, 13, 11, 0.55);
-    color: #0e0d0b;
-  }
-
-  .site-shell.design-flow .feature-tech-panel {
-    background: transparent;
-    border-color: rgba(14, 13, 11, 0.55);
-    box-shadow: none;
-  }
-
-  .site-shell.design-flow .feature-tech-panel,
-  .site-shell.design-flow .feature-tech-panel h4,
-  .site-shell.design-flow .feature-tech-panel b,
-  .site-shell.design-flow .feature-tech-panel small,
-  .site-shell.design-flow .feature-tech-panel .text-paper,
-  .site-shell.design-flow .feature-tech-panel .text-paper-dim,
-  .site-shell.design-flow .feature-tech-panel .text-muted {
-    color: #0e0d0b;
-  }
-
-  .site-shell.design-flow .feature-tech-panel .bg-ink-2 {
-    background-color: transparent;
-  }
-
-  .site-shell.design-flow .feature-tech-panel .border-line-soft {
-    border-color: rgba(14, 13, 11, 0.45);
-  }
-
-  .site-shell.design-flow .about-page,
-  .site-shell.design-flow .about-page h1,
-  .site-shell.design-flow .about-page h2,
-  .site-shell.design-flow .about-page h4,
-  .site-shell.design-flow .about-page p,
-  .site-shell.design-flow .about-page b,
-  .site-shell.design-flow .about-page .text-paper,
-  .site-shell.design-flow .about-page .text-paper-dim,
-  .site-shell.design-flow .about-page .text-muted {
-    color: #0e0d0b;
-  }
-
-  .site-shell.design-flow .about-page .text-accent,
-  .site-shell.design-flow .about-page .text-accent-soft {
-    color: #0000ff;
-  }
-
+  /* タイムラインの縦線は白 */
   .site-shell.design-flow .about-timeline-line {
     background-color: #ffffff;
   }
 
-  .site-shell.design-flow .about-skill-card {
-    background: transparent;
-    border-color: rgba(14, 13, 11, 0.55);
-    box-shadow: none;
-  }
-
-  .site-shell.design-flow .about-skill-tag {
-    background-color: transparent;
-    border-color: rgba(14, 13, 11, 0.45);
-    color: #0e0d0b;
+  /* フッター上端の区切り線も白（要素自身の border なので個別指定） */
+  .site-shell.design-flow footer {
+    border-color: rgba(255, 255, 255, 0.55);
   }
 
   .reveal {

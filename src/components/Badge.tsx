@@ -3,7 +3,7 @@ import { statusShort } from "../data/features";
 import { cx } from "../lib/util";
 
 const styles: Record<Status, { wrap: string; dot: string }> = {
-  live: { wrap: "text-teal border-teal/45", dot: "bg-teal dot-pulse" },
+  live: { wrap: "text-muted border-teal/45", dot: "bg-teal dot-pulse" },
   sample: { wrap: "text-accent-soft border-accent/40", dot: "bg-accent" },
   soon: { wrap: "text-muted border-line", dot: "bg-muted" },
 };

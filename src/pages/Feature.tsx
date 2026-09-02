@@ -54,7 +54,7 @@ export default function Feature() {
 
   return (
     <section className="wrap">
-      <nav className="flex items-center gap-2 pt-8 text-xs tracking-wide text-muted">
+      <nav className="breadcrumb flex items-center gap-2 pt-8 text-xs tracking-wide text-muted">
         <Link to="/" className="text-paper-dim hover:text-accent-soft">
           Home
         </Link>
@@ -74,13 +74,7 @@ export default function Feature() {
       </nav>
 
       <header className="feature-header pb-8 pt-5">
-        <div className="font-serif text-base tracking-widest text-muted">
-          {f.no}
-        </div>
-        <div className={`mt-3 text-xs uppercase tracking-widest ${accentText}`}>
-          {f.en}
-        </div>
-        <h1 className="feature-title mt-2 font-serif text-4xl font-medium leading-tight md:text-5xl lg:text-6xl">
+        <h1 className="feature-title font-serif text-4xl font-medium italic leading-tight md:text-5xl lg:text-6xl">
           {f.title}
         </h1>
         <p className="mt-4 max-w-2xl text-base text-paper-dim">{f.tagline}</p>

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { OWNER } from "../data/apps";
 
 const btnPrimary =
-  "inline-flex items-center gap-2 rounded-full border border-accent bg-accent px-5 py-2 text-sm font-semibold tracking-wide text-muted transition-all hover:bg-accent-soft";
+  "inline-flex items-center gap-2 rounded-full border border-accent bg-transparent px-5 py-2 text-sm font-semibold tracking-wide text-accent transition-all hover:border-accent-soft hover:text-accent-soft";
 const btnGhost =
   "inline-flex items-center gap-2 rounded-full border border-line px-5 py-2 text-sm tracking-wide text-paper transition-all hover:border-accent hover:text-accent-soft";
 
@@ -15,7 +15,7 @@ export default function Home() {
             Portfolio&nbsp;/&nbsp;Developer
           </div>
           <h1
-            className="reveal font-serif text-5xl font-medium leading-tight md:text-7xl lg:text-8xl"
+            className="display-title reveal font-serif text-5xl font-medium leading-tight md:text-7xl lg:text-8xl"
             style={{ animationDelay: ".08s" }}
           >
             {OWNER.firstName}

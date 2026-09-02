@@ -14,7 +14,9 @@ export default function Footer() {
     >
       <div className="wrap grid items-center gap-8 md:grid-cols-3">
         <div>
-          <h2 className="font-serif text-4xl font-medium">Get in touch.</h2>
+          <h2 className="display-title font-serif text-4xl font-medium">
+            Get in <span className="italic">touch</span>.
+          </h2>
           <p className="mt-2 text-xs tracking-wide text-muted">
             機能の詳細・実装については、お気軽にご連絡ください
           </p>

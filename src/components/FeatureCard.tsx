@@ -17,15 +17,9 @@ export default function FeatureCard({ feature: f }: { feature: Feature }) {
         className={`absolute inset-y-0 left-0 w-1 ${ACCENT_BG[f.accent]}`}
       />
       <div className="flex items-center justify-between">
-        <span className="font-serif tracking-widest text-muted">{f.no}</span>
         <Badge status={f.status} />
       </div>
-      <div
-        className={`mt-4 text-xs uppercase tracking-widest ${ACCENT_TEXT[f.accent]}`}
-      >
-        {f.en}
-      </div>
-      <h3 className="mt-2 font-serif text-2xl font-medium">{f.title}</h3>
+      <h3 className="mt-4 font-serif text-2xl font-medium">{f.title}</h3>
       <p className="mt-3 flex-grow text-paper-dim">{f.tagline}</p>
       <div className="mt-5 flex items-center justify-between">
         <span className="text-xs tracking-wide text-muted">

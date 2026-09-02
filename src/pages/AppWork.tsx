@@ -11,7 +11,7 @@ import {
 const btnGhost =
   "inline-flex items-center gap-2 rounded-full border border-line px-5 py-2 text-sm tracking-wide text-paper transition-all hover:border-accent hover:text-accent-soft";
 const btnPrimary =
-  "inline-flex items-center gap-2 rounded-full border border-accent bg-accent px-5 py-2 text-sm font-semibold tracking-wide text-muted transition-colors hover:bg-accent-soft";
+  "inline-flex items-center gap-2 rounded-full border border-accent bg-transparent px-5 py-2 text-sm font-semibold tracking-wide text-accent transition-colors hover:border-accent-soft hover:text-accent-soft";
 
 function appFeatures(appId: string): Feature[] {
   return FEATURES.filter((feature) => feature.apps.includes(appId));
@@ -43,7 +43,7 @@ export default function AppWork() {
 
   return (
     <section className="wrap">
-      <nav className="flex items-center gap-2 pt-8 text-xs tracking-wide text-muted">
+      <nav className="breadcrumb flex items-center gap-2 pt-8 text-xs tracking-wide text-muted">
         <Link to="/" className="text-paper-dim hover:text-accent-soft">
           Home
         </Link>
