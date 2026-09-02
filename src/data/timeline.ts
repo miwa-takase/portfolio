@@ -18,7 +18,7 @@ export const TIMELINE: TimelineEntry[] = [
   {
     year: "2019 / 04 - 2023 / 03",
     title: "大学時代",
-    detail: "アルバイトとライブ遠征を繰り返す",
+    detail: "社会学部に所属、コロナ禍の合間を縫ってライブ遠征の日々",
   },
   {
     year: "2023 / 04",

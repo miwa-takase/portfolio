@@ -9,7 +9,7 @@ import Demo from "../demos/Demo";
 
 function demoLabel(t: DemoType): string {
   return t === "live"
-    ? "実バックエンド接続 / サンプル"
+    ? "実バックエンド接続"
     : t === "widget"
       ? "ブラウザ内デモ"
       : t === "diagram"

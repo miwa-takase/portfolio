@@ -42,18 +42,21 @@ export default {
       return json({ error: "method_not_allowed" }, 405, headers);
     }
 
-    const ip = req.headers.get("CF-Connecting-IP") ?? "anon";
-    const ok = await verifyTurnstile(
-      env,
-      req.headers.get("X-Turnstile-Token"),
-      ip,
-    );
-    if (!ok) return json({ error: "turnstile_failed" }, 403, headers);
-
-    const limited = await rateLimit(env, ip);
-    if (limited) return json({ error: "rate_limited" }, 429, headers);
-
+    // ここから下は例外を必ず捕捉して CORS 付き JSON で返す
+    // （try の外で throw すると Cloudflare の 1101 になり CORS ヘッダが付かず、
+    //   ブラウザ側では "failed to fetch / CORS" に見えてしまうため）
     try {
+      const ip = req.headers.get("CF-Connecting-IP") ?? "anon";
+      const ok = await verifyTurnstile(
+        env,
+        req.headers.get("X-Turnstile-Token"),
+        ip,
+      );
+      if (!ok) return json({ error: "turnstile_failed" }, 403, headers);
+
+      const limited = await rateLimit(env, ip);
+      if (limited) return json({ error: "rate_limited" }, 429, headers);
+
       switch (url.pathname) {
         case "/transcribe":
           return await handleTranscribe(req, env, headers);
@@ -93,26 +96,38 @@ async function verifyTurnstile(
 ): Promise<boolean> {
   if (!env.TURNSTILE_SECRET) return true;
   if (!token) return false;
-  const fd = new FormData();
-  fd.append("secret", env.TURNSTILE_SECRET);
-  fd.append("response", token);
-  fd.append("remoteip", ip);
-  const r = await fetch(
-    "https://challenges.cloudflare.com/turnstile/v0/siteverify",
-    { method: "POST", body: fd },
-  );
-  const j = (await r.json()) as { success?: boolean };
-  return Boolean(j.success);
+  try {
+    const fd = new FormData();
+    fd.append("secret", env.TURNSTILE_SECRET);
+    fd.append("response", token);
+    fd.append("remoteip", ip);
+    const r = await fetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      { method: "POST", body: fd },
+    );
+    const j = (await r.json()) as { success?: boolean };
+    return Boolean(j.success);
+  } catch {
+    // 検証サービスに到達できない場合は安全側で拒否
+    return false;
+  }
 }
 
 async function rateLimit(env: Env, ip: string): Promise<boolean> {
-  const cap = parseInt(env.DAILY_LIMIT ?? "40", 10);
-  const day = new Date().toISOString().slice(0, 10);
-  const key = `rl:${ip}:${day}`;
-  const cur = parseInt((await env.RATE_LIMIT.get(key)) ?? "0", 10);
-  if (cur >= cap) return true;
-  await env.RATE_LIMIT.put(key, String(cur + 1), { expirationTtl: 172800 });
-  return false;
+  // KV バインディング未設定・障害時はレート制限をスキップ（サービス継続を優先）
+  // ここで throw すると try の外なら Cloudflare 1101 になり CORS も付かないため必ず握る
+  if (!env.RATE_LIMIT) return false;
+  try {
+    const cap = parseInt(env.DAILY_LIMIT ?? "40", 10);
+    const day = new Date().toISOString().slice(0, 10);
+    const key = `rl:${ip}:${day}`;
+    const cur = parseInt((await env.RATE_LIMIT.get(key)) ?? "0", 10);
+    if (cur >= cap) return true;
+    await env.RATE_LIMIT.put(key, String(cur + 1), { expirationTtl: 172800 });
+    return false;
+  } catch {
+    return false;
+  }
 }
 
 async function claude(

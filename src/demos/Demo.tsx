@@ -1,7 +1,5 @@
-import { Fragment, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import type { Feature } from "../data/features";
-import { sleep } from "../lib/util";
-import { SAMPLE_JA, SAMPLE_EN } from "./sampleData";
 import { extractAudio } from "../lib/audio";
 import {
   apiEpisode,
@@ -14,15 +12,14 @@ import {
 } from "../lib/api";
 
 const btnBase =
-  "inline-flex cursor-pointer items-center gap-2 rounded-full border px-5 py-2 text-sm tracking-wide transition-all disabled:cursor-not-allowed disabled:opacity-45";
+  "inline-flex cursor-pointer items-center gap-2 rounded-full border px-5 py-2 text-sm tracking-wide transition-all disabled:cursor-not-allowed";
 const btnPrimary = `${btnBase} border-accent bg-transparent font-semibold text-accent hover:border-accent-soft hover:text-accent-soft`;
 const btnGhost = `${btnBase} border-line text-paper hover:border-accent hover:text-accent-soft`;
 const mini =
-  "rounded-lg border border-line bg-ink px-2 py-2 text-sm text-paper focus:border-accent focus:outline-none";
-const paneCls =
-  "flex min-h-36 flex-col rounded-lg border border-line-soft bg-ink";
-const labCls = "px-3 pt-2 text-sm uppercase tracking-widest text-muted";
-const contentCls = "overflow-auto px-3 pb-3 pt-2 text-sm text-paper";
+  "rounded-lg border border-line bg-ink p-3 text-sm text-paper focus:border-accent focus:outline-none";
+const paneCls = "flex items-center rounded-lg border border-line-soft bg-ink";
+const labCls = "p-3 text-sm uppercase tracking-widest text-muted";
+const contentCls = "overflow-auto p-3 text-sm text-paper";
 const ioCls = "grid grid-cols-1 gap-4 md:grid-cols-2";
 const actionsCls = "mt-4 flex flex-wrap items-center gap-2";
 
@@ -30,70 +27,47 @@ function msg(e: unknown): string {
   return e instanceof Error ? e.message : String(e);
 }
 
-function SampleSrt({ count, texts }: { count: number; texts?: string[] }) {
-  return (
-    <div className="srt">
-      {SAMPLE_JA.slice(0, count).map((r, i) => (
-        <Fragment key={i}>
-          <span className="tc">{`${i + 1}\n${r[0]}`}</span>
-          {`\n${texts ? texts[i] : r[1]}\n\n`}
-        </Fragment>
-      ))}
-    </div>
-  );
+// SRT をブラウザからそのままダウンロード
+function downloadSrt(name: string, content: string) {
+  const blob = new Blob([content], {
+    type: "application/x-subrip;charset=utf-8",
+  });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = name;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
 }
+
+const stepPane = "flex flex-col rounded-lg border border-line-soft bg-ink";
+const stepHead =
+  "flex flex-wrap items-center justify-between gap-2 border-b border-line-soft px-3 py-2";
+const dlBtn =
+  "inline-flex items-center gap-1 rounded-md border border-line px-2 py-1 text-xs text-paper-dim transition-colors hover:border-accent hover:text-accent-soft disabled:cursor-not-allowed disabled:opacity-40";
 
 /* 01 文字起こし & 翻訳 */
 function Pipeline() {
   const [file, setFile] = useState<File | null>(null);
-  const [usingSample, setUsingSample] = useState(false);
-  const [jaCount, setJaCount] = useState(0);
-  const [trCount, setTrCount] = useState(0);
   const [jaSrt, setJaSrt] = useState("");
   const [trSrt, setTrSrt] = useState("");
   const [segs, setSegs] = useState<Seg[]>([]);
   const [lang, setLang] = useState<"en" | "ja">("en");
   const [busy, setBusy] = useState(false);
-  const [done1, setDone1] = useState(false);
   const [status, setStatus] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
-  function reset() {
-    setJaCount(0);
-    setTrCount(0);
+  const done1 = jaSrt.length > 0;
+  const baseName = file ? file.name.replace(/\.[^.]+$/, "") : "subtitle";
+
+  async function runTranscribe() {
+    if (!file || busy) return;
+    setBusy(true);
+    setSegs([]);
     setJaSrt("");
     setTrSrt("");
-    setSegs([]);
-    setDone1(false);
-  }
-
-  async function runSample() {
-    setBusy(true);
-    setUsingSample(true);
-    reset();
-    for (const s of [
-      "ElevenLabs で音声認識中…",
-      "Claude で句読点を付与中…",
-      "SRTを整形・検証中…",
-    ]) {
-      setStatus(s);
-      await sleep(600);
-    }
-    setStatus("");
-    for (let i = 1; i <= SAMPLE_JA.length; i++) {
-      setJaCount(i);
-      await sleep(120);
-    }
-    setStatus("✓ 文字起こし完了（サンプル） · 12セグメント");
-    setDone1(true);
-    setBusy(false);
-  }
-
-  async function runReal() {
-    if (!file) return;
-    setBusy(true);
-    setUsingSample(false);
-    reset();
     try {
       setStatus("ブラウザ内で音声を抽出中…（動画は端末外に出ません）");
       const audio = await extractAudio(file, 60, (r) =>
@@ -104,7 +78,6 @@ function Pipeline() {
       setSegs(res.segments);
       setJaSrt(res.srt);
       setStatus(`✓ 文字起こし完了 · ${res.segments.length} セグメント`);
-      setDone1(true);
     } catch (e) {
       setStatus(`失敗: ${msg(e)}`);
     } finally {
@@ -113,45 +86,45 @@ function Pipeline() {
   }
 
   async function runTranslate() {
+    if (segs.length === 0 || busy) return;
     setBusy(true);
-    if (usingSample) {
-      setTrCount(0);
-      setStatus("Claude で翻訳中…（サンプル）");
-      await sleep(500);
-      for (let i = 1; i <= SAMPLE_JA.length; i++) {
-        setTrCount(i);
-        await sleep(110);
-      }
-      setStatus("✓ 翻訳完了（サンプル）");
-    } else {
-      try {
-        setStatus("Claude で翻訳中…（行とタイムコードは保持）");
-        const res = await apiTranslate(
-          segs,
-          lang === "en" ? "English" : "日本語",
-        );
-        setTrSrt(res.srt);
-        setStatus("✓ 翻訳完了");
-      } catch (e) {
-        setStatus(`失敗: ${msg(e)}`);
-      }
+    try {
+      setStatus("Claude で翻訳中…（行とタイムコードは保持）");
+      const res = await apiTranslate(
+        segs,
+        lang === "en" ? "English" : "日本語",
+      );
+      setTrSrt(res.srt);
+      setStatus("✓ 翻訳完了");
+    } catch (e) {
+      setStatus(`失敗: ${msg(e)}`);
+    } finally {
+      setBusy(false);
     }
-    setBusy(false);
   }
 
   return (
-    <div>
-      <div className={`${paneCls} mb-4 min-h-0`}>
-        <div className={labCls}>
-          入力 — 任意の動画/音声（サーバーには保存しません）
+    <div className="grid gap-4">
+      {/* STEP 1 — 入力して文字起こし */}
+      <div className={stepPane}>
+        <div className={stepHead}>
+          <span className="text-sm uppercase tracking-widest text-muted">
+            STEP 1 — 動画・音声から文字起こし
+          </span>
         </div>
-        <div className="flex flex-wrap items-center gap-3 px-3 pb-3 pt-2">
+        <div className="flex flex-wrap items-center gap-3 p-3">
           <input
             ref={inputRef}
             type="file"
             accept="video/*,audio/*"
             className="hidden"
-            onChange={(e) => setFile(e.target.files?.[0] ?? null)}
+            onChange={(e) => {
+              setFile(e.target.files?.[0] ?? null);
+              setJaSrt("");
+              setTrSrt("");
+              setSegs([]);
+              setStatus("");
+            }}
           />
           <button
             className={btnGhost}
@@ -159,68 +132,75 @@ function Pipeline() {
           >
             ファイルを選択
           </button>
-          <span className="text-sm text-muted">
-            {file ? file.name : "未選択（またはサンプルで実行）"}
+          <span className="min-w-0 flex-1 truncate text-sm text-muted">
+            {file ? file.name : "未選択（サーバーには保存しません）"}
           </span>
+          <button
+            className={btnPrimary}
+            disabled={busy || !file}
+            onClick={runTranscribe}
+          >
+            文字起こしを実行 →
+          </button>
         </div>
       </div>
 
+      {/* 結果：日本語 SRT / 翻訳 SRT（それぞれダウンロード可） */}
       <div className={ioCls}>
-        <div className={paneCls}>
-          <div className={labCls}>① 文字起こし（日本語 SRT）</div>
-          <div className={contentCls}>
-            {usingSample ? (
-              jaCount ? (
-                <SampleSrt count={jaCount} />
-              ) : (
-                <span className="text-muted">実行すると結果が流れます</span>
-              )
-            ) : jaSrt ? (
+        <div className={stepPane}>
+          <div className={stepHead}>
+            <span className="text-sm uppercase tracking-widest text-muted">
+              日本語 SRT
+            </span>
+            <button
+              className={dlBtn}
+              disabled={!jaSrt}
+              onClick={() => downloadSrt(`${baseName}.ja.srt`, jaSrt)}
+            >
+              ↓ SRTを保存
+            </button>
+          </div>
+          <div className={`${contentCls} flex-1`}>
+            {jaSrt ? (
               <pre className="srt">{jaSrt}</pre>
             ) : (
               <span className="text-muted">
-                動画を選んで「アップロードして実行」を押してください
+                STEP 1 を実行すると字幕（SRT）が表示されます
               </span>
             )}
           </div>
         </div>
-        <div className={paneCls}>
-          <div className={labCls}>
-            ② 翻訳（{lang === "en" ? "English" : "日本語（原文）"}）
+
+        <div className={stepPane}>
+          <div className={stepHead}>
+            <span className="text-sm uppercase tracking-widest text-muted">
+              翻訳 SRT（{lang === "en" ? "English" : "日本語"}）
+            </span>
+            <button
+              className={dlBtn}
+              disabled={!trSrt}
+              onClick={() => downloadSrt(`${baseName}.${lang}.srt`, trSrt)}
+            >
+              ↓ SRTを保存
+            </button>
           </div>
-          <div className={contentCls}>
-            {usingSample ? (
-              trCount ? (
-                <SampleSrt
-                  count={trCount}
-                  texts={lang === "en" ? SAMPLE_EN : undefined}
-                />
-              ) : (
-                <span className="text-muted">
-                  文字起こしのあとに翻訳できます
-                </span>
-              )
-            ) : trSrt ? (
+          <div className={`${contentCls} flex-1`}>
+            {trSrt ? (
               <pre className="srt">{trSrt}</pre>
             ) : (
-              <span className="text-muted">文字起こしのあとに翻訳できます</span>
+              <span className="text-muted">
+                STEP 2 で翻訳すると表示されます
+              </span>
             )}
           </div>
         </div>
       </div>
 
+      {/* STEP 2 — 翻訳 */}
       <div className={actionsCls}>
-        <button
-          className={btnPrimary}
-          disabled={busy || !file || !hasApi()}
-          onClick={runReal}
-          title={!hasApi() ? "バックエンド未接続（VITE_API_BASE 未設定）" : ""}
-        >
-          ① アップロードして実行
-        </button>
-        <button className={btnGhost} disabled={busy} onClick={runSample}>
-          サンプルで実行
-        </button>
+        <span className="text-sm uppercase tracking-widest text-muted">
+          STEP 2 — 翻訳
+        </span>
         <select
           className={mini}
           value={lang}
@@ -228,23 +208,17 @@ function Pipeline() {
           onChange={(e) => setLang(e.target.value as "en" | "ja")}
         >
           <option value="en">→ English</option>
-          <option value="ja">→ 日本語（原文のまま）</option>
+          <option value="ja">→ 日本語（言い換え）</option>
         </select>
         <button
-          className={btnGhost}
+          className={btnPrimary}
           disabled={busy || !done1}
           onClick={runTranslate}
         >
-          ② 翻訳する
+          翻訳を実行 →
         </button>
-        <span className="text-sm text-muted">{status}</span>
+        {status && <span className="text-sm text-muted">{status}</span>}
       </div>
-      {!hasApi() && (
-        <p className="mt-2 text-sm text-muted">
-          ※ 実アップロードには API
-          バックエンド（VITE_API_BASE）が必要です。未接続時はサンプルで動作を確認できます
-        </p>
-      )}
     </div>
   );
 }
@@ -455,7 +429,7 @@ function Episode() {
           onChange={(e) => setTopic(e.target.value)}
         />
         <button className={btnPrimary} disabled={busy} onClick={gen}>
-          台本 → 音声を生成 →
+          台本 → 音声を生成
         </button>
         <span className="text-sm text-muted">{status}</span>
       </div>
@@ -472,7 +446,7 @@ function Episode() {
         </div>
         <div className={paneCls}>
           <div className={labCls}>音声（ElevenLabs）</div>
-          <div className="flex flex-1 items-center px-3 pb-3 pt-2">
+          <div className="flex flex-1 items-center p-3">
             {audio ? (
               <audio controls src={audio} className="w-full" />
             ) : (
