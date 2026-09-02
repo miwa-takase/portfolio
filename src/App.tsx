@@ -1,18 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import TopBar from "./components/TopBar";
-import Footer from "./components/Footer";
+import PageMenu from "./components/PageMenu";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Works from "./pages/Works";
 import AppWork from "./pages/AppWork";
 import Feature from "./pages/Feature";
+import Music from "./pages/Music";
+import Mail from "./pages/Mail";
+import Stack from "./pages/Stack";
+import NotFound from "./pages/NotFound";
 import {
   DESIGN_MODE_STORAGE_KEY,
   DESIGN_MODE_VERSION,
   DESIGN_MODE_VERSION_KEY,
   DesignMode,
-  readDesignMode,
 } from "./lib/designMode";
 
 function ScrollManager() {
@@ -31,7 +33,11 @@ function ScrollManager() {
 }
 
 export default function App() {
-  const [designMode, setDesignMode] = useState<DesignMode>(readDesignMode);
+  const designMode: DesignMode = "design1";
+  const shellClass =
+    designMode === "design1"
+      ? "site-shell design-flow"
+      : "site-shell design-chaos";
 
   useEffect(() => {
     window.localStorage.setItem(DESIGN_MODE_STORAGE_KEY, designMode);
@@ -39,22 +45,22 @@ export default function App() {
   }, [designMode]);
 
   return (
-    <div
-      className={`site-shell ${designMode === "design1" ? "design-flow" : ""}`}
-    >
+    <div className={shellClass}>
       <ScrollManager />
-      <TopBar designMode={designMode} onDesignModeChange={setDesignMode} />
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/music" element={<Music />} />
+          <Route path="/contact" element={<Mail />} />
           <Route path="/about" element={<About />} />
+          <Route path="/stack" element={<Stack />} />
           <Route path="/works" element={<Works />} />
           <Route path="/works/:appId" element={<AppWork />} />
           <Route path="/works/:appId/:slug" element={<Feature />} />
-          <Route path="*" element={<Works />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
-      <Footer />
+      <PageMenu />
     </div>
   );
 }

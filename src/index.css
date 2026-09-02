@@ -59,6 +59,218 @@
     @apply min-h-screen transition-colors duration-300;
   }
 
+  .home-screen {
+    min-height: 100svh;
+    display: grid;
+    align-content: center;
+    gap: clamp(3.5rem, 8vh, 6.5rem);
+    padding-top: 6.5rem;
+    padding-bottom: 4rem;
+  }
+
+  .home-intro {
+    max-width: 48rem;
+  }
+
+  .home-utilities {
+    display: grid;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .home-terminal {
+    min-width: 0;
+    color: #ffffff;
+  }
+
+  .utility-frame {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 8px;
+    padding: 1rem;
+  }
+
+  .terminal-console {
+    display: flex;
+    height: 17rem;
+    flex-direction: column;
+    color: #ffffff;
+  }
+
+  .terminal-history {
+    min-height: 0;
+    flex: 1 1 auto;
+    overflow-y: auto;
+  }
+
+  .terminal-entry {
+    flex: 0 0 auto;
+  }
+
+  .terminal-error {
+    color: #ffffff;
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 255, 255, 0.65);
+    text-underline-offset: 0.2em;
+  }
+
+  .terminal-prompt {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.65);
+    padding-bottom: 0.55rem;
+  }
+
+  .terminal-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding-top: 0.6rem;
+  }
+
+  .terminal-suggestion {
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.18rem 0.45rem;
+    color: #ffffff;
+    line-height: 1.2;
+  }
+
+  .terminal-suggestion:hover,
+  .terminal-suggestion:focus-visible {
+    background: rgba(255, 255, 255, 0.22);
+    outline: none;
+  }
+
+  .home-now-playing {
+    min-width: 0;
+  }
+
+  @media (min-width: 768px) {
+    .about-page {
+      padding-top: 4.5rem;
+    }
+  }
+
+  .about-timeline-wrap {
+    max-width: 48rem;
+  }
+
+  .about-timeline-list {
+    --timeline-count: 1;
+    --timeline-start: 50%;
+    position: relative;
+    display: grid;
+    gap: 1.25rem;
+    margin-left: 0.25rem;
+    padding-left: 1.75rem;
+  }
+
+  .about-timeline-list::before {
+    content: "";
+    position: absolute;
+    left: 0.36rem;
+    top: 0.8rem;
+    bottom: 0;
+    width: 1px;
+    background: #ffffff;
+  }
+
+  .about-timeline-item {
+    position: relative;
+  }
+
+  .about-timeline-dot {
+    position: absolute;
+    left: -1.74rem;
+    top: 0.42rem;
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 999px;
+    background: #0000ff;
+  }
+
+  .about-timeline-stem {
+    display: none;
+  }
+
+  .about-timeline-content {
+    min-width: 0;
+  }
+
+  @media (min-width: 768px) {
+    .home-utilities {
+      grid-template-columns: minmax(0, 1.25fr) minmax(18rem, 0.75fr);
+      gap: clamp(3rem, 7vw, 7rem);
+    }
+
+    .about-timeline-wrap {
+      max-width: none;
+    }
+
+    .about-timeline-list {
+      grid-template-columns: repeat(var(--timeline-count), minmax(0, 1fr));
+      gap: 0;
+      min-height: 21rem;
+      margin-left: 0;
+      padding: 0;
+    }
+
+    .about-timeline-list::before {
+      left: var(--timeline-start);
+      right: 0;
+      top: 50%;
+      bottom: auto;
+      width: auto;
+      height: 1px;
+      transform: translateY(-50%);
+    }
+
+    .about-timeline-item {
+      min-width: 0;
+      min-height: 21rem;
+    }
+
+    .about-timeline-dot {
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .about-timeline-stem {
+      position: absolute;
+      left: 50%;
+      display: block;
+      width: 1px;
+      height: 1.75rem;
+      background: #ffffff;
+    }
+
+    .about-timeline-item-top .about-timeline-stem {
+      bottom: 50%;
+    }
+
+    .about-timeline-item-bottom .about-timeline-stem {
+      top: 50%;
+    }
+
+    .about-timeline-content {
+      position: absolute;
+      left: 50%;
+      width: max-content;
+      max-width: min(16rem, calc(100% + 1.5rem));
+      text-align: left;
+      transform: translateX(-50%);
+    }
+
+    .about-timeline-item-top .about-timeline-content {
+      bottom: calc(50% + 2.35rem);
+    }
+
+    .about-timeline-item-bottom .about-timeline-content {
+      top: calc(50% + 2.35rem);
+    }
+  }
+
   .site-shell.design-flow {
     background-color: #385999;
     background-image:
@@ -66,6 +278,163 @@
       radial-gradient(at 50% 50%, #385999 0, transparent 62%);
     background-attachment: fixed;
     background-size: cover;
+  }
+
+  .site-shell.design-flow .design-switch {
+    background: transparent;
+    border-color: #ffffff;
+    backdrop-filter: none;
+  }
+
+  .site-shell.design-flow .design-switch .design-selector-option {
+    color: #ffffff;
+  }
+
+  .site-shell.design-flow .design-switch .design-selector-active {
+    color: #ffffff;
+  }
+
+  .page-menu-trigger {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 60;
+    display: grid;
+    width: 3rem;
+    height: 3rem;
+    place-content: center;
+    color: #ffffff;
+    background: transparent;
+    border: 0;
+    border-radius: 999px;
+    transition: color 180ms ease;
+  }
+
+  .page-menu-trigger span {
+    font-family: "Zen Old Mincho", "Hiragino Mincho ProN", serif;
+    font-size: 1.45rem;
+    line-height: 1;
+  }
+
+  .page-menu-trigger:hover,
+  .page-menu-trigger:focus-visible {
+    color: #ffffff;
+    background: transparent;
+    text-shadow: 0 0 0.55rem rgba(255, 255, 255, 0.75);
+    outline: none;
+  }
+
+  .page-menu-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    display: grid;
+    place-items: center;
+    padding: 1.25rem;
+    background: rgba(56, 89, 153, 0.7);
+    backdrop-filter: blur(10px);
+  }
+
+  .page-menu-modal {
+    width: 8.75rem;
+    max-width: calc(100vw - 2.5rem);
+    max-height: calc(100svh - 2.5rem);
+    overflow-y: auto;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    padding: 0;
+    color: #ffffff;
+    box-shadow: none;
+  }
+
+  .page-menu-close {
+    position: relative;
+    flex: 0 0 auto;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    padding: 0;
+    color: #ffffff;
+  }
+
+  .page-menu-close::before,
+  .page-menu-close::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 1rem;
+    height: 1px;
+    background: currentColor;
+  }
+
+  .page-menu-close::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  .page-menu-close::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  .page-menu-close:hover,
+  .page-menu-close:focus-visible {
+    color: #0000ff;
+    outline: none;
+  }
+
+  .page-menu-link {
+    display: block;
+    width: 100%;
+    border: 0;
+    border-radius: 0;
+    padding: 0.55rem 0 0.65rem;
+    color: #ffffff;
+    font-family: "Zen Kaku Gothic New", "Hiragino Sans", sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.65rem;
+    letter-spacing: 0.12em;
+    transition:
+      color 180ms ease;
+  }
+
+  .page-menu-label {
+    position: relative;
+    display: inline-block;
+  }
+
+  .page-menu-label::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.22rem;
+    height: 0.18rem;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 180ms ease;
+  }
+
+  .page-menu-link:hover,
+  .page-menu-link:focus-visible,
+  .page-menu-link-active {
+    color: #ffffff;
+    font-family: "Zen Old Mincho", "Hiragino Mincho ProN", serif;
+    font-size: 1.12rem;
+    font-style: italic;
+    letter-spacing: 0;
+    background: transparent;
+    outline: none;
+  }
+
+  .page-menu-link:hover .page-menu-label::after,
+  .page-menu-link:focus-visible .page-menu-label::after,
+  .page-menu-link-active .page-menu-label::after {
+    transform: scaleX(1);
   }
 
   .site-shell.design-flow .text-accent,
@@ -201,14 +570,462 @@
     color: #ffffff;
   }
 
-  /* タイムラインの縦線は白 */
-  .site-shell.design-flow .about-timeline-line {
+  /* タイムラインの軸線は白 */
+  .site-shell.design-flow .about-timeline-list::before,
+  .site-shell.design-flow .about-timeline-stem {
     background-color: #ffffff;
   }
 
   /* フッター上端の区切り線も白（要素自身の border なので個別指定） */
   .site-shell.design-flow footer {
     border-color: rgba(255, 255, 255, 0.55);
+  }
+
+  .site-shell.design-chaos {
+    position: relative;
+    isolation: isolate;
+    min-height: 100svh;
+    overflow: hidden;
+    color: #000000;
+    font-family:
+      "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+    font-weight: 800;
+    background: radial-gradient(
+      circle at 50% 46%,
+      #1433ff 0%,
+      #166cff 18%,
+      #00eaff 34%,
+      #19ff7b 49%,
+      #8dff00 64%,
+      #ffff00 78%,
+      #ff8a00 91%,
+      #ff0000 100%
+    );
+    text-shadow: none;
+  }
+
+  .site-shell.design-chaos::before,
+  .site-shell.design-chaos::after {
+    position: fixed;
+    pointer-events: none;
+    z-index: 3;
+    font-family:
+      "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+    font-weight: 900;
+    letter-spacing: 0;
+    text-align: center;
+  }
+
+  .site-shell.design-chaos::before {
+    content: "重要!! すごい!! NEW!! とにかく見て!! 速報!!";
+    inset: 0.4rem auto auto 0.6rem;
+    width: min(40rem, 74vw);
+    padding: 0.7rem 1.4rem;
+    color: #ffffff;
+    background: #ff0000;
+    border: 10px solid #00ffff;
+    font-size: clamp(1.1rem, 3.4vw, 2.5rem);
+    transform: rotate(-3deg);
+  }
+
+  .site-shell.design-chaos::after {
+    content: "★ 情報量を増やしています ★";
+    inset: auto auto 0.6rem 0.6rem;
+    width: min(34rem, 70vw);
+    padding: 0.6rem 1.2rem;
+    color: #0000ff;
+    background: #00ff00;
+    border: 9px solid #ff00ff;
+    font-size: clamp(0.95rem, 2.6vw, 1.9rem);
+    transform: rotate(-3deg);
+  }
+
+  .site-shell.design-chaos main {
+    position: relative;
+    z-index: 2;
+    color: #000000;
+  }
+
+  .site-shell.design-chaos main::before {
+    content: "!! DESIGN 2 !! DESIGN 2 !!";
+    position: fixed;
+    inset: 0.5rem auto auto 50%;
+    z-index: 3;
+    pointer-events: none;
+    width: max-content;
+    max-width: 40vw;
+    padding: 0.4rem 1rem;
+    color: #ffffff;
+    background: #0000ff;
+    border: 8px solid #ffff00;
+    font-family:
+      "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+    font-size: clamp(1.1rem, 3vw, 2.2rem);
+    font-weight: 900;
+    text-align: center;
+    transform: translateX(-50%) rotate(-3deg);
+  }
+
+  .site-shell.design-chaos .wrap {
+    max-width: none;
+    padding-inline: clamp(1rem, 3vw, 3rem);
+  }
+
+  .site-shell.design-chaos .home-screen {
+    min-height: 100svh;
+    align-content: start;
+    gap: clamp(1.25rem, 4vw, 3rem);
+    padding-top: clamp(6rem, 12vh, 9rem);
+  }
+
+  .site-shell.design-chaos .home-intro,
+  .site-shell.design-chaos .home-utilities,
+  .site-shell.design-chaos .works-cards-area,
+  .site-shell.design-chaos .app-work-panel,
+  .site-shell.design-chaos .feature-tech-panel,
+  .site-shell.design-chaos footer,
+  .site-shell.design-chaos .card-surface,
+  .site-shell.design-chaos .utility-frame,
+  .site-shell.design-chaos .code,
+  .site-shell.design-chaos main input,
+  .site-shell.design-chaos main textarea,
+  .site-shell.design-chaos main select {
+    background: #ffff00;
+    border: 9px solid #ff0000;
+    outline: 7px solid #0000ff;
+    box-shadow:
+      0 0 0 8px #ffff00,
+      0 0 24px 10px #19ff7b,
+      0 0 44px 18px rgba(0, 255, 255, 0.85),
+      16px 16px 0 #ff00ff,
+      -14px -10px 0 #00ffff;
+  }
+
+  .site-shell.design-chaos .home-intro {
+    max-width: none;
+    width: 100%;
+    padding: clamp(1rem, 4vw, 2.5rem);
+    clip-path: polygon(
+      0 7%,
+      95% 0,
+      91% 28%,
+      100% 39%,
+      89% 100%,
+      8% 92%,
+      0 100%,
+      4% 54%
+    );
+    transform: rotate(-2.5deg);
+  }
+
+  .site-shell.design-chaos .home-utilities {
+    padding: clamp(1rem, 3vw, 2rem);
+    clip-path: polygon(
+      2% 0,
+      100% 9%,
+      92% 37%,
+      100% 70%,
+      87% 100%,
+      12% 92%,
+      0 76%,
+      7% 42%
+    );
+    transform: rotate(1.5deg);
+  }
+
+  .site-shell.design-chaos .display-title,
+  .site-shell.design-chaos .app-work-title,
+  .site-shell.design-chaos .feature-title {
+    color: #ffffff;
+    background-image: none;
+    font-family:
+      "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+    font-weight: 900;
+    line-height: 0.95;
+    text-transform: uppercase;
+    -webkit-text-stroke: 3px #ff00ff;
+    paint-order: stroke fill;
+    text-shadow:
+      0 0 4px #00ffff,
+      0 0 14px #00ffff,
+      0 0 26px #19ff7b,
+      6px 6px 0 #0000ff,
+      -4px 4px 0 #ff0000;
+    transform: rotate(-4deg) skewX(-8deg);
+  }
+
+  .site-shell.design-chaos .display-title .italic,
+  .site-shell.design-chaos .display-title .text-accent-soft {
+    color: #ffff00 !important;
+    -webkit-text-stroke: 3px #ff0000;
+    text-shadow:
+      0 0 4px #ff00ff,
+      0 0 16px #ff00ff,
+      6px 6px 0 #00ff00;
+    text-decoration: none;
+  }
+
+  .site-shell.design-chaos h1,
+  .site-shell.design-chaos h2,
+  .site-shell.design-chaos h3,
+  .site-shell.design-chaos p,
+  .site-shell.design-chaos a,
+  .site-shell.design-chaos button,
+  .site-shell.design-chaos span,
+  .site-shell.design-chaos code,
+  .site-shell.design-chaos pre {
+    font-family:
+      "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+    font-weight: 800;
+    letter-spacing: 0;
+  }
+
+  .site-shell.design-chaos h1,
+  .site-shell.design-chaos h2,
+  .site-shell.design-chaos h3,
+  .site-shell.design-chaos button,
+  .site-shell.design-chaos .design-selector-option {
+    font-weight: 900;
+  }
+
+  .site-shell.design-chaos .text-paper,
+  .site-shell.design-chaos .text-paper-dim,
+  .site-shell.design-chaos .text-muted {
+    color: #000000;
+  }
+
+  .site-shell.design-chaos .text-accent,
+  .site-shell.design-chaos .text-accent-soft,
+  .site-shell.design-chaos .text-steel,
+  .site-shell.design-chaos .text-teal,
+  .site-shell.design-chaos .text-rust,
+  .site-shell.design-chaos .hover\:text-accent-soft:hover {
+    color: #0000ff;
+    background-image: none;
+    text-decoration: underline wavy #0000ff 0.18em;
+    text-underline-offset: 0.18em;
+  }
+
+  .site-shell.design-chaos .bg-accent,
+  .site-shell.design-chaos .hover\:bg-accent-soft:hover {
+    background-color: #ffff00;
+    color: #0000ff;
+  }
+
+  .site-shell.design-chaos .border-line,
+  .site-shell.design-chaos .border-line-soft,
+  .site-shell.design-chaos .border-accent,
+  .site-shell.design-chaos .border-dashed,
+  .site-shell.design-chaos .hover\:border-accent:hover {
+    border-color: #ff00ff;
+  }
+
+  .site-shell.design-chaos .card-surface,
+  .site-shell.design-chaos .utility-frame {
+    position: relative;
+    border-radius: 0;
+    color: #000000;
+  }
+
+  .site-shell.design-chaos .card-surface {
+    clip-path: polygon(
+      0 0,
+      91% 4%,
+      100% 24%,
+      92% 49%,
+      100% 81%,
+      83% 100%,
+      15% 95%,
+      0 100%,
+      7% 58%
+    );
+    transform: rotate(-1.5deg);
+  }
+
+  .site-shell.design-chaos .card-surface:nth-child(2n) {
+    transform: rotate(2.5deg) translateY(0.5rem);
+    clip-path: polygon(
+      7% 0,
+      100% 0,
+      93% 19%,
+      100% 49%,
+      90% 100%,
+      0 91%,
+      9% 64%,
+      0 28%
+    );
+  }
+
+  .site-shell.design-chaos .card-surface:nth-child(3n) {
+    transform: rotate(-3deg) translateX(0.75rem);
+    clip-path: polygon(
+      0 12%,
+      18% 0,
+      63% 5%,
+      100% 0,
+      91% 38%,
+      100% 100%,
+      57% 91%,
+      22% 100%,
+      5% 84%
+    );
+  }
+
+  .site-shell.design-chaos .card-surface::after,
+  .site-shell.design-chaos .utility-frame::after {
+    content: "かっこいい！";
+    position: absolute;
+    right: -0.8rem;
+    top: -0.9rem;
+    z-index: 1;
+    padding: 0.25rem 0.55rem;
+    color: #ffffff;
+    background: #ff0000;
+    border: 4px solid #00ffff;
+    font-family:
+      "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+    font-size: 0.85rem;
+    transform: rotate(12deg);
+  }
+
+  .site-shell.design-chaos .design-switch,
+  .site-shell.design-chaos .design-selector {
+    border: 6px solid #ffff00;
+    border-radius: 0;
+    background: #ff00ff;
+    outline: 5px solid #00ff00;
+    box-shadow: 8px 8px 0 #0000ff;
+  }
+
+  .site-shell.design-chaos .design-selector-option {
+    min-width: 3rem;
+    border: 3px solid #00ffff;
+    border-radius: 0;
+    color: #ffff00;
+    background: #ff0000;
+    text-shadow: none;
+    transform: rotate(-6deg);
+  }
+
+  .site-shell.design-chaos .design-selector-option:nth-child(2) {
+    transform: rotate(7deg);
+  }
+
+  .site-shell.design-chaos .design-selector-active {
+    color: #0000ff;
+    background: #ffff00;
+  }
+
+  .site-shell.design-chaos .terminal-console,
+  .site-shell.design-chaos .terminal-console p,
+  .site-shell.design-chaos .terminal-console span,
+  .site-shell.design-chaos .terminal-console input,
+  .site-shell.design-chaos .terminal-console button {
+    color: #000000;
+    text-shadow: none;
+  }
+
+  .site-shell.design-chaos .terminal-prompt {
+    border-bottom: 6px solid #ff0000;
+  }
+
+  .site-shell.design-chaos img {
+    border: 7px solid #ff0000;
+    outline: 6px double #00ff00;
+    filter: saturate(2.4) contrast(1.45);
+  }
+
+  .site-shell.design-chaos .breadcrumb {
+    width: fit-content;
+    padding: 0.4rem 1rem;
+    color: #000000;
+    background: #ffff00;
+    border: 5px solid #ff00ff;
+    transform: rotate(-5deg);
+  }
+
+  /* PowerPoint-banner eyebrow labels (ribbon pill, like the reference) */
+  .site-shell.design-chaos .uppercase.tracking-widest {
+    display: inline-block;
+    padding: 0.3rem 1.1rem;
+    color: #0000ff;
+    background: #ffff00;
+    border: 5px solid #ff00ff;
+    border-radius: 999px;
+    text-decoration: none;
+    box-shadow:
+      0 0 0 5px #00ffff,
+      0 0 18px 6px #19ff7b,
+      5px 6px 0 #ff0000;
+    transform: rotate(-3deg);
+  }
+
+  /* Give simple headings a bevelled 3D extrude ("立体化") */
+  .site-shell.design-chaos h2,
+  .site-shell.design-chaos h3 {
+    color: #ffff00;
+    text-shadow:
+      1px 1px 0 #ff0000,
+      2px 2px 0 #ff0000,
+      3px 3px 0 #0000ff,
+      4px 4px 0 #0000ff,
+      5px 5px 0 #00ffff,
+      6px 7px 10px rgba(0, 0, 0, 0.55);
+  }
+
+  /* Mix a rounded autoshape in among the jagged ones (break grouping) */
+  .site-shell.design-chaos .home-utilities {
+    clip-path: none;
+    border-radius: 2.75rem;
+  }
+
+  /* Fake serif "formula" noise floating over everything (info overload) */
+  .site-shell.design-chaos main::after {
+    content: "めっちゃすごい";
+    position: fixed;
+    inset: auto auto 9rem 50%;
+    z-index: 3;
+    pointer-events: none;
+    padding: 0.5rem 1.4rem;
+    max-width: 94vw;
+    color: #0000ff;
+    background: #ffffff;
+    border: 7px solid #ff0000;
+    outline: 6px double #00ff00;
+    font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", serif;
+    font-style: italic;
+    font-size: clamp(1rem, 3.2vw, 2.4rem);
+    font-weight: 700;
+    white-space: nowrap;
+    text-shadow: 0 0 12px #ffff00;
+    box-shadow: 0 0 26px 10px rgba(255, 255, 0, 0.9);
+    transform: translateX(-50%) rotate(-2deg);
+  }
+
+  @media (max-width: 640px) {
+    .site-shell.design-chaos::before {
+      width: 82vw;
+      font-size: 1.15rem;
+      transform: rotate(-5deg) translate(-0.5rem, 0.55rem);
+    }
+
+    .site-shell.design-chaos::after,
+    .site-shell.design-chaos main::before {
+      display: none;
+    }
+
+    .site-shell.design-chaos main::after {
+      font-size: 0.8rem;
+      white-space: normal;
+      text-align: center;
+      max-width: 90vw;
+    }
+
+    .site-shell.design-chaos .home-intro,
+    .site-shell.design-chaos .home-utilities,
+    .site-shell.design-chaos .card-surface {
+      transform: none;
+    }
   }
 
   .reveal {

@@ -75,55 +75,56 @@ function PublicNowPlaying() {
     };
   }, []);
 
-  if (!np || !np.configured || !np.isPlaying || !np.title) {
-    return null;
-  }
   return (
-    <div className="rounded-xl border border-line-soft bg-ink p-5">
-      <div className="mb-4 text-xs tracking-widest text-muted">
-        {np.isPlaying
-          ? "Judy's NOW PLAYING -  from Spotify"
-          : "最近聴いた / 停止中"}
+    <div>
+      <div className="mb-5 text-xs tracking-widest text-muted">
+        Judy&apos;s NOW PLAYING - from Spotify
       </div>
-      {np.title ? (
-        <div className="flex items-center gap-4">
-          {np.albumArt ? (
-            <img
-              src={np.albumArt}
-              alt=""
-              className="h-20 w-20 rounded-md border border-line-soft object-cover"
-            />
-          ) : (
-            <div className="flex h-20 w-20 items-center justify-center rounded-md border border-line-soft text-2xl text-accent">
-              ♪
-            </div>
-          )}
-          <div className="min-w-0 flex-1">
-            <div className="truncate font-serif text-lg text-paper">
-              {np.title}
-            </div>
-            <div className="truncate text-sm text-paper-dim">{np.artists}</div>
-            <div className="mt-2 flex items-center gap-2">
-              <span className="w-9 text-right text-xs text-muted">
-                {fmt(np.progressMs ?? 0)}
-              </span>
-              <div className="h-1 flex-1 overflow-hidden rounded-full bg-panel">
-                <div
-                  className="h-full rounded-full bg-accent"
-                  style={{
-                    width: `${np.durationMs ? ((np.progressMs ?? 0) / np.durationMs) * 100 : 0}%`,
-                  }}
-                />
+      <div className="utility-frame">
+        {np?.configured && np.isPlaying && np.title ? (
+          <div className="flex items-center gap-4">
+            {np.albumArt ? (
+              <img
+                src={np.albumArt}
+                alt=""
+                className="h-20 w-20 rounded-md border border-line-soft object-cover"
+              />
+            ) : (
+              <div className="flex h-20 w-20 items-center justify-center rounded-md border border-line-soft text-2xl text-accent">
+                ♪
               </div>
-              <span className="w-9 text-xs text-muted">
-                {fmt(np.durationMs ?? 0)}
-              </span>
+            )}
+            <div className="min-w-0 flex-1">
+              <div className="truncate font-serif text-lg italic text-paper">
+                {np.title}
+              </div>
+              <div className="truncate text-sm text-paper-dim">
+                {np.artists}
+              </div>
+              <div className="mt-2 flex items-center gap-2">
+                <span className="w-9 text-right text-xs text-muted">
+                  {fmt(np.progressMs ?? 0)}
+                </span>
+                <div className="h-1 flex-1 overflow-hidden rounded-full bg-white/30">
+                  <div
+                    className="h-full rounded-full bg-white"
+                    style={{
+                      width: `${np.durationMs ? ((np.progressMs ?? 0) / np.durationMs) * 100 : 0}%`,
+                    }}
+                  />
+                </div>
+                <span className="w-9 text-xs text-muted">
+                  {fmt(np.durationMs ?? 0)}
+                </span>
+              </div>
             </div>
           </div>
-        </div>
-      ) : (
-        <p className="text-sm text-muted">いま再生中の曲はありません</p>
-      )}
+        ) : (
+          <p className="text-sm text-muted">
+            {np ? "いま再生中の曲はありません" : "Spotifyを確認しています"}
+          </p>
+        )}
+      </div>
     </div>
   );
 }

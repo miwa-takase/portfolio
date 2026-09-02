@@ -53,7 +53,7 @@ export const FEATURES: Feature[] = [
   },
   {
     slug: "llm-generation",
-    title: "LLM生成：自然言語 → UI",
+    title: "AIモック生成",
     tagline: "自然な言葉を、そのまま構造化データと UI へ変換する。",
     accent: "accent",
     status: "live",

@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import { APPS, type App } from "../data/apps";
+import { APPS, publicUrl, type App } from "../data/apps";
 
 function AppWorkCard({ app }: { app: App }) {
+  const liveUrl = publicUrl(app);
   return (
     <Link
       to={`/works/${app.id}`}
@@ -17,6 +18,11 @@ function AppWorkCard({ app }: { app: App }) {
           </span>
         )}
       </p>
+      {liveUrl && (
+        <p className="mt-4 break-all text-xs tracking-wide text-accent">
+          {liveUrl}
+        </p>
+      )}
       <div className="mt-5 flex items-center justify-between">
         <span className="text-xs tracking-wide text-muted">詳細を見る</span>
         <span className="text-lg text-accent transition-transform group-hover:translate-x-1">

@@ -249,7 +249,7 @@ function Pipeline() {
   );
 }
 
-/* 02 LLM生成：自然言語 → UI */
+/* 02 AIモック生成 */
 type Field = { label: string; type: string };
 const NL_MAP: Array<{ k: string[]; f: Field }> = [
   { k: ["名前", "氏名", "name"], f: { label: "お名前", type: "text" } },

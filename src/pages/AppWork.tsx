@@ -1,12 +1,7 @@
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { APPS_BY_ID, canTryApp } from "../data/apps";
-import {
-  ACCENT_TEXT,
-  FEATURES,
-  statusShort,
-  type Feature,
-} from "../data/features";
+import { APPS_BY_ID, canTryApp, publicUrl } from "../data/apps";
+import { FEATURES, statusShort, type Feature } from "../data/features";
 
 const btnGhost =
   "inline-flex items-center gap-2 rounded-full border border-line px-5 py-2 text-sm tracking-wide text-paper transition-all hover:border-accent hover:text-accent-soft";
@@ -40,6 +35,7 @@ export default function AppWork() {
   const primaryFeature = features[0];
   const mediaSrc = app.media?.screenshot ?? app.media?.capture;
   const canTry = canTryApp(app);
+  const liveUrl = publicUrl(app);
 
   return (
     <section className="wrap">
@@ -95,7 +91,7 @@ export default function AppWork() {
                 {features.map((feature) => (
                   <span
                     key={feature.slug}
-                    className={`rounded-md border border-line-soft px-2 py-1 text-xs ${ACCENT_TEXT[feature.accent]}`}
+                    className="rounded-md border border-line-soft px-2 py-1 text-xs text-white"
                   >
                     {feature.title} · {statusShort(feature.status)}
                   </span>
@@ -105,6 +101,23 @@ export default function AppWork() {
               <p className="text-sm text-muted">機能サンプル準備中</p>
             )}
           </div>
+
+          {liveUrl && (
+            <div className="mt-6">
+              <div className="mb-2 text-xs uppercase tracking-widest text-muted">
+                URL
+              </div>
+              <a
+                href={liveUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 break-all text-sm text-accent transition-colors hover:text-accent-soft"
+              >
+                {liveUrl}
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          )}
 
           <div className="mt-8">
             {primaryFeature && canTry ? (
