@@ -112,7 +112,7 @@ export default function Music() {
       <section className="mt-12" aria-labelledby="favorite-music-title">
         <h2
           id="favorite-music-title"
-          className="tex-sm mb-5 uppercase tracking-widest text-muted"
+          className="mb-5 text-sm uppercase tracking-widest text-muted"
         >
           Favorite Music
         </h2>

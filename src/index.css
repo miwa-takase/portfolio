@@ -473,8 +473,7 @@
     - アクセント（アイブロー・リンク・タグ・姓・ヘッダー・パンくず）＝ 青
     - 暗い面（bg-ink / bg-panel / card-surface）＝ 透明化
     - 枠線 ＝ 半透明の白、ヘッダーのデザイン切替ピルとホバー等のアクセント ＝ 青 */
-  .site-shell.design-flow main,
-  .site-shell.design-flow footer {
+  .site-shell.design-flow main {
     color: #ffffff;
   }
 
@@ -542,12 +541,7 @@
   .site-shell.design-flow main [class*="bg-panel/"],
   .site-shell.design-flow main .from-panel-2,
   .site-shell.design-flow main .to-panel,
-  .site-shell.design-flow main .card-surface,
-  .site-shell.design-flow footer .bg-ink,
-  .site-shell.design-flow footer .bg-ink-2,
-  .site-shell.design-flow footer .bg-panel,
-  .site-shell.design-flow footer [class*="bg-panel/"],
-  .site-shell.design-flow footer .card-surface {
+  .site-shell.design-flow main .card-surface {
     background: transparent;
     background-color: transparent;
     box-shadow: none;
@@ -557,10 +551,7 @@
   .site-shell.design-flow main .border-line,
   .site-shell.design-flow main .border-line-soft,
   .site-shell.design-flow main .border-dashed,
-  .site-shell.design-flow main .card-surface,
-  .site-shell.design-flow footer .border-line,
-  .site-shell.design-flow footer .border-line-soft,
-  .site-shell.design-flow footer .card-surface {
+  .site-shell.design-flow main .card-surface {
     border-color: rgba(255, 255, 255, 0.55);
   }
 
@@ -582,11 +573,6 @@
   .site-shell.design-flow .about-timeline-list::before,
   .site-shell.design-flow .about-timeline-stem {
     background-color: #ffffff;
-  }
-
-  /* フッター上端の区切り線も白（要素自身の border なので個別指定） */
-  .site-shell.design-flow footer {
-    border-color: rgba(255, 255, 255, 0.55);
   }
 
   .site-shell.design-chaos {
@@ -691,7 +677,6 @@
   .site-shell.design-chaos .works-cards-area,
   .site-shell.design-chaos .app-work-panel,
   .site-shell.design-chaos .feature-tech-panel,
-  .site-shell.design-chaos footer,
   .site-shell.design-chaos .card-surface,
   .site-shell.design-chaos .utility-frame,
   .site-shell.design-chaos .code,

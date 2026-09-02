@@ -49,7 +49,7 @@ export default function AppWork() {
         <h1 className="app-work-title font-serif text-4xl font-medium italic leading-tight md:text-5xl lg:text-6xl">
           {app.title}
           {app.wip && (
-            <span className="tex-sm ml-3 inline-flex rounded-md border border-line-soft px-2 py-0.5 align-middle font-sans leading-5 tracking-wide text-muted">
+            <span className="ml-3 inline-flex rounded-md border border-line-soft px-2 py-0.5 align-middle font-sans text-sm leading-5 tracking-wide text-muted">
               WIP
             </span>
           )}
@@ -58,7 +58,7 @@ export default function AppWork() {
 
       <div className="grid grid-cols-1 gap-6 py-8 lg:grid-cols-2">
         <section className="app-work-panel card-surface rounded-xl p-6">
-          <div className="tex-sm uppercase tracking-widest text-muted">
+          <div className="text-sm uppercase tracking-widest text-muted">
             Overview
           </div>
           <p className="mt-2 text-base leading-8 text-paper-dim">
@@ -77,7 +77,7 @@ export default function AppWork() {
           </div>
 
           <div className="mt-4">
-            <div className="tex-sm mb-2 uppercase tracking-widest text-muted">
+            <div className="mb-2 text-sm uppercase tracking-widest text-muted">
               Sample Flow
             </div>
             {features.length ? (
@@ -98,7 +98,7 @@ export default function AppWork() {
 
           {liveUrl && (
             <div className="mt-4">
-              <div className="tex-sm mb-2 uppercase tracking-widest text-muted">
+              <div className="mb-2 text-sm uppercase tracking-widest text-muted">
                 URL
               </div>
               <a

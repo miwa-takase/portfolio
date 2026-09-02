@@ -21,7 +21,7 @@ export default function Home() {
         >
           <h2
             id="home-terminal-title"
-            className="tex-sm mb-5 uppercase tracking-widest text-white"
+            className="mb-5 text-sm uppercase tracking-widest text-white"
           >
             Terminal
           </h2>

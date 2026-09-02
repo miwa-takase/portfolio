@@ -13,7 +13,7 @@ export default function Stack() {
       <div className="mt-10 grid gap-5">
         {SKILLS.map((skill) => (
           <section key={skill.h}>
-            <h2 className="tex-sm mb-4 tracking-widest text-muted">
+            <h2 className="mb-4 text-sm tracking-widest text-muted">
               {skill.h}
             </h2>
             <div className="utility-frame flex min-h-24 flex-wrap content-start gap-2">

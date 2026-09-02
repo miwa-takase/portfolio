@@ -70,16 +70,16 @@ export default function Feature() {
         <p className="mt-4 max-w-2xl text-base text-paper-dim">{f.tagline}</p>
         <div className="mt-5 flex items-center gap-4">
           <Badge status={f.status} />
-          <span className="tex-sm text-muted">{demoLabel(f.demo.type)}</span>
+          <span className="text-sm text-muted">{demoLabel(f.demo.type)}</span>
         </div>
       </header>
 
       <div className="feature-demo-panel overflow-hidden rounded-2xl border border-line bg-ink-2">
         <div className="flex items-center justify-between gap-3 border-b border-line-soft bg-gradient-to-b from-panel-2 to-panel px-5 py-4">
-          <div className="tex-sm flex items-center gap-2 uppercase tracking-widest text-accent">
+          <div className="flex items-center gap-2 text-sm uppercase tracking-widest text-accent">
             ◍ {canTry ? "試せる場" : "準備中"}
           </div>
-          <div className="tex-sm tracking-widest text-muted">
+          <div className="text-sm tracking-widest text-muted">
             {canTry ? demoLabel(f.demo.type) : "WIP"}
           </div>
         </div>
@@ -93,7 +93,7 @@ export default function Feature() {
           )}
         </div>
         {canTry && f.demo.note && (
-          <div className="tex-sm px-5 pb-4 text-muted">※ {f.demo.note}</div>
+          <div className="px-5 pb-4 text-sm text-muted">※ {f.demo.note}</div>
         )}
       </div>
 
@@ -113,7 +113,7 @@ export default function Feature() {
           </ul>
         </div>
         <aside className="feature-tech-panel card-surface sticky top-24 rounded-xl p-5">
-          <h4 className="tex-sm mb-3 uppercase tracking-widest text-muted">
+          <h4 className="mb-3 text-sm uppercase tracking-widest text-muted">
             使用技術
           </h4>
           <div className="mb-5 flex flex-wrap gap-2">
@@ -126,7 +126,7 @@ export default function Feature() {
               </span>
             ))}
           </div>
-          <h4 className="tex-sm mb-3 uppercase tracking-widest text-muted">
+          <h4 className="mb-3 text-sm uppercase tracking-widest text-muted">
             この機能を実装したアプリ
           </h4>
           {apps.length ? (
@@ -139,7 +139,7 @@ export default function Feature() {
                 <b className="block font-serif text-base font-medium">
                   {p.title}
                 </b>
-                <small className="tex-sm text-muted">
+                <small className="text-sm text-muted">
                   {p.tech.slice(0, 3).join(" · ")}
                 </small>
               </Link>

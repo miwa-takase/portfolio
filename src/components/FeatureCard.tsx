@@ -22,7 +22,7 @@ export default function FeatureCard({ feature: f }: { feature: Feature }) {
       <h3 className="mt-4 font-serif text-2xl font-medium">{f.title}</h3>
       <p className="mt-3 flex-grow text-paper-dim">{f.tagline}</p>
       <div className="mt-5 flex items-center justify-between">
-        <span className="tex-sm tracking-wide text-muted">
+        <span className="text-sm tracking-wide text-muted">
           {appCount ? `${appCount} アプリで実装` : ""}
         </span>
         <span

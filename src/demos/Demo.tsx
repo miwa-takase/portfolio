@@ -18,7 +18,7 @@ const btnBase =
 const btnPrimary = `${btnBase} border-accent bg-transparent font-semibold text-accent hover:border-accent-soft hover:text-accent-soft`;
 const btnGhost = `${btnBase} border-line text-paper hover:border-accent hover:text-accent-soft`;
 const mini =
-  "rounded-lg border border-line bg-ink px-2 py-2 tex-sm text-paper focus:border-accent focus:outline-none";
+  "rounded-lg border border-line bg-ink px-2 py-2 text-sm text-paper focus:border-accent focus:outline-none";
 const paneCls =
   "flex min-h-36 flex-col rounded-lg border border-line-soft bg-ink";
 const labCls = "px-3 pt-2 text-sm uppercase tracking-widest text-muted";
@@ -159,7 +159,7 @@ function Pipeline() {
           >
             ファイルを選択
           </button>
-          <span className="tex-sm text-muted">
+          <span className="text-sm text-muted">
             {file ? file.name : "未選択（またはサンプルで実行）"}
           </span>
         </div>
@@ -237,10 +237,10 @@ function Pipeline() {
         >
           ② 翻訳する
         </button>
-        <span className="tex-sm text-muted">{status}</span>
+        <span className="text-sm text-muted">{status}</span>
       </div>
       {!hasApi() && (
-        <p className="tex-sm mt-2 text-muted">
+        <p className="mt-2 text-sm text-muted">
           ※ 実アップロードには API
           バックエンド（VITE_API_BASE）が必要です。未接続時はサンプルで動作を確認できます
         </p>
@@ -316,7 +316,7 @@ function Nl2Ui() {
         <button className={btnPrimary} disabled={busy} onClick={gen}>
           生成 →
         </button>
-        {note && <span className="tex-sm text-muted">{note}</span>}
+        {note && <span className="text-sm text-muted">{note}</span>}
       </div>
       <div className={ioCls}>
         <div className={paneCls}>
@@ -335,7 +335,7 @@ function Nl2Ui() {
             ) : (
               spec.fields.map((fl, i) => (
                 <div key={i} className="mb-2">
-                  <div className="tex-sm mb-1 text-muted">{fl.label}</div>
+                  <div className="mb-1 text-sm text-muted">{fl.label}</div>
                   {fl.type === "textarea" ? (
                     <textarea className={`${mini} h-14 w-full`} />
                   ) : (
@@ -380,7 +380,7 @@ function LinkHub() {
         />
       </div>
       <div className="mx-auto max-w-md rounded-xl border border-line-soft bg-ink p-5">
-        <div className="tex-sm mb-1 uppercase tracking-widest text-muted">
+        <div className="mb-1 text-sm uppercase tracking-widest text-muted">
           Now sharing
         </div>
         <div className="mb-4 font-serif text-lg text-paper">{title}</div>
@@ -392,13 +392,13 @@ function LinkHub() {
               className="flex items-center justify-between rounded-lg border border-line bg-panel px-4 py-2 text-left text-sm text-paper transition-colors hover:border-accent"
             >
               <span>{s} で聴く</span>
-              <span className="tex-sm text-muted">
+              <span className="text-sm text-muted">
                 {counts[s] ? `計測 ${counts[s]}` : "→"}
               </span>
             </button>
           ))}
         </div>
-        <div className="tex-sm mt-4 text-muted">
+        <div className="mt-4 text-sm text-muted">
           クリックは GA4 でクロスドメイン計測（合計 {total} 回）
         </div>
       </div>
@@ -457,7 +457,7 @@ function Episode() {
         <button className={btnPrimary} disabled={busy} onClick={gen}>
           台本 → 音声を生成 →
         </button>
-        <span className="tex-sm text-muted">{status}</span>
+        <span className="text-sm text-muted">{status}</span>
       </div>
       <div className={ioCls}>
         <div className={paneCls}>
@@ -493,7 +493,7 @@ function Recorded({ feature }: { feature: Feature }) {
       <div className="flex h-14 w-14 items-center justify-center rounded-full border border-line text-lg text-accent">
         ▶
       </div>
-      <div className="tex-sm tracking-wide">
+      <div className="text-sm tracking-wide">
         録画デモを準備中 — {feature.apps.length} アプリで実装済み
       </div>
     </div>
