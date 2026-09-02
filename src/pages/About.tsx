@@ -72,9 +72,9 @@ export default function About() {
           <div className="rounded-2xl border border-white/70 p-6 sm:p-8">
             <div className="grid items-center gap-6 md:grid-cols-2">
               <p className="text-base leading-8 text-paper-dim">
-                「散歩が好き」と部署の先輩に話したところ、JUDY AND MARY
-                の「散歩道」に かけて <span className="text-paper">judy</span>{" "}
-                と名付けられました
+                入社時、「散歩が趣味」だと部署の先輩に話したところ、JUDY AND
+                MARY の「散歩道」に かけて{" "}
+                <span className="text-paper">judy</span> と名付けられました
               </p>
               <a
                 href="https://open.spotify.com/track/72DDgSntVmV2Epq3ihPXKO"
