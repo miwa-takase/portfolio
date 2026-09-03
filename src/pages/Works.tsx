@@ -6,9 +6,8 @@ function AppWorkCard({ app }: { app: App }) {
   return (
     <Link
       to={`/works/${app.id}`}
-      className="works-app-card card-surface group relative flex flex-col overflow-hidden rounded-2xl px-6 pb-6 pt-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+      className="works-app-card card-surface group relative flex flex-col overflow-hidden rounded-2xl px-6 pb-6 pt-7"
     >
-      <span className="absolute inset-y-0 left-0 w-1 bg-accent" />
       <h3 className="font-serif text-2xl font-medium italic">{app.title}</h3>
       <p className="mt-3 flex-grow text-paper-dim">
         {app.overview ?? "概要文が未入力です"}
@@ -30,16 +29,14 @@ function AppWorkCard({ app }: { app: App }) {
 
 export default function Works() {
   return (
-    <section className="wrap">
+    <section className="wrap md:pb-8 md:pt-4">
       <Breadcrumb items={[{ label: "Works" }]} className="pt-8" />
 
       <h1 className="display-title pt-6 font-serif text-4xl font-medium italic leading-tight md:text-5xl lg:text-6xl">
         Applications
       </h1>
       <p className="mt-4 max-w-2xl text-base text-paper-dim">
-        このデバイス上の各アプリを起点に整理しました
-        <br />
-        カードから詳細へ進み、そこでスクリーンショット・キャプチャと機能サンプルを確認できます
+        カードから詳細へ進み、そこで作成したアプリの概要とや機能サンプルを確認できます
       </p>
 
       <div className="works-cards-area -mx-5 mt-5 px-5 pb-10 sm:-mx-7 sm:px-7">

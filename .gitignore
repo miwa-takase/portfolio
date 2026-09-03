@@ -9,3 +9,7 @@ npm-debug.log*
 .env
 .dev.vars
 **/.dev.vars
+
+# Wrangler / Miniflare local dev state (tmp bundles, emulated KV)
+.wrangler
+**/.wrangler

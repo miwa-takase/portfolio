@@ -2,20 +2,44 @@
 // 件数は Home の統計でも参照
 export const SKILLS: Array<{ h: string; items: string[] }> = [
   {
-    h: "フロントエンド",
-    items: ["React", "Next.js", "TypeScript", "MUI / Fluent UI", "Tailwind"],
+    h: "Front-end",
+    items: [
+      "React (Next.js)",
+      "Vue.js",
+      "TypeScript",
+      "MUI",
+      "Fluent UI",
+      "Tailwind",
+    ],
   },
   {
-    h: "バックエンド",
-    items: ["FastAPI / Python", "Clerk / OAuth 認証", "SQLAlchemy 2.0"],
+    h: "Server-end",
+    items: [
+      "Python (FastAPI, Django, Flask)",
+      "SQLAlchemy 2.0",
+      "PHP (Laravel, CakePHP)",
+      "Ruby (Rails)",
+    ],
   },
   {
-    h: "クラウド / インフラ",
+    h: "Cloud / Infrastructure",
     items: ["AWS", "MySQL", "PostgreSQL", "Docker"],
   },
   {
-    h: "AI / 連携",
-    items: ["Claude", "Gemini", "ElevenLabs", "Spotify API"],
+    h: "AI / LLM",
+    items: ["Claude", "Gemini", "ElevenLabs"],
+  },
+  {
+    h: "Others",
+    items: ["Clerk / OAuth", "Spotify API"],
+  },
+  {
+    h: "Certifications",
+    items: [
+      "基本情報技術者試験 (2024/09)",
+      "PHP8 技術者認定初級試験 (2024/12)",
+      "AWS Solution Architect - Accociate (2026/??)",
+    ],
   },
 ];
 

@@ -88,16 +88,13 @@ export default function Music() {
         <h1 className="display-title font-serif text-4xl font-medium italic leading-tight md:text-6xl">
           Music
         </h1>
-        <p className="mt-4 text-base text-paper-dim">
-          Spotify の再生状況を表示します
-        </p>
       </div>
 
       <div className="mt-8 max-w-sm">
         <SpotifyNowPlaying />
       </div>
 
-      <section className="mt-12" aria-labelledby="favorite-music-title">
+      <section className="mt-8" aria-labelledby="favorite-music-title">
         <h2
           id="favorite-music-title"
           className="mb-5 text-sm uppercase tracking-widest text-muted"

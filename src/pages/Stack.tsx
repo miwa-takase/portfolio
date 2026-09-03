@@ -3,7 +3,7 @@ import { SKILLS } from "../data/skills";
 
 export default function Stack() {
   return (
-    <section className="wrap py-16">
+    <section className="wrap md:pb-16 md:pt-12">
       <Breadcrumb items={[{ label: "Stack" }]} />
 
       <h1 className="display-title pt-6 font-serif text-4xl font-medium italic leading-tight md:text-5xl lg:text-6xl">

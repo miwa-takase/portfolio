@@ -53,7 +53,7 @@ export default function Feature() {
   const canTry = canTryApp(app);
 
   return (
-    <section className="wrap">
+    <section className="wrap md:pb-8 md:pt-4">
       <Breadcrumb
         items={[
           { label: "Works", to: "/works" },

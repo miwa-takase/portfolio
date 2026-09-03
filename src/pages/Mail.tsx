@@ -2,7 +2,7 @@ import Breadcrumb from "../components/Breadcrumb";
 import { OWNER } from "../data/apps";
 
 const btnWhite =
-  "inline-flex items-center gap-2 rounded-full border border-white bg-white px-6 py-2.5 text-sm font-semibold tracking-wide text-ink transition-colors hover:bg-white/85 hover:border-white/85";
+  "mail-send-button inline-flex items-center gap-2 rounded-full border border-white px-6 py-2.5 text-sm tracking-wide text-white transition-colors";
 
 export default function Mail() {
   return (

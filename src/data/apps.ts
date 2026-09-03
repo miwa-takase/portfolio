@@ -15,7 +15,6 @@ export type App = {
 
 export const OWNER = {
   name: "Miwa Takase",
-  role: "AI・音声・映像を軸に、フルスタックで “試作” を開発中",
   email: "miwa.takase@gmail.com",
 };
 

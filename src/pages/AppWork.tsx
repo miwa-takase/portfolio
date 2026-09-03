@@ -39,7 +39,7 @@ export default function AppWork() {
   const liveUrl = publicUrl(app);
 
   return (
-    <section className="wrap">
+    <section className="wrap md:pb-8 md:pt-4">
       <Breadcrumb
         items={[{ label: "Works", to: "/works" }, { label: app.title }]}
         className="pt-8"

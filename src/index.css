@@ -145,12 +145,6 @@
     min-width: 0;
   }
 
-  @media (min-width: 768px) {
-    .about-page {
-      padding-top: 4.5rem;
-    }
-  }
-
   .about-timeline-wrap {
     max-width: 48rem;
   }
@@ -558,6 +552,18 @@
   /* ホバー時のアクセント枠線は青 */
   .site-shell.design-flow .works-app-card:hover {
     border-color: #0000ff;
+  }
+
+  /* メール送信ボタンは Works カードと同じ配色に揃える
+     通常：白枠・白文字 ／ ホバー：青枠・青文字 */
+  .site-shell.design-flow .mail-send-button {
+    border-color: rgba(255, 255, 255, 0.55);
+    color: #ffffff;
+  }
+
+  .site-shell.design-flow .mail-send-button:hover {
+    border-color: #0000ff;
+    color: #0000ff;
   }
 
   /* フォーム入力：透明背景・白枠・白文字 */
