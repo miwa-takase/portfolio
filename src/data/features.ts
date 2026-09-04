@@ -27,11 +27,11 @@ export const FEATURES: Feature[] = [
   {
     slug: "transcription",
     title: "文字起こし & 翻訳",
-    tagline: "話した言葉を、タイムコード付き字幕にして、そのまま多言語へ。",
+    tagline: "話した言葉を、タイムコード付き字幕にして、そのまま多言語化",
     accent: "accent",
     status: "live",
     summary:
-      "動画・音声から発話を抽出し、単語ごとのタイムスタンプ付きで文字起こし。ElevenLabs で認識し、Claude で自然な句読点と改行を補ってSRT字幕に仕上げ、続けてタイムコードと行数を保ったまま多言語へ翻訳する。文字起こしから翻訳までを一本の流れで試せる。",
+      "動画・音声から発話を抽出し、単語ごとのタイムスタンプ付きで文字起こし。ElevenLabs で認識し、Claude で自然な句読点と改行を補ってSRT字幕に仕上げ、続けてタイムコードと行数を保ったまま多言語へ翻訳する",
     capabilities: [
       "任意の動画/音声をアップロードして実行（サーバーに保存しない）",
       "音声抽出はブラウザ内で完結し、抽出音声だけをバックエンドへ送信",
@@ -42,23 +42,22 @@ export const FEATURES: Feature[] = [
       "ElevenLabs Scribe",
       "Claude",
       "MediaRecorder（ブラウザ内音声抽出）",
-      "Cloudflare Workers",
     ],
     apps: ["reomni"],
     demo: {
       type: "live",
       widget: "pipeline",
-      note: "アップロードした動画はサーバーに保存しません（ブラウザ内で音声のみ抽出し送信）。未接続時はサンプルで確認できます。",
+      note: "アップロードした動画はサーバーに保存しません（ブラウザ内で音声のみ抽出し送信）",
     },
   },
   {
     slug: "llm-generation",
     title: "AIモック生成",
-    tagline: "自然な言葉を、そのまま構造化データと UI へ変換する。",
+    tagline: "自然な言葉を、そのまま構造化データと UI へ変換",
     accent: "accent",
     status: "live",
     summary:
-      "自然言語の指示を DSL に変換し、Fluent 風の UI としてレンダリングする実験的アプリ。LLM を「文章を作る」だけでなく「構造を作る」道具として使い、フロント（Next.js App Router）と Python バックエンドを分離した構成で組んでいる。",
+      "自然言語の指示を DSL に変換し、Fluent 風の UI としてレンダリングする実験的アプリ。LLM を「文章を作る」だけでなく「構造を作る」道具として使い、フロント（Next.js App Router）と Python バックエンドを分離した構成で組んでいる",
     capabilities: [
       "自然言語 → DSL → UI レンダリングのパイプライン（Claude）",
       "プロンプト／出力スキーマを分離した差し替え可能な設計",
@@ -75,7 +74,7 @@ export const FEATURES: Feature[] = [
   {
     slug: "link-hub",
     title: "リンク集約 & 計測",
-    tagline: "散らばった配信リンクを、1ページに集めて共有する",
+    tagline: "散らばった配信リンクを、1ページに集めて共有",
     accent: "steel",
     status: "sample",
     summary:
@@ -93,7 +92,7 @@ export const FEATURES: Feature[] = [
   {
     slug: "episode-gen",
     title: "エピソード生成",
-    tagline: "トピックを渡すと、台本を書いて、そのまま声にする",
+    tagline: "トピックを渡すと、台本を書いて、そのまま音声化",
     accent: "teal",
     status: "live",
     summary:
@@ -103,13 +102,7 @@ export const FEATURES: Feature[] = [
       "生成した音声をその場で再生（サーバーに保存しない）",
       "PostgreSQL + SQLAlchemy 2.0 のセルフホスト基盤に組み込み",
     ],
-    tech: [
-      "Claude",
-      "ElevenLabs",
-      "Cloudflare Workers",
-      "FastAPI",
-      "PostgreSQL",
-    ],
+    tech: ["Claude", "ElevenLabs", "FastAPI", "PostgreSQL"],
     apps: ["gentle"],
     demo: {
       type: "live",

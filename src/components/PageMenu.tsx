@@ -9,7 +9,7 @@ type NavItem = {
 const mainItems: NavItem[] = [
   { label: "Top", path: "/" },
   { label: "About", path: "/about" },
-  { label: "Stacks", path: "/stack" },
+  { label: "Stack", path: "/stack" },
   { label: "Works", path: "/works" },
   { label: "Music", path: "/music" },
   { label: "Contact", path: "/contact" },

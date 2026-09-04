@@ -107,7 +107,7 @@ function PublicNowPlaying() {
           </TrackCard>
         ) : (
           <p className="text-sm text-muted">
-            {np ? "いま再生中の曲はありません" : "Spotifyを確認しています"}
+            {np ? "今は何も再生していないようです" : "Spotifyを確認しています"}
           </p>
         )}
       </div>

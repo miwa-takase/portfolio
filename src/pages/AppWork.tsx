@@ -1,21 +1,25 @@
-import { useEffect } from "react";
+import { Fragment, useCallback, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Breadcrumb from "../components/Breadcrumb";
-import { APPS_BY_ID, canTryApp, publicUrl } from "../data/apps";
-import { FEATURES, statusShort, type Feature } from "../data/features";
+import MediaSlider from "../components/MediaSlider";
+import { APPS_BY_ID, appSlides, overviewLines, publicUrl } from "../data/apps";
+// import { canTryApp } from "../data/apps";
+// import { FEATURES, type Feature } from "../data/features";
 
 const btnGhost =
   "inline-flex items-center gap-2 rounded-full border border-line px-5 py-2 text-sm tracking-wide text-paper transition-all hover:border-accent hover:text-accent-soft";
-const btnPrimary =
-  "inline-flex items-center gap-2 rounded-full border border-accent bg-transparent px-5 py-2 text-sm font-semibold tracking-wide text-accent transition-colors hover:border-accent-soft hover:text-accent-soft";
+// const btnPrimary =
+//   "inline-flex items-center gap-2 rounded-full border border-accent bg-transparent px-5 py-2 text-sm font-semibold tracking-wide text-accent transition-colors hover:border-accent-soft hover:text-accent-soft";
 
-function appFeatures(appId: string): Feature[] {
-  return FEATURES.filter((feature) => feature.apps.includes(appId));
-}
+// function appFeatures(appId: string): Feature[] {
+//   return FEATURES.filter((feature) => feature.apps.includes(appId));
+// }
 
 export default function AppWork() {
   const { appId } = useParams();
   const app = appId ? APPS_BY_ID[appId] : undefined;
+  const [slideIndex, setSlideIndex] = useState(0);
+  const handleSlideChange = useCallback((i: number) => setSlideIndex(i), []);
 
   useEffect(() => {
     if (app) document.title = `${app.title} — Judy`;
@@ -32,10 +36,11 @@ export default function AppWork() {
     );
   }
 
-  const features = appFeatures(app.id);
-  const primaryFeature = features[0];
-  const mediaSrc = app.media?.screenshot ?? app.media?.capture;
-  const canTry = canTryApp(app);
+  // 「コア機能の概要をつかむ」ボタンのクローズに合わせて休止中
+  // const features = appFeatures(app.id);
+  // const primaryFeature = features[0];
+  // const canTry = canTryApp(app);
+  const slides = appSlides(app);
   const liveUrl = publicUrl(app);
 
   return (
@@ -57,12 +62,18 @@ export default function AppWork() {
       </header>
 
       <div className="grid grid-cols-1 gap-6 py-8 lg:grid-cols-2">
-        <section className="app-work-panel card-surface rounded-xl p-6">
+        {/* pt はメディアパネルの見出し（py-4）と行の高さを揃える */}
+        <section className="app-work-panel card-surface rounded-xl px-6 pb-6 pt-4">
           <div className="text-sm uppercase tracking-widest text-muted">
             Overview
           </div>
           <p className="mt-2 text-base leading-8 text-paper-dim">
-            {app.overview ?? "概要文が未入力です"}
+            {overviewLines(app).map((line, i) => (
+              <Fragment key={line}>
+                {i > 0 && <br />}
+                {line}
+              </Fragment>
+            ))}
           </p>
 
           <div className="mt-4 flex flex-wrap gap-2">
@@ -74,26 +85,6 @@ export default function AppWork() {
                 {tech}
               </span>
             ))}
-          </div>
-
-          <div className="mt-4">
-            <div className="mb-2 text-sm uppercase tracking-widest text-muted">
-              Sample Flow
-            </div>
-            {features.length ? (
-              <div className="flex flex-wrap gap-2">
-                {features.map((feature) => (
-                  <span
-                    key={feature.slug}
-                    className="rounded-md border border-line-soft px-2 py-1 text-sm text-white"
-                  >
-                    {feature.title} · {statusShort(feature.status)}
-                  </span>
-                ))}
-              </div>
-            ) : (
-              <p className="text-sm text-muted">機能サンプル準備中</p>
-            )}
           </div>
 
           {liveUrl && (
@@ -113,6 +104,7 @@ export default function AppWork() {
             </div>
           )}
 
+          {/* 機能ページの精度が不十分なため一旦クローズ（スクショで代替）
           <div className="mt-8">
             {primaryFeature && canTry ? (
               <Link
@@ -128,34 +120,32 @@ export default function AppWork() {
               </span>
             )}
           </div>
+          */}
         </section>
 
         <section className="app-work-panel app-work-media overflow-hidden rounded-xl border border-line bg-ink-2">
-          <div className="flex items-center justify-between border-b border-line-soft px-5 py-4">
+          <div className="flex items-center justify-between px-5 py-4">
             <div className="text-sm uppercase tracking-widest text-muted">
-              Screenshot / Capture
+              Media
             </div>
             <div className="text-sm tracking-widest text-muted">
-              {!mediaSrc && "WIP"}
+              {slides.length
+                ? `${Math.min(slideIndex + 1, slides.length)} / ${slides.length}`
+                : "WIP"}
             </div>
           </div>
-          <div className="aspect-video bg-ink">
-            {mediaSrc ? (
-              <img
-                src={mediaSrc}
-                alt={app.media?.alt ?? `${app.title} の画面`}
-                className="h-full w-full object-cover"
-              />
-            ) : (
-              <div className="grid h-full grid-cols-5 gap-3 p-5">
-                <span className="col-span-3 rounded-lg border border-dashed border-line-soft bg-panel/60" />
-                <div className="col-span-2 grid gap-3">
-                  <span className="rounded-lg border border-dashed border-line-soft bg-panel/60" />
-                  <span className="rounded-lg border border-dashed border-line-soft bg-panel/60" />
-                </div>
-              </div>
-            )}
-          </div>
+          {slides.length ? (
+            <MediaSlider
+              key={app.id}
+              slides={slides}
+              fallbackAlt={app.media?.alt ?? `${app.title} の画面`}
+              onIndexChange={handleSlideChange}
+            />
+          ) : (
+            <div className="aspect-video bg-ink p-5">
+              <div className="h-full w-full rounded-lg border border-dashed border-line-soft bg-panel/60" />
+            </div>
+          )}
         </section>
       </div>
 

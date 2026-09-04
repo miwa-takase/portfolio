@@ -1,6 +1,7 @@
+import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import Breadcrumb from "../components/Breadcrumb";
-import { APPS, type App } from "../data/apps";
+import { APPS, overviewLines, type App } from "../data/apps";
 
 function AppWorkCard({ app }: { app: App }) {
   return (
@@ -10,7 +11,12 @@ function AppWorkCard({ app }: { app: App }) {
     >
       <h3 className="font-serif text-2xl font-medium italic">{app.title}</h3>
       <p className="mt-3 flex-grow text-paper-dim">
-        {app.overview ?? "概要文が未入力です"}
+        {overviewLines(app).map((line, i) => (
+          <Fragment key={line}>
+            {i > 0 && <br />}
+            {line}
+          </Fragment>
+        ))}
         {app.wip && (
           <span className="ml-2 inline-flex rounded-md border border-line-soft px-2 py-0.5 align-middle text-xs leading-5 tracking-wide text-muted">
             WIP

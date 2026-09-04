@@ -29,6 +29,12 @@ const ROUTES: Record<string, string> = {
   work: "/works",
 };
 
+// 隠しコマンド: help にも補完候補にも出ない
+const EASTER_EGGS: Record<string, string> = {
+  judy: "Hello World! I'm Judy.",
+  mary: "Oh.. Is that you, Mary? I've been looking for you, my buddy!",
+};
+
 const APP_NAMES = ["top", "about", "stacks", "works", "music", "contact"];
 const ACTION_PREFIXES = ["open ", "go "];
 const COMMANDS = Array.from(
@@ -132,6 +138,16 @@ export default function TerminalConsole() {
           kind: "error",
           text: "Please type in English.",
         },
+      ]);
+      return;
+    }
+
+    const easterEgg = EASTER_EGGS[command];
+    if (easterEgg) {
+      setLines((current) => [
+        ...current,
+        { kind: "input", text: `$ ${command}` },
+        { kind: "output", text: easterEgg },
       ]);
       return;
     }

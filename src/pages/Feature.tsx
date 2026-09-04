@@ -100,9 +100,7 @@ export default function Feature() {
       <div className="grid grid-cols-1 items-start gap-6 py-5 md:grid-cols-3 md:gap-10">
         <div className="md:col-span-2">
           <p className="mb-4 text-paper-dim">{f.summary}</p>
-          <h3 className="mb-3 mt-6 font-serif text-xl font-medium">
-            できること
-          </h3>
+          <h3 className="mb-3 mt-6 font-serif text-xl font-medium">Features</h3>
           <ul className="grid gap-2">
             {f.capabilities.map((c) => (
               <li key={c} className="relative pl-6 text-base text-paper">
@@ -126,27 +124,6 @@ export default function Feature() {
               </span>
             ))}
           </div>
-          <h4 className="mb-3 text-sm uppercase tracking-widest text-muted">
-            この機能を実装したアプリ
-          </h4>
-          {apps.length ? (
-            apps.map((p, i) => (
-              <Link
-                key={p.id}
-                to={`/works/${p.id}`}
-                className={`py-2 ${i === 0 ? "" : "border-t border-line-soft"}`}
-              >
-                <b className="block font-serif text-base font-medium">
-                  {p.title}
-                </b>
-                <small className="text-sm text-muted">
-                  {p.tech.slice(0, 3).join(" · ")}
-                </small>
-              </Link>
-            ))
-          ) : (
-            <small className="text-muted">—</small>
-          )}
         </aside>
       </div>
 
