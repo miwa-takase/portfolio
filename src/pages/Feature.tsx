@@ -49,7 +49,6 @@ export default function Feature() {
       (idx - 1 + relatedFeatures.length) % relatedFeatures.length
     ];
   const next = relatedFeatures[(idx + 1) % relatedFeatures.length];
-  const apps = f.apps.map((id) => APPS_BY_ID[id]).filter(Boolean);
   const canTry = canTryApp(app);
 
   return (
