@@ -151,12 +151,11 @@ function Setup({ refresh }: { refresh: string }) {
   }
   return (
     <div className="rounded-xl border border-line-soft bg-ink p-6 text-sm">
-      <p className="mb-1 text-sm uppercase tracking-widest text-muted">
-        Setup（オーナー用・一度だけ）
+      <p className="mb-1 text-sm tracking-widest text-muted">
+        SETUP（FOR OWNER）
       </p>
       <p className="mb-4 text-paper-dim">
-        あなたの Spotify を一度だけ認可して、公開表示用の refresh token
-        を取得します
+        Spotify を一度だけ認可して、公開表示用の refresh token を取得します
       </p>
       <button className={btnPrimary} onClick={() => void beginAuth()}>
         認可する →

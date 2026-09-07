@@ -21,9 +21,9 @@ export default function Home() {
         >
           <h2
             id="home-terminal-title"
-            className="mb-5 text-sm uppercase tracking-widest text-white"
+            className="mb-5 text-sm tracking-widest text-white"
           >
-            Terminal
+            TERMINAL
           </h2>
           <TerminalConsole />
         </section>

@@ -64,9 +64,7 @@ export default function AppWork() {
       <div className="grid grid-cols-1 gap-6 py-8 lg:grid-cols-2">
         {/* pt はメディアパネルの見出し（py-4）と行の高さを揃える */}
         <section className="app-work-panel card-surface rounded-xl px-6 pb-6 pt-4">
-          <div className="text-sm uppercase tracking-widest text-muted">
-            Overview
-          </div>
+          <div className="text-sm tracking-widest text-muted">OVERVIEW</div>
           <p className="mt-2 text-base leading-8 text-paper-dim">
             {overviewLines(app).map((line, i) => (
               <Fragment key={line}>
@@ -89,9 +87,7 @@ export default function AppWork() {
 
           {liveUrl && (
             <div className="mt-4">
-              <div className="mb-2 text-sm uppercase tracking-widest text-muted">
-                URL
-              </div>
+              <div className="mb-2 text-sm tracking-widest text-muted">URL</div>
               <a
                 href={liveUrl}
                 target="_blank"
@@ -125,9 +121,7 @@ export default function AppWork() {
 
         <section className="app-work-panel app-work-media overflow-hidden rounded-xl border border-line bg-ink-2">
           <div className="flex items-center justify-between px-5 py-4">
-            <div className="text-sm uppercase tracking-widest text-muted">
-              Media
-            </div>
+            <div className="text-sm tracking-widest text-muted">MEDIA</div>
             <div className="text-sm tracking-widest text-muted">
               {slides.length
                 ? `${Math.min(slideIndex + 1, slides.length)} / ${slides.length}`

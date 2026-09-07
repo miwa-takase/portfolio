@@ -75,7 +75,7 @@ export default function Feature() {
 
       <div className="feature-demo-panel overflow-hidden rounded-2xl border border-line bg-ink-2">
         <div className="flex items-center justify-between gap-3 border-b border-line-soft bg-gradient-to-b from-panel-2 to-panel px-5 py-4">
-          <div className="flex items-center gap-2 text-sm uppercase tracking-widest text-accent">
+          <div className="flex items-center gap-2 text-sm tracking-widest text-accent">
             ◍ {canTry ? "試せる場" : "準備中"}
           </div>
           <div className="text-sm tracking-widest text-muted">
@@ -110,9 +110,7 @@ export default function Feature() {
           </ul>
         </div>
         <aside className="feature-tech-panel card-surface sticky top-24 rounded-xl p-5">
-          <h4 className="mb-3 text-sm uppercase tracking-widest text-muted">
-            使用技術
-          </h4>
+          <h4 className="mb-3 text-sm tracking-widest text-muted">使用技術</h4>
           <div className="mb-5 flex flex-wrap gap-2">
             {f.tech.map((t) => (
               <span

@@ -97,9 +97,9 @@ export default function Music() {
       <section className="mt-8" aria-labelledby="favorite-music-title">
         <h2
           id="favorite-music-title"
-          className="mb-5 text-sm uppercase tracking-widest text-muted"
+          className="mb-5 text-sm tracking-widest text-muted"
         >
-          Favorite Music
+          FAVORITE ARTISTS
         </h2>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {FAVORITE_TRACKS.map((track) => (

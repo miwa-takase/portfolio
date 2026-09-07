@@ -108,7 +108,7 @@ function Pipeline() {
       {/* STEP 1 — 入力して文字起こし */}
       <div className={stepPane}>
         <div className={stepHead}>
-          <span className="text-sm uppercase tracking-widest text-muted">
+          <span className="text-sm tracking-widest text-muted">
             STEP 1 — 動画・音声から文字起こし
           </span>
         </div>
@@ -149,7 +149,7 @@ function Pipeline() {
       <div className={ioCls}>
         <div className={stepPane}>
           <div className={stepHead}>
-            <span className="text-sm uppercase tracking-widest text-muted">
+            <span className="text-sm tracking-widest text-muted">
               日本語 SRT
             </span>
             <button
@@ -173,8 +173,8 @@ function Pipeline() {
 
         <div className={stepPane}>
           <div className={stepHead}>
-            <span className="text-sm uppercase tracking-widest text-muted">
-              翻訳 SRT（{lang === "en" ? "English" : "日本語"}）
+            <span className="text-sm tracking-widest text-muted">
+              翻訳 SRT（{lang === "en" ? "ENGLISH" : "日本語"}）
             </span>
             <button
               className={dlBtn}
@@ -198,7 +198,7 @@ function Pipeline() {
 
       {/* STEP 2 — 翻訳 */}
       <div className={actionsCls}>
-        <span className="text-sm uppercase tracking-widest text-muted">
+        <span className="text-sm tracking-widest text-muted">
           STEP 2 — 翻訳
         </span>
         <select
@@ -302,7 +302,7 @@ function Nl2Ui() {
           </div>
         </div>
         <div className={paneCls}>
-          <div className={labCls}>レンダリング結果</div>
+          <div className={labCls}>RESULT</div>
           <div className={contentCls}>
             {!spec.fields || spec.fields.length === 0 ? (
               <span className="text-muted">該当フィールドなし</span>
@@ -354,8 +354,8 @@ function LinkHub() {
         />
       </div>
       <div className="mx-auto max-w-md rounded-xl border border-line-soft bg-ink p-5">
-        <div className="mb-1 text-sm uppercase tracking-widest text-muted">
-          Now sharing
+        <div className="mb-1 text-sm tracking-widest text-muted">
+          NOW SHARING
         </div>
         <div className="mb-4 font-serif text-lg text-paper">{title}</div>
         <div className="grid gap-2">
@@ -435,7 +435,7 @@ function Episode() {
       </div>
       <div className={ioCls}>
         <div className={paneCls}>
-          <div className={labCls}>生成された台本</div>
+          <div className={labCls}>SCRIPT</div>
           <div className={`${contentCls} whitespace-pre-wrap leading-7`}>
             {script || (
               <span className="text-muted">
@@ -445,7 +445,7 @@ function Episode() {
           </div>
         </div>
         <div className={paneCls}>
-          <div className={labCls}>音声（ElevenLabs）</div>
+          <div className={labCls}>AUDIO（ELEVENLABS）</div>
           <div className="flex flex-1 items-center p-3">
             {audio ? (
               <audio controls src={audio} className="w-full" />
