@@ -2,7 +2,7 @@ import Breadcrumb from "../components/Breadcrumb";
 import { OWNER } from "../data/apps";
 
 const btnWhite =
-  "mail-send-button inline-flex items-center gap-2 rounded-full border border-white px-6 py-2.5 text-sm tracking-wide text-white transition-colors";
+  "mail-send-button inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-white px-6 py-2.5 text-sm tracking-wide text-white transition-colors";
 
 export default function Mail() {
   return (
@@ -18,7 +18,7 @@ export default function Mail() {
         </p>
       </div>
 
-      <div className="card-surface mt-8 flex items-center justify-between rounded-2xl p-8">
+      <div className="card-surface mt-8 flex flex-col items-start gap-6 rounded-2xl p-8 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-base leading-8 text-paper-dim">
           右のボタンから、お使いのメールソフトが起動します
         </p>
