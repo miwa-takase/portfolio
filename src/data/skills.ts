@@ -38,7 +38,7 @@ export const SKILLS: Array<{ h: string; items: string[] }> = [
     items: [
       "基本情報技術者試験 (2024/09)",
       "PHP8 技術者認定初級試験 (2024/12)",
-      "AWS Solution Architect - Accociate (2026/09)",
+      "AWS Solution Architect - Associate (2026/09)",
     ],
   },
 ];
