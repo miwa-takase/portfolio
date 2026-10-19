@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import Breadcrumb from "../components/Breadcrumb";
 import { APPS, overviewLines, type App } from "../data/apps";
+import { usePageTitle } from "../lib/usePageTitle";
 
 function AppWorkCard({ app }: { app: App }) {
   return (
@@ -34,6 +35,7 @@ function AppWorkCard({ app }: { app: App }) {
 }
 
 export default function Works() {
+  usePageTitle("Works");
   return (
     <section className="wrap md:pb-8 md:pt-4">
       <Breadcrumb items={[{ label: "Works" }]} className="pt-8" />

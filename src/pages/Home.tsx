@@ -1,7 +1,9 @@
 import TerminalConsole from "../components/TerminalConsole";
 import SpotifyNowPlaying from "../demos/SpotifyNowPlaying";
+import { usePageTitle } from "../lib/usePageTitle";
 
 export default function Home() {
+  usePageTitle();
   return (
     <section className="home-screen wrap">
       <header className="home-intro">

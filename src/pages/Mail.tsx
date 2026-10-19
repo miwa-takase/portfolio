@@ -1,10 +1,12 @@
 import Breadcrumb from "../components/Breadcrumb";
 import { OWNER } from "../data/apps";
+import { usePageTitle } from "../lib/usePageTitle";
 
 const btnWhite =
   "mail-send-button inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-white px-6 py-2.5 text-sm tracking-wide text-white transition-colors";
 
 export default function Mail() {
+  usePageTitle("Contact");
   return (
     <section className="wrap py-16">
       <Breadcrumb items={[{ label: "Contact" }]} />

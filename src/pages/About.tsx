@@ -3,8 +3,10 @@ import Breadcrumb from "../components/Breadcrumb";
 import TrackCard from "../components/TrackCard";
 import { OWNER } from "../data/apps";
 import { TIMELINE } from "../data/timeline";
+import { usePageTitle } from "../lib/usePageTitle";
 
 export default function About() {
+  usePageTitle("About");
   return (
     <section className="wrap md:pb-8 md:pt-4">
       <Breadcrumb items={[{ label: "About" }]} className="pt-8" />

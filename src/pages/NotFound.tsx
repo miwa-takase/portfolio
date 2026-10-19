@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
+import { usePageTitle } from "../lib/usePageTitle";
 
 const linkClass =
   "inline-flex items-center gap-2 rounded-full border border-line px-5 py-2 text-sm tracking-wide text-paper transition-all hover:border-accent hover:text-accent-soft";
 
 export default function NotFound() {
+  usePageTitle("Not Found");
   return (
     <section className="wrap grid min-h-screen content-center py-20">
       <p className="text-sm tracking-widest text-accent">NOT FOUND</p>

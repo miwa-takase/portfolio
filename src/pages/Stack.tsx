@@ -1,7 +1,9 @@
 import Breadcrumb from "../components/Breadcrumb";
 import { SKILLS } from "../data/skills";
+import { usePageTitle } from "../lib/usePageTitle";
 
 export default function Stack() {
+  usePageTitle("Stack");
   return (
     <section className="wrap py-16">
       <Breadcrumb items={[{ label: "Stack" }]} />

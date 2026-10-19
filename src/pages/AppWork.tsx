@@ -1,6 +1,7 @@
-import { Fragment, useCallback, useEffect, useState } from "react";
+import { Fragment, useCallback, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Breadcrumb from "../components/Breadcrumb";
+import { usePageTitle } from "../lib/usePageTitle";
 import MediaSlider from "../components/MediaSlider";
 import { APPS_BY_ID, appSlides, overviewLines, publicUrl } from "../data/apps";
 // import { canTryApp } from "../data/apps";
@@ -21,9 +22,7 @@ export default function AppWork() {
   const [slideIndex, setSlideIndex] = useState(0);
   const handleSlideChange = useCallback((i: number) => setSlideIndex(i), []);
 
-  useEffect(() => {
-    if (app) document.title = `${app.title} — Judy`;
-  }, [app]);
+  usePageTitle(app?.title);
 
   if (!app) {
     return (

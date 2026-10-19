@@ -1,6 +1,7 @@
 import Breadcrumb from "../components/Breadcrumb";
 import TrackCard from "../components/TrackCard";
 import SpotifyNowPlaying from "../demos/SpotifyNowPlaying";
+import { usePageTitle } from "../lib/usePageTitle";
 
 // お気に入り曲（NOW PLAYING と同じカードスタイルで表示）
 type FavoriteTrack = {
@@ -80,6 +81,7 @@ const FAVORITE_TRACKS: FavoriteTrack[] = [
 ];
 
 export default function Music() {
+  usePageTitle("Music");
   return (
     <section className="wrap py-16">
       <Breadcrumb items={[{ label: "Music" }]} />

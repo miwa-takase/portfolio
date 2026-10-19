@@ -1,10 +1,10 @@
-import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { FEATURES, FEATURES_BY_SLUG } from "../data/features";
 import type { DemoType } from "../data/features";
 import { APPS_BY_ID, canTryApp } from "../data/apps";
 import Badge from "../components/Badge";
 import Breadcrumb from "../components/Breadcrumb";
+import { usePageTitle } from "../lib/usePageTitle";
 import Demo from "../demos/Demo";
 
 function demoLabel(t: DemoType): string {
@@ -25,9 +25,7 @@ export default function Feature() {
   const f = slug ? FEATURES_BY_SLUG[slug] : undefined;
   const app = appId ? APPS_BY_ID[appId] : undefined;
 
-  useEffect(() => {
-    if (f) document.title = `${f.title} — Judy`;
-  }, [f]);
+  usePageTitle(f?.title);
 
   if (!f || !app || !f.apps.includes(app.id)) {
     return (
